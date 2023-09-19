@@ -1,0 +1,6 @@
+@import './base.css';
+
+@font-face {
+  font-family: SourceHanSans;
+  src: url(./SourceHanSansCN-VF.otf.woff2);
+}
