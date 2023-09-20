@@ -4,3 +4,13 @@
   font-family: SourceHanSans;
   src: url(./SourceHanSansCN-VF.otf.woff2);
 }
+
+:root {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  /* display: none; */
+}
