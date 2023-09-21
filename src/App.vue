@@ -6,6 +6,7 @@ import Kanonbot from './components/kanonbot.vue'
 import Meowpad from './components/meowpad.vue'
 import Teamspeak from './components/teamspeak.vue'
 import Support from './components/support.vue'
+import Temp from './components/temp.vue'
 // import TheWelcome from './components/TheWelcome.vue'
 console.log(`
 ======================================
@@ -23,6 +24,7 @@ console.log(`
             <Meowpad class="component" />
             <Teamspeak class="component" />
             <Support class="component" />
+            <Temp class="component" />
             <n-back-top :right="100" :visibility-height="188" />
         </n-message-provider>
     </n-config-provider>

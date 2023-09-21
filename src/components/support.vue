@@ -1,5 +1,15 @@
 <template>
     <div class="container" id="support">
+            <vue-danmaku
+                v-model:danmus="danmus"
+                :speeds=70
+                :debounce=1000
+                loop
+                randomChannel
+                isSuspend
+                :fontSize=15
+                class="danmu"
+            ></vue-danmaku>
         <div class="anchor-point">
             <div @click="jumpTo('kanonbot')" class="circle"></div>
             <div @click="jumpTo('meowpad')" class="circle"></div>
@@ -31,9 +41,14 @@
 </template>
 
 <script setup lang="ts">
+import vueDanmaku from 'vue3-danmaku'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
 import logo from "../assets/textlogo.svg"
 import support from "../assets/support/party_popper_color.svg"
 // import support from "../assets/support/support.png"
+const danmus = ref([''])
 
 const jumpTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView();
@@ -43,17 +58,26 @@ const toAfdian = () => {
     window.open("https://afdian.net/a/Mo0oOo0oOo0o")
 }
 
-
+onMounted(() => {
+    axios.get("/supporters.json").then((res: { data: any[] }) => {
+        var result: string[] = []
+        res.data.sort(() => Math.random() - .5).forEach((el: any) => {
+            result.push(`￥${el.value} ${el.comment} @${el.name}${el.qq?`[${el.qq}]`:''} - ${el.time}`)
+        });
+        danmus.value = result
+    })
+})
 </script>
 
 <style scoped lang="scss">
 .flip {
-    -moz-transform:scaleX(-1);
-    -webkit-transform:scaleX(-1);
-    -o-transform:scaleX(-1);
-    transform:scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
     /*兼容IE*/
 }
+
 .container {
     height: 100vh;
     display: flex;
@@ -61,6 +85,20 @@ const toAfdian = () => {
     align-items: center;
     position: relative;
 
+    .danmu {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 98%;
+        pointer-events: none;
+        z-index: 9;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-family: SourceHanSC;
+    }
 
     .anchor-point {
         position: absolute;
@@ -129,6 +167,7 @@ const toAfdian = () => {
             // background-color: red;
             display: flex;
             align-items: center;
+
             .text {
                 white-space: nowrap;
                 display: flex;
