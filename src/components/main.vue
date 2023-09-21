@@ -72,6 +72,7 @@ const jumpTo = (id: string) => {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  
   .menu-box {
     flex: 1;
     display: flex;

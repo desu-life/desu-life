@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    copy: typeof import('./src/components/kanonbot copy.vue')['default']
+    copy: typeof import('./src/components/meowpad copy.vue')['default']
     Kanonbot: typeof import('./src/components/kanonbot.vue')['default']
     Main: typeof import('./src/components/main.vue')['default']
     Meowpad: typeof import('./src/components/meowpad.vue')['default']
@@ -17,8 +17,14 @@ declare module 'vue' {
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDropdown: typeof import('naive-ui')['NDropdown']
+    NIcon: typeof import('naive-ui')['NIcon']
+    NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NModal: typeof import('naive-ui')['NModal']
     NTag: typeof import('naive-ui')['NTag']
     NTooltip: typeof import('naive-ui')['NTooltip']
+    Reward: typeof import('./src/components/reward.vue')['default']
+    Support: typeof import('./src/components/support.vue')['default']
+    Teamspeak: typeof import('./src/components/teamspeak.vue')['default']
     Temp: typeof import('./src/components/temp.vue')['default']
   }
 }
