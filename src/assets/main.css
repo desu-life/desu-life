@@ -3,6 +3,7 @@
 @font-face {
   font-family: SourceHanSans;
   src: url(./SourceHanSansCN-VF.otf.woff2);
+  font-display: auto;
 }
 
 :root {

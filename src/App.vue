@@ -6,7 +6,8 @@ import Kanonbot from './components/kanonbot.vue'
 import Meowpad from './components/meowpad.vue'
 import Teamspeak from './components/teamspeak.vue'
 import Support from './components/support.vue'
-import Temp from './components/temp.vue'
+import About from './components/about.vue'
+import Footer from './components/footer.vue'
 // import TheWelcome from './components/TheWelcome.vue'
 console.log(`
 ======================================
@@ -19,19 +20,34 @@ console.log(`
 <template>
     <n-config-provider :theme="darkTheme">
         <n-message-provider>
-            <Main class="component" />
-            <Kanonbot class="component" />
-            <Meowpad class="component" />
-            <Teamspeak class="component" />
-            <Support class="component" />
-            <Temp class="component" />
-            <n-back-top :right="100" :visibility-height="188" />
+            <!-- <div class="container"> -->
+                <Main class="component" />
+                <Kanonbot class="component" />
+                <Meowpad class="component" />
+                <Teamspeak class="component" />
+                <Support class="component" />
+                <About class="component" />
+                <Footer class="component"/>
+            <!-- </div> -->
+            <n-back-top :bottom="95" :right="100" :visibility-height="188" />
         </n-message-provider>
     </n-config-provider>
 </template>
 
 <style scoped lang="scss">
+.container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    position: relative;
+}
+.container::-webkit-scrollbar {
+    display: none;
+}
 .component {
     scroll-snap-align: start;
+}
+.about {
+    scroll-snap-stop: always; 
 }
 </style>

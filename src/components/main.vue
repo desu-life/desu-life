@@ -41,10 +41,10 @@ const jumpTo = (id: string) => {
           </n-dropdown>
         </li>
         <li @click="jumpTo('kanonbot')">Bot</li>
-        <li>猫盘</li>
-        <li>TS</li>
-        <li>赞助</li>
-        <li>关于</li>
+        <li @click="jumpTo('meowpad')">猫盘</li>
+        <li @click="jumpTo('teamspeak')">TS</li>
+        <li @click="jumpTo('support')">赞助</li>
+        <li @click="jumpTo('about')">关于</li>
       </div>
     </div>
     <div class="title">DESU.Life</div>
