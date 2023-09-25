@@ -13,5 +13,12 @@
 }
 
 ::-webkit-scrollbar {
-  /* display: none; */
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    overflow: auto;
+    scroll-snap-type: none;
+  }
 }

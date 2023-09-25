@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import bgImg from "../assets/main/background.jpg";
-import { KeyCommand16Filled } from "@vicons/fluent";
-import { KeyboardArrowDownFilled } from "@vicons/material";
+import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
+import { KeyboardArrowDownFilled, AlternateEmailFilled } from "@vicons/material";
+
+import MastodonIcon from "../assets/footer/mastodon.vue";
+import OsuIcon from "../assets/footer/osu.vue";
 
 const options = [
   {
@@ -33,7 +36,7 @@ const jumpTo = (id: string) => {
 <template>
   <div class="container" id="main">
     <img :src="bgImg" alt="" class="bg" />
-    <div class="menu-box">
+    <div class="menu-box" id="__menu-box">
       <div class="menu">
         <li>
           <n-dropdown trigger="click" :options="options" @select="toNewPage" placement="bottom-start">
@@ -47,7 +50,13 @@ const jumpTo = (id: string) => {
         <li @click="jumpTo('about')">关于</li>
       </div>
     </div>
-    <div class="title">DESU.Life</div>
+    <div class="title" id="__title">DESU.Life</div>
+    <div class="micons" id="__micons">
+      <News24Regular class="icon" @click="toNewPage('https://info.desu.life/')" />
+      <AlternateEmailFilled class="icon" @click="toNewPage('https://mail.desu.life/')" />
+      <MastodonIcon class="icon" @click="toNewPage('https://m.desu.life/')" />
+      <OsuIcon class="icon" @click="toNewPage('https://osu.desu.life/')" />
+    </div>
     <div class="arrowdown">
         <i>
             <KeyboardArrowDownFilled class="arrowdown-icon scroll-down-effects" />
@@ -119,6 +128,9 @@ const jumpTo = (id: string) => {
     -webkit-user-select: none;
     user-select: none;
   }
+  .micons {
+    display: none;
+  }
 }
 .arrowdown {
   position: absolute;
@@ -156,6 +168,33 @@ const jumpTo = (id: string) => {
     top: 0;
     opacity: 0.4;
     filter: alpha(opacity=40);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #__title {
+    font-size: 4rem;
+    flex: none;
+    padding: 0;
+    margin: 0;
+  }
+  #__micons {
+    display: flex;
+    flex: none;
+    padding: 0;
+    margin: 0;
+    .icon {
+      width: 2rem;
+      margin: 0 0.5rem;
+      color: #fff;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
+  #__menu-box {
+    display: none ;
   }
 }
 </style>

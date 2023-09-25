@@ -1,22 +1,22 @@
 <template>
     <div class="container" id="kanonbot">
-        <div class="anchor-point">
+        <div class="anchor-point" id="__anchor-point">
             <div class="circle current"></div>
             <div @click="jumpTo('meowpad')" class="circle"></div>
             <div @click="jumpTo('teamspeak')" class="circle"></div>
             <div @click="jumpTo('support')" class="circle"></div>
             <div @click="jumpTo('about')" class="circle"></div>
         </div>
-        <div class="header">
+        <div class="header" id="__header">
             <div class="logo">
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main">
-            <div class="left">
+        <div class="main" id="__main">
+            <div class="left" id="__left">
                 <img :src="left" alt="" draggable="false" />
             </div>
-            <div class="right">
+            <div class="right" id="__right">
                 <div class="text">
                     <h1>KanonBot</h1>
                     <h2>支持多平台的 osu! 查分机器人</h2>
@@ -51,6 +51,7 @@ const jumpTo = (id: string) => {
 </script>
 
 <style scoped lang="scss">
+@import url("../assets/sub.css");
 .container {
     height: 100vh;
     display: flex;

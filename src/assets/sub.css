@@ -1,0 +1,30 @@
+@media screen and (max-width: 768px) {
+    #__header {
+        display: none;
+    }
+    .container {
+        justify-content: center;
+    }
+    #__main {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    #__left {
+        flex: auto;
+        height: auto;
+        width: 80%;
+    }
+    #__left img {
+        width: 100%;
+        height: auto;
+    }
+    #__right {
+        flex: auto;
+    }
+    #__anchor-point {
+        display: none;
+    }
+}
