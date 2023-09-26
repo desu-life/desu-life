@@ -51,6 +51,7 @@ const openURL = (url: string | undefined) => {
 <style scoped lang="scss">
 @import url("../assets/sub.css");
 .container {
+    height: 100vh;
     max-height: 100vh;
     display: flex;
     flex-direction: column;
