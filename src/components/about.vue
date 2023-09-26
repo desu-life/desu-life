@@ -1,6 +1,6 @@
 <template>
     <div class="container" id="about">
-        <div class="anchor-point">
+        <div class="anchor-point" id="__anchor-point">
             <div @click="jumpTo('kanonbot')" class="circle"></div>
             <div @click="jumpTo('meowpad')" class="circle"></div>
             <div @click="jumpTo('teamspeak')" class="circle"></div>
@@ -49,6 +49,7 @@ const openURL = (url: string | undefined) => {
 </script>
 
 <style scoped lang="scss">
+@import url("../assets/sub.css");
 .container {
     max-height: 100vh;
     display: flex;

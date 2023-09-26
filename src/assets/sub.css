@@ -39,6 +39,14 @@
     #__right {
         flex: auto;
         justify-content: center;
+        height: auto;
+    }
+    #__right img {
+        width: 60%;
+        height: auto;
+    }
+    .__rtl {
+        flex-direction: column-reverse !important;
     }
     #__btn {
         width: 100%;
@@ -49,5 +57,10 @@
     }
     #__text h2 {
         margin: 10px 0;
+    }
+    .container {
+        max-height: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
     }
 }

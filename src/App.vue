@@ -15,6 +15,10 @@ console.log(`
 | 害得我没法咕咕咕 没法偷懒 只能干活  |
 ======================================
 `)
+
+const isMobile = () => {
+    return window.innerWidth <= 768
+}
 </script>
 
 <template>
@@ -29,21 +33,12 @@ console.log(`
                 <About class="component" />
                 <Footer class="component"/>
             <!-- </div> -->
-            <n-back-top :bottom="95" :right="100" :visibility-height="188" />
+            <n-back-top :bottom="95" :right="100" :visibility-height="188" v-if="!isMobile()" />
         </n-message-provider>
     </n-config-provider>
 </template>
 
 <style scoped lang="scss">
-.container {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-    position: relative;
-}
-.container::-webkit-scrollbar {
-    display: none;
-}
 .component {
     scroll-snap-align: start;
 }

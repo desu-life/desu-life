@@ -1,13 +1,13 @@
 <template>
-    <div class="container">
-        <div class="f-menu">
+    <div class="footer-container">
+        <div class="f-menu" id="__f-menu">
             <div class="icon btn" @click="toNewPage('https://info.desu.life/')">
                 <News24Regular class="i" />
             </div>
             <div class="icon btn" @click="toNewPage('https://mail.desu.life/')">
                 <AlternateEmailFilled class="i" />
             </div>
-            <div class="logo" @click="backTop">
+            <div class="logo" @click="backTop" id="__logo">
                 <img :src="catlogo" draggable="false" />
             </div>
             <div class="icon btn" @click="toNewPage('https://m.desu.life/')">
@@ -17,7 +17,7 @@
                 <OsuIcon class="i" />
             </div>
         </div>
-        <div class="footer">
+        <div class="footer" id="__footer">
             <div class="left footer-block">
                 <div v-for="i in footer.left">
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
@@ -63,7 +63,8 @@ const backTop = () => {
 </script>
 
 <style scoped lang="scss">
-.container {
+@import url("../assets/sub.css");
+.footer-container {
     max-height: 40vh;
     display: flex;
     flex-direction: column;
@@ -166,4 +167,42 @@ const backTop = () => {
             text-align: right;
         }
     }
-}</style>
+}
+@media screen and (max-width: 768px) {
+    #__footer {
+        border-top: 1px solid #fff;
+        flex-direction: column;
+        .footer-block {
+            border-top: none;
+            padding: 0;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            a {
+                color: #fff;
+                text-decoration: none;
+                &:hover {
+                    color: #369
+                }
+            }
+        }
+        .left {
+            text-align: center;
+        }
+        .center {
+            text-align: center;
+        }
+        .right {
+            text-align: center;
+        }
+    }
+    #__f-menu {
+        width: 100%;
+        #__logo {
+            padding: 0;
+            margin: 0;
+            width: 80px;
+            height: 80px;
+        }
+    }
+}
+</style>

@@ -9,31 +9,32 @@
                 isSuspend
                 :fontSize=15
                 class="danmu"
+                id="__danmu"
             ></vue-danmaku>
-        <div class="anchor-point">
+        <div class="anchor-point" id="__anchor-point">
             <div @click="jumpTo('kanonbot')" class="circle"></div>
             <div @click="jumpTo('meowpad')" class="circle"></div>
             <div @click="jumpTo('teamspeak')" class="circle"></div>
             <div class="circle current"></div>
             <div @click="jumpTo('about')" class="circle"></div>
         </div>
-        <div class="header">
+        <div class="header" id="__anchor-point">
             <div class="logo">
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main">
-            <div class="left">
-                <div class="text">
+        <div class="main __rtl" id="__main">
+            <div class="left" id="__left">
+                <div class="text" id="__text">
                     <h1>支持 DESU.Life</h1>
                     <p>DESU.Life 的运营离不开大家的支持</p>
                     <p>感谢屏幕上飘过的所有小伙伴对 DESU.Life 的支持</p>
                     <p>所有发电金额将全部用于服务器、域名、各种云服务的费用支出。</p>
                     <p>如果您的赞助没有被记录，请在爱发电私信或群里私聊群主。</p>
-                    <n-button text class="btn" type="info" @click="toAfdian">前往爱发电页 >></n-button>
+                    <n-button id="__btn" text class="btn" type="info" @click="toAfdian">前往爱发电页 >></n-button>
                 </div>
             </div>
-            <div class="right">
+            <div class="right" id="__right">
                 <img :src="support" class="flip" draggable="false" />
             </div>
         </div>
@@ -70,6 +71,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import url("../assets/sub.css");
 .flip {
     -moz-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
@@ -194,4 +196,19 @@ onMounted(() => {
             }
         }
     }
-}</style>
+}
+@media screen and (max-width: 768px) {
+    #__text {
+        width: 90%;
+        margin: 0 auto;
+        p {
+            white-space: normal;
+        }
+    }
+    #__danmu {
+        top: 0;
+        height: 80%;
+        
+    }
+}
+</style>

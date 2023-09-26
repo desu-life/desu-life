@@ -1,19 +1,19 @@
 <template>
     <div class="container" id="teamspeak">
-        <div class="anchor-point">
+        <div class="anchor-point" id="__anchor-point">
             <div @click="jumpTo('kanonbot')" class="circle"></div>
             <div @click="jumpTo('meowpad')" class="circle"></div>
             <div class="circle current"></div>
             <div @click="jumpTo('support')" class="circle"></div>
             <div @click="jumpTo('about')" class="circle"></div>
         </div>
-        <div class="header">
+        <div class="header" id="__header">
             <div class="logo">
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main">
-            <div class="card">
+        <div class="main" id="__main">
+            <div class="card" id="__card">
                 <div class="mlogo">
                     <img :src="catlogo" alt="" draggable="false" />
                 </div>
@@ -23,7 +23,7 @@
                 <div class="name">
                     Teamspeak 服务器
                 </div>
-                <div class="btn-group">
+                <div class="btn-group" id="__btn-group">
                     <div class="btn">
                         <n-button size="medium" @click="copyStr('ts.desu.life')" color="#00000045">
                             <div class="circle-icon"></div>
@@ -74,6 +74,7 @@ const copyStr = (str: string) => {
 </script>
 
 <style scoped lang="scss">
+@import url("../assets/sub.css");
 .container {
     height: 100vh;
     display: flex;
@@ -189,4 +190,20 @@ const copyStr = (str: string) => {
         }
         
     }
-}</style>
+} 
+
+@media screen and (max-width: 768px) {
+    #__card {
+        width: 100%;
+        background-color: #00000000;
+    }
+    #__btn-group {
+        flex-direction: column;
+        align-items: center;
+        .btn {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+</style>

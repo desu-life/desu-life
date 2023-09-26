@@ -50,8 +50,8 @@ const jumpTo = (id: string) => {
         <li @click="jumpTo('about')">关于</li>
       </div>
     </div>
-    <div class="title" id="__title">
-      <span>DESU.Life</span>
+    <div class="title">
+      <span id="__title">DESU.Life</span>
     </div>
     <div class="micons" id="__micons">
       <News24Regular class="icon" @click="toNewPage('https://info.desu.life/')" />
@@ -180,7 +180,7 @@ const jumpTo = (id: string) => {
 
 @media screen and (max-width: 768px) {
   #__title {
-    font-size: 2rem;
+    font-size: 3rem;
     flex: none;
     padding: 0;
     margin: 0;

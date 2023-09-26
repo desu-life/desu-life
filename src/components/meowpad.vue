@@ -15,14 +15,11 @@
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main" id="__main">
+        <div class="main __rtl" id="__main">
             <div class="left" id="__left">
                 <div class="text" id="__text">
                     <h1>Meowpad 猫盘</h1>
                     <h2>适用 osu! 的磁轴二键小键盘</h2>
-                    <div class="__hide __meowimg" id="__show">
-                        <img :src="meowpad" alt="" draggable="false" />
-                    </div>
                     <div class="icon-group" id="__icon-group">
                         <div class="item">
                             <div class="icon">
@@ -65,7 +62,7 @@
                     <n-button v-else text class="btn" id="__btn" type="info" @click="openDialog">已经整了？下载驱动！ >></n-button>
                 </div>
             </div>
-            <div class="right" id="__hide">
+            <div class="right" id="__right">
                 <img :src="meowpad" alt="" draggable="false" />
             </div>
         </div>
@@ -305,4 +302,6 @@ const openDialog = () => {
             }
         }
     }
-}</style>
+}
+
+</style>
