@@ -27,7 +27,7 @@
                     <p></p>
                     <n-tooltip trigger="hover">
                         <template #trigger>
-                            <n-button text class="btn" type="info" @click="toDetail">猫猫还可以做的更多！ >></n-button>
+                            <n-button text class="btn" id="__btn" type="info" @click="toDetail">猫猫还可以做的更多！ >></n-button>
                         </template>
                         前往资讯站查看 KanonBot2022 使用文档
                     </n-tooltip>

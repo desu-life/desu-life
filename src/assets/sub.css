@@ -1,8 +1,23 @@
+.__hide {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
-    #__header {
+    #__header, #__anchor-point, #__hide {
         display: none;
     }
-    .container {
+    #__show {
+        display: block;
+    }
+    #__modal {
+        width: 100%;
+    }
+    .__meowimg {
+        width: 60%;
+        height: auto;
+        margin: 0 auto;
+    }
+    #kanonbot {
         justify-content: center;
     }
     #__main {
@@ -23,8 +38,16 @@
     }
     #__right {
         flex: auto;
+        justify-content: center;
     }
-    #__anchor-point {
-        display: none;
+    #__btn {
+        width: 100%;
+    }
+    #__icon-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    #__text h2 {
+        margin: 10px 0;
     }
 }

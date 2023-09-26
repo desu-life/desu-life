@@ -50,7 +50,9 @@ const jumpTo = (id: string) => {
         <li @click="jumpTo('about')">关于</li>
       </div>
     </div>
-    <div class="title" id="__title">DESU.Life</div>
+    <div class="title" id="__title">
+      <span>DESU.Life</span>
+    </div>
     <div class="micons" id="__micons">
       <News24Regular class="icon" @click="toNewPage('https://info.desu.life/')" />
       <AlternateEmailFilled class="icon" @click="toNewPage('https://mail.desu.life/')" />
@@ -83,7 +85,8 @@ const jumpTo = (id: string) => {
   height: 100vh;
   
   .menu-box {
-    flex: 1;
+    position: absolute;
+    top: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,14 +122,18 @@ const jumpTo = (id: string) => {
     }
   }
   .title {
-    padding-top: 6rem;
-    font-family: SourceHanSans;
-    font-weight: 600;
-    font-size: 6rem;
-    color: #fff;
-    flex: 3;
-    -webkit-user-select: none;
-    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-family: SourceHanSans;
+      font-weight: 600;
+      font-size: 6rem;
+      color: #fff;
+      flex: 3;
+      -webkit-user-select: none;
+      user-select: none;
+    }
   }
   .micons {
     display: none;
@@ -173,7 +180,7 @@ const jumpTo = (id: string) => {
 
 @media screen and (max-width: 768px) {
   #__title {
-    font-size: 4rem;
+    font-size: 2rem;
     flex: none;
     padding: 0;
     margin: 0;

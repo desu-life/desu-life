@@ -1,26 +1,29 @@
 <template>
     <div class="container" id="meowpad">
-        <div class="anchor-point">
+        <div class="anchor-point" id="__anchor-point">
             <div @click="jumpTo('kanonbot')" class="circle"></div>
             <div class="circle current"></div>
             <div @click="jumpTo('teamspeak')" class="circle"></div>
             <div @click="jumpTo('support')" class="circle"></div>
             <div @click="jumpTo('about')" class="circle"></div>
         </div>
-        <div class="bg">
+        <div class="bg" id="__hide">
             <img :src="bg" alt="" draggable="false" />
         </div>
-        <div class="header">
+        <div class="header" id="__header">
             <div class="logo">
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main">
-            <div class="left">
-                <div class="text">
+        <div class="main" id="__main">
+            <div class="left" id="__left">
+                <div class="text" id="__text">
                     <h1>Meowpad 猫盘</h1>
                     <h2>适用 osu! 的磁轴二键小键盘</h2>
-                    <div class="icon-group">
+                    <div class="__hide __meowimg" id="__show">
+                        <img :src="meowpad" alt="" draggable="false" />
+                    </div>
+                    <div class="icon-group" id="__icon-group">
                         <div class="item">
                             <div class="icon">
                                 <img :src="USBC" alt="" draggable="false">
@@ -46,26 +49,28 @@
                             <div class="label">自定义触发</div>
                         </div>
                     </div>
-                    <n-tooltip trigger="hover">
+                    <n-tooltip trigger="hover" v-if="!isMobile()">
                         <template #trigger>
                             <n-button text class="btn" type="info" @click="toMarket">这么好？给我也整一个！ >></n-button>
                         </template>
                         打开猫盘淘宝店铺页
                     </n-tooltip>
-                    <n-tooltip trigger="hover">
+                    <n-button v-else text class="btn" id="__btn" type="info" @click="toMarket">这么好？给我也整一个！ >></n-button>
+                    <n-tooltip trigger="hover" v-if="!isMobile()">
                         <template #trigger>
                             <n-button text class="btn" type="info" @click="openDialog">已经整了？下载驱动！ >></n-button>
                         </template>
                         下载驱动程序
                     </n-tooltip>
+                    <n-button v-else text class="btn" id="__btn" type="info" @click="openDialog">已经整了？下载驱动！ >></n-button>
                 </div>
             </div>
-            <div class="right">
+            <div class="right" id="__hide">
                 <img :src="meowpad" alt="" draggable="false" />
             </div>
         </div>
-        <div class="modal">
-            <n-modal v-model:show="showModal" preset="card" :style="{ width: '50%', lineheight: '51px' }" title="下载 Meowpad 驱动" :bordered="false">
+        <div class="modal" >
+            <n-modal v-model:show="showModal" preset="card" :style="{ width: isMobile() ? '100%' : '50%', lineheight: '51px' }" title="下载 Meowpad 驱动" :bordered="false">
                 <p>
                     meowpad_v1.0固件 (Mechanical beta 0.1.6)：
                     <n-button text type="info" tag="a"
@@ -123,6 +128,10 @@ import Light from "../assets/meowpad/LightbulbOutlined.svg"
 import Speed from "../assets/meowpad/SpeedFilled.svg"
 import USBC from "../assets/meowpad/usb-c-port.svg"
 
+const isMobile = () => {
+    return window.innerWidth <= 768
+}
+
 const toMarket = () => {
     window.open("https://shop172145884.taobao.com/")
 }
@@ -139,6 +148,7 @@ const openDialog = () => {
 </script>
 
 <style scoped lang="scss">
+@import url("../assets/sub.css");
 .container {
     height: 100vh;
     display: flex;

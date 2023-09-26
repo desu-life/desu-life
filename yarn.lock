@@ -2137,11 +2137,6 @@ vooks@^0.2.12, vooks@^0.2.4:
   dependencies:
     evtd "^0.2.2"
 
-vue-glitch@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmmirror.com/vue-glitch/-/vue-glitch-1.0.1.tgz#eebec4602e771d2a4670a6c15abb8502fa0fed7e"
-  integrity sha512-N2s9I1Ju5rD59JIO6qPkrlk6z7tYIux8L0cJNaefqfYmgcno09xxU2KfQvBLLqrJErDY+l3Fk2VTrxqJ6emT4A==
-
 vue-template-compiler@^2.7.14:
   version "2.7.14"
   resolved "https://registry.npmmirror.com/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz#4545b7dfb88090744c1577ae5ac3f964e61634b1"
