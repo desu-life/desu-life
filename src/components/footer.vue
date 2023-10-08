@@ -168,7 +168,7 @@ const backTop = () => {
         }
     }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
     #__footer {
         border-top: 1px solid #fff;
         flex-direction: column;

@@ -7,12 +7,12 @@
             <div @click="jumpTo('support')" class="circle"></div>
             <div class="circle current"></div>
         </div>
-        <div class="header">
-            <div class="logo">
-                <img :src="logo" draggable="false" />
-            </div>
-        </div>
         <div class="main">
+            <div class="header">
+                <div class="logo">
+                    <img :src="logo" draggable="false" />
+                </div>
+            </div>
             <n-grid cols="2 s:3 m:4 l:5 xl:6 2xl:7" responsive="screen" :collapsed-rows=3>
                 <n-gi class="p-card" v-for="i in members" @click="openURL(i.url)">
                     <div class="avatar" v-if="i.avatar">
@@ -87,7 +87,7 @@ const openURL = (url: string | undefined) => {
     }
 
     .header {
-        padding-top: 5vh;
+        padding-bottom: 8vh;
         width: 100%;
 
         .logo {
@@ -101,10 +101,12 @@ const openURL = (url: string | undefined) => {
     }
 
     .main {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 75%;
-        margin-top: 10vh;
 
         .p-card {
             background-color: #9a9a9a45;

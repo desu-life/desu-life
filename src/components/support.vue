@@ -197,7 +197,7 @@ onMounted(() => {
         }
     }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
     #__text {
         width: 90%;
         margin: 0 auto;

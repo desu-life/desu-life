@@ -124,6 +124,10 @@ const copyStr = (str: string) => {
 
     .main {
         width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        
 
         .card {
             width: 50%;
@@ -192,7 +196,7 @@ const copyStr = (str: string) => {
     }
 } 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
     #__card {
         width: 100%;
         background-color: #00000000;

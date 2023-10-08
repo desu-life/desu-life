@@ -246,6 +246,7 @@ const openDialog = () => {
                 flex-direction: column;
                 justify-content: space-between;
                 height: 75%;
+                max-height: 350px;
                 font-family: SourceHanSC;
                 color: #fff;
                 width: 100%;
@@ -270,6 +271,7 @@ const openDialog = () => {
                     justify-content: space-around;
                     align-items: center;
                     width: 100%;
+                    max-width: 500px;
                     margin: 1rem 0;
 
                     .item {
@@ -303,5 +305,25 @@ const openDialog = () => {
         }
     }
 }
+
+@media screen and (max-width: 1280px) and (min-width: 860px) {
+    .container {
+        .main {
+            .left {
+                .text {
+                    height: 90% !important;
+                    max-height: 500px !important;
+                    .icon-group {
+                        display: grid !important;
+                        grid-template: 1fr 1fr / 1fr 1fr;
+                        grid-gap: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+    
 
 </style>

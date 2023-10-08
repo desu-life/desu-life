@@ -6,5 +6,4 @@
     "composite": true,
     "baseUrl": "."
   },
-  "moduleResolution": "node",
 }

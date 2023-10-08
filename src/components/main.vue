@@ -178,7 +178,7 @@ const jumpTo = (id: string) => {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
   #__title {
     font-size: 3rem;
     flex: none;
