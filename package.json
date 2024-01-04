@@ -13,7 +13,7 @@
     "@vicons/fluent": "^0.12.0",
     "@vicons/material": "^0.12.0",
     "animate.css": "^4.1.1",
-    "axios": "^1.5.0",
+    "axios": "^1.6.0",
     "sass": "^1.67.0",
     "vue": "^3.3.4",
     "vue3-danmaku": "^1.6.0",
