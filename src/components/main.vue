@@ -21,15 +21,7 @@ const options = [
   {
     label: "邮箱",
     key: "https://mail.desu.life/"
-  },
-  {
-    label: "Mastodon",
-    key: "https://m.desu.life/"
-  },
-  {
-    label: "镜像站",
-    key: "https://osu.desu.life/"
-  },
+  }
 ];
 
 const toNewPage = (url: string) => {
@@ -92,7 +84,7 @@ window.addEventListener('resize', handleResize);
         </li>
         <li @click="jumpTo('kanonbot')">Bot</li>
         <li @click="jumpTo('meowpad')">猫盘</li>
-        <li @click="jumpTo('teamspeak')">TS</li>
+        <li @click="jumpTo('discord')">Discord</li>
         <li @click="jumpTo('support')">赞助</li>
         <li @click="jumpTo('about')">关于</li>
       </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="teamspeak">
+    <div class="container" id="discord">
         <div class="anchor-point" id="__anchor-point">
             <div @click="jumpTo('kanonbot')" class="circle"></div>
             <div @click="jumpTo('meowpad')" class="circle"></div>
