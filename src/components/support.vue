@@ -29,9 +29,10 @@
                     <h1>支持 DESU.Life</h1>
                     <p>DESU.Life 的运营离不开大家的支持</p>
                     <p>感谢屏幕上飘过的所有小伙伴对 DESU.Life 的支持</p>
-                    <p>所有发电金额将全部用于服务器、域名、各种云服务的费用支出。</p>
-                    <p>如果您的赞助没有被记录，请在爱发电私信或群里私聊群主。</p>
-                    <n-button id="__btn" text class="btn" type="info" @click="toAfdian">前往爱发电页 >></n-button>
+                    <p>所有赞助金额将全部用于服务器、域名、各种云服务的费用支出。</p>
+                    <p>但是由于各种原因，我们目前不再接受新的赞助。</p>
+                    <p>虽然如此，DESU.Life还是会和大家一同走向我们所期盼的未来。</p>
+                    <!--<n-button id="__btn" text class="btn" type="info" @click="toAfdian">前往爱发电页 >></n-button> -->
                 </div>
             </div>
             <div class="right" id="__right">

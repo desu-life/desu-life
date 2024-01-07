@@ -8,11 +8,13 @@
     {
         "avatar": "https://a.ppy.sh/3972977?1683356808.jpeg",
         "name": "- Monologue -",
+        "desc": "啊什么",
         "url": "https://osu.ppy.sh/users/3972977"
     },
     {
         "avatar": "https://a.ppy.sh/9062731?1679761786.jpeg",
         "name": "Eiko Tokura",
+        "desc": "大家一定要开心哦！我会加油的~",
         "url": "https://osu.ppy.sh/users/9062731"
     },
     {
@@ -27,16 +29,19 @@
     {
         "avatar": "https://a.ppy.sh/954557?1572375843.jpeg",
         "name": "EmertxE",
-        "url": "https://osu.ppy.sh/users/954557"
+        "url": "https://space.bilibili.com/21837261"
     },
     {
         "avatar": "https://q1.qlogo.cn/g?b=qq&nk=787375539&s=100",
-        "name": "Rinko "
+        "name": "Rinko7614",
+        "desc": "我是地雷女",
+        "url": "https://space.bilibili.com/35750720"
     },
     {
         "avatar": "https://a.ppy.sh/16573996?1667099597.jpeg",
         "name": "Voidmoyu",
-        "url": "https://osu.ppy.sh/users/16573996"
+        "desc": "←↖↑这三位我认识，这两位不认识↗→",
+        "url": "https://space.bilibili.com/8046795"
     },
     {
         "avatar": "https://a.ppy.sh/10269719?1658937681.jpeg",
@@ -50,11 +55,19 @@
     },
     {
         "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1336171053&s=100",
-        "name": "Hvi"
+        "name": "Hvi",
+        "desc": "XD",
+        "url": "https://osu.ppy.sh/users/7310344"
     },
     {
         "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2773173293&s=100",
         "name": "Jz0ojiang",
         "url": "https://im0o.cn"
+    },
+    {
+        "avatar": "https://desu.life/resource/images/avatar_bkm.jpg",
+        "name": "BK_Moe",
+        "desc": "月虫真滴帅嗷",
+        "url": "https://osu.ppy.sh/users/5462423"
     }
 ]

@@ -4,17 +4,11 @@
             <div class="icon btn" @click="toNewPage('https://info.desu.life/')">
                 <News24Regular class="i" />
             </div>
-            <div class="icon btn" @click="toNewPage('https://mail.desu.life/')">
-                <AlternateEmailFilled class="i" />
-            </div>
             <div class="logo" @click="backTop" id="__logo">
                 <img :src="catlogo" draggable="false" />
             </div>
-            <div class="icon btn" @click="toNewPage('https://m.desu.life/')">
-                <MastodonIcon class="i" />
-            </div>
-            <div class="icon btn osu" @click="toNewPage('https://osu.desu.life/')">
-                <OsuIcon class="i" />
+            <div class="icon btn" @click="toNewPage('https://mail.desu.life/')">
+                <AlternateEmailFilled class="i" />
             </div>
         </div>
         <div class="footer" id="__footer">

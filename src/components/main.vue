@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import bgImg from "../assets/main/background.jpg";
+// import bgImg from "../assets/main/background.jpg";
+const bgImg = ref<string>('');
+
+import { ref, onMounted } from 'vue';
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
 import { KeyboardArrowDownFilled, AlternateEmailFilled } from "@vicons/material";
 
-import MastodonIcon from "../assets/footer/mastodon.vue";
-import OsuIcon from "../assets/footer/osu.vue";
+//import MastodonIcon from "../assets/footer/mastodon.vue";
+//import OsuIcon from "../assets/footer/osu.vue";
 
 const options = [
   {
@@ -31,6 +34,19 @@ const toNewPage = (url: string) => {
 const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView();
 }
+
+onMounted(async () => {
+  try {
+    //const response = await fetch('https://desu.life/random_image', { mode: 'no-cors' });
+    const response = await fetch('https://desu.life/random_image');
+    const ImageUrl = response.url;
+    bgImg.value = ImageUrl;
+  } catch (error) {
+    bgImg.value = "../assets/main/background.jpg";
+    console.error('Failed to fetch random image:', error);
+  }
+});
+
 </script>
 
 <template>

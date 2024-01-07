@@ -21,31 +21,18 @@
                     DESU.Life 邀请您加入
                 </div>
                 <div class="name">
-                    Teamspeak 服务器
+                    Discord 服务器
                 </div>
                 <div class="btn-group" id="__btn-group">
                     <div class="btn">
-                        <n-button size="medium" @click="copyStr('ts.desu.life')" color="#00000045">
+                        <n-button size="medium" color="#00000045" @click="toDiscord">
                             <div class="circle-icon"></div>
                             <span>
-                                ts.desu.life
+                                点击加入
                             </span>
                         </n-button>
-                        由 - Monologue - 提供
-                    </div>
-                    <div class="btn">
-                        <n-button size="medium" @click="copyStr('ts.nanodesu.net')" color="#00000045">
-                            <div class="circle-icon"></div>
-                            <span>
-                                ts.nanodesu.net
-                            </span>
-                        </n-button>
-                        由 endblc 提供
                     </div>
                 </div>
-            </div>
-            <div class="hint">
-                请使用Teamspeak 3/5客户端连接
             </div>
         </div>
     </div>
@@ -61,6 +48,10 @@ const message = useMessage()
 
 const jumpTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView();
+}
+
+const toDiscord = () => {
+    window.open("https://discord.gg/eGAm24FjQ8")
 }
 
 const copyStr = (str: string) => {
@@ -183,16 +174,10 @@ const copyStr = (str: string) => {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-
+                    margin: auto;
                 }
             }
-        }
-
-        .hint {
-            text-align: center;
-            margin-top: 2%;
-        }
-        
+        }     
     }
 } 
 

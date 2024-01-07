@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     About: typeof import('./src/components/about.vue')['default']
+    Discord: typeof import('./src/components/discord.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']
     Kanonbot: typeof import('./src/components/kanonbot.vue')['default']
     Main: typeof import('./src/components/main.vue')['default']
@@ -22,6 +23,5 @@ declare module 'vue' {
     NModal: typeof import('naive-ui')['NModal']
     NTooltip: typeof import('naive-ui')['NTooltip']
     Support: typeof import('./src/components/support.vue')['default']
-    Teamspeak: typeof import('./src/components/teamspeak.vue')['default']
   }
 }

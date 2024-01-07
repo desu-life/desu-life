@@ -18,7 +18,7 @@
                     <div class="avatar" v-if="i.avatar">
                         <img :src="i.avatar" alt="" draggable="false" />
                     </div>
-                    <div class="name" :style="{marginTop: i.avatar ? '2.2rem' : '0px'}">{{ i.name }}</div>
+                    <div class="name" :style="{marginTop: i.avatar ? '2.5rem' : '0px'}">{{ i.name }}</div>
                     <div class="desc">{{ i.desc }}</div>
                 </n-gi>
             </n-grid>
@@ -122,13 +122,13 @@ const openURL = (url: string | undefined) => {
             -webkit-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            min-height: 125px;
+            min-height: 150px;
 
             .avatar {
                 max-width: 5rem;
                 max-height: 5rem;
                 position: absolute;
-                transform: translateY(-3.2rem);
+                transform: translateY(-3.6rem);
 
                 img {
                     box-shadow: 0 0 6px #000;
