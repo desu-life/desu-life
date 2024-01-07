@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import bgImg from "../assets/main/background.jpg";
-const bgImg = ref<string>('../assets/main/background.jpg');
+const bgImg = ref<string>("https://desu.life/resource/images/defaultbg.jpg");
 const HbgImg = ref<string>("null");
 const VbgImg = ref<string>("null");
 const viewType = ref<string>('');
