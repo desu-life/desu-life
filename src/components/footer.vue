@@ -38,8 +38,8 @@
 <script setup lang="ts">
 import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled } from "@vicons/material";
-import MastodonIcon from "../assets/footer/mastodon.vue";
-import OsuIcon from "../assets/footer/osu.vue";
+//import MastodonIcon from "../assets/footer/mastodon.vue";
+//import OsuIcon from "../assets/footer/osu.vue";
 import catlogo from "../assets/desulife_logo.png"
 
 import axios from 'axios'

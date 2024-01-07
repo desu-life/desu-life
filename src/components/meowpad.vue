@@ -18,7 +18,7 @@
         <div class="main __rtl" id="__main">
             <div class="left" id="__left">
                 <div class="text" id="__text">
-                    <h1>Meowpad 猫盘V2</h1>
+                    <h1>Meowpad V2</h1>
                     <h2>适用 osu! 的磁轴小键盘</h2>
                     <div class="icon-group" id="__icon-group">
                         <div class="item">

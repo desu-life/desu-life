@@ -72,8 +72,8 @@ onMounted(async () => {
     <div class="micons" id="__micons">
       <News24Regular class="icon" @click="toNewPage('https://info.desu.life/')" />
       <AlternateEmailFilled class="icon" @click="toNewPage('https://mail.desu.life/')" />
-      <MastodonIcon class="icon" @click="toNewPage('https://m.desu.life/')" />
-      <OsuIcon class="icon" @click="toNewPage('https://osu.desu.life/')" />
+      <!--<MastodonIcon class="icon" @click="toNewPage('https://m.desu.life/')" />
+      <OsuIcon class="icon" @click="toNewPage('https://osu.desu.life/')" />-->
     </div>
     <div class="arrowdown">
         <i>
@@ -92,6 +92,7 @@ onMounted(async () => {
   height: 100%;
   object-fit: cover;
   z-index: -1;
+  filter: brightness(70%);
 }
 .container {
   display: flex;
