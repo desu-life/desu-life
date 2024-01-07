@@ -1,8 +1,12 @@
 <script setup lang="ts">
 // import bgImg from "../assets/main/background.jpg";
-const bgImg = ref<string>('');
-
-import { ref, onMounted } from 'vue';
+const bgImg = ref<string>('../assets/main/background.jpg');
+const HbgImg = ref<string>("null");
+const VbgImg = ref<string>("null");
+const viewType = ref<string>('');
+let HshouldUpdate = ref(true);
+let VshouldUpdate = ref(true);
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
 import { KeyboardArrowDownFilled, AlternateEmailFilled } from "@vicons/material";
 
@@ -35,18 +39,45 @@ const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView();
 }
 
-onMounted(async () => {
+const fetchRandomImage = async (viewType: string) => {
   try {
-    //const response = await fetch('https://desu.life/random_image', { mode: 'no-cors' });
-    const response = await fetch('https://desu.life/random_image');
-    const ImageUrl = response.url;
-    bgImg.value = ImageUrl;
+    if (viewType === 'h') {
+      if (HbgImg.value === "null")
+        HbgImg.value = (await fetch(`https://desu.life/random_image?viewType=${viewType}`)).url;
+      if (bgImg.value !== HbgImg.value) bgImg.value = HbgImg.value;
+    } else {
+      if (VbgImg.value === "null")
+        VbgImg.value = (await fetch(`https://desu.life/random_image?viewType=${viewType}`)).url;
+      if (bgImg.value !== VbgImg.value) bgImg.value = VbgImg.value;
+    }
   } catch (error) {
-    bgImg.value = "../assets/main/background.jpg";
     console.error('Failed to fetch random image:', error);
   }
+}
+
+onMounted(() => {
+  // fetchRandomImage(viewType.value);
 });
 
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize);
+});
+
+const handleResize = () => {
+  const isWideScreen = window.innerWidth > window.innerHeight;
+  const shouldUpdate = isWideScreen ? HshouldUpdate.value : VshouldUpdate.value;
+
+  if (shouldUpdate) {
+    viewType.value = isWideScreen ? 'h' : 'v';
+    HshouldUpdate.value = !isWideScreen;
+    VshouldUpdate.value = isWideScreen;
+    fetchRandomImage(viewType.value);
+  }
+};
+
+handleResize();
+
+window.addEventListener('resize', handleResize);
 </script>
 
 <template>
@@ -76,11 +107,11 @@ onMounted(async () => {
       <OsuIcon class="icon" @click="toNewPage('https://osu.desu.life/')" />-->
     </div>
     <div class="arrowdown">
-        <i>
-            <KeyboardArrowDownFilled class="arrowdown-icon scroll-down-effects" />
-        </i>
+      <i>
+        <KeyboardArrowDownFilled class="arrowdown-icon scroll-down-effects" />
+      </i>
     </div>
-</div>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -94,13 +125,14 @@ onMounted(async () => {
   z-index: -1;
   filter: brightness(70%);
 }
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  
+
   .menu-box {
     position: absolute;
     top: 20%;
@@ -108,6 +140,7 @@ onMounted(async () => {
     justify-content: center;
     align-items: center;
   }
+
   .menu {
     display: flex;
     justify-content: center;
@@ -116,6 +149,7 @@ onMounted(async () => {
     border-radius: 12px;
     padding: 5px;
     max-height: 3rem;
+
     li {
       list-style: none;
       margin: 0 1rem;
@@ -124,24 +158,29 @@ onMounted(async () => {
       font-size: 1.2rem;
       color: #fff;
       cursor: pointer;
+
       &:hover {
         color: #ccc;
       }
     }
+
     .more {
       color: #fff;
       width: 1.5rem;
       vertical-align: sub;
       cursor: pointer;
+
       &:hover {
         color: #ccc;
       }
     }
   }
+
   .title {
     display: flex;
     justify-content: center;
     align-items: center;
+
     span {
       font-family: SourceHanSans;
       font-weight: 600;
@@ -152,10 +191,12 @@ onMounted(async () => {
       user-select: none;
     }
   }
+
   .micons {
     display: none;
   }
 }
+
 .arrowdown {
   position: absolute;
   bottom: 0;
@@ -165,10 +206,12 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
 }
+
 .arrowdown-icon {
   width: 3rem;
   position: relative;
 }
+
 .scroll-down-effects {
   -webkit-animation: scroll-down-effect 1.5s infinite;
   -moz-animation: scroll-down-effect 1.5s infinite;
@@ -176,18 +219,21 @@ onMounted(async () => {
   -ms-animation: scroll-down-effect 1.5s infinite;
   animation: scroll-down-effect 1.5s infinite;
 }
+
 @keyframes scroll-down-effect {
   0% {
     top: 0;
     opacity: 0.4;
     filter: alpha(opacity=40);
   }
+
   50% {
     top: -16px;
     opacity: 1;
     -ms-filter: none;
     filter: none;
   }
+
   100% {
     top: 0;
     opacity: 0.4;
@@ -202,23 +248,27 @@ onMounted(async () => {
     padding: 0;
     margin: 0;
   }
+
   #__micons {
     display: flex;
     flex: none;
     padding: 0;
     margin: 0;
+
     .icon {
       width: 2rem;
       margin: 0 0.5rem;
       color: #fff;
       cursor: pointer;
+
       &:hover {
         filter: brightness(0.8);
       }
     }
   }
+
   #__menu-box {
-    display: none ;
+    display: none;
   }
 }
 </style>
