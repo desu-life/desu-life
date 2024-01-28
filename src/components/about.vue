@@ -50,6 +50,11 @@ const openURL = (url: string | undefined) => {
 
 <style scoped lang="scss">
 @import url("../assets/sub.css");
+@media screen and (max-width: 860px) {
+    .container {
+        min-height: 300vh !important;
+    }
+}
 .container {
     height: 100vh;
     max-height: 100vh;
