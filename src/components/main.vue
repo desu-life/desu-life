@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import bgImg from "../assets/main/background.jpg";
+import defaultBgImg from "../assets/main/background.jpg";
 const bgImg = ref<string>("https://desu.life/resource/images/defaultbg.jpg");
 const HbgImg = ref<string>("null");
 const VbgImg = ref<string>("null");
@@ -70,11 +70,15 @@ const handleResize = () => {
 handleResize();
 
 window.addEventListener('resize', handleResize);
+
+const bgLoadFailed = () => {
+  bgImg.value = defaultBgImg;
+}
 </script>
 
 <template>
   <div class="container" id="main">
-    <img :src="bgImg" alt="" class="bg" />
+    <img :src="bgImg" alt="" class="bg" @error="bgLoadFailed" />
     <div class="menu-box" id="__menu-box">
       <div class="menu">
         <li>
