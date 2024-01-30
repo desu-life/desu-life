@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { darkTheme } from 'naive-ui'
-
+import { ref } from 'vue';
 import Main from './components/main.vue'
 import Kanonbot from './components/kanonbot.vue'
 import Meowpad from './components/meowpad.vue'
@@ -17,10 +17,18 @@ console.log(`
 |      禁     止     摸     鱼      |
 ======================================
 `)
+// ↑ 怎么这样（哭）
 
-const isMobile = () => {
-    return window.innerWidth <= 768
-}
+const isMobile = ref(false)
+
+// 监听窗口大小
+window.addEventListener('resize', () => {
+    isMobile.value = window.innerWidth <= 768
+})
+
+// const isMobile = () => {
+//     return window.innerWidth <= 768
+// }
 </script>
 
 <template>
@@ -35,7 +43,7 @@ const isMobile = () => {
                 <About class="component" />
                 <Footer class="component"/>
             <!-- </div> -->
-            <n-back-top :bottom="95" :right="100" :visibility-height="188" v-if="!isMobile()" />
+            <n-back-top :bottom="95" :right="100" :visibility-height="188" v-if="!isMobile" />
         </n-message-provider>
     </n-config-provider>
 </template>
