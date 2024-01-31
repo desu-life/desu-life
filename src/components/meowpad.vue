@@ -1,12 +1,5 @@
 <template>
     <div class="container" id="meowpad">
-        <div class="anchor-point" id="__anchor-point">
-            <div @click="jumpTo('kanonbot')" class="circle"></div>
-            <div class="circle current"></div>
-            <div @click="jumpTo('teamspeak')" class="circle"></div>
-            <div @click="jumpTo('support')" class="circle"></div>
-            <div @click="jumpTo('about')" class="circle"></div>
-        </div>
         <div class="bg" id="__hide">
             <img :src="bg" alt="" draggable="false" />
         </div>
@@ -158,33 +151,6 @@ const openDialog = () => {
     .modal {
         p {
             line-height: 5%;
-        }
-    }
-
-    .anchor-point {
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1;
-        height: 100px;
-
-        .circle {
-            cursor: pointer;
-            width: .8rem;
-            height: .8rem;
-            border-radius: 50%;
-            background-color: #fff;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-
-            &.current {
-                opacity: 1;
-            }
         }
     }
 

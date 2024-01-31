@@ -1,12 +1,5 @@
 <template>
     <div class="container" id="about">
-        <div class="anchor-point" id="__anchor-point">
-            <div @click="jumpTo('kanonbot')" class="circle"></div>
-            <div @click="jumpTo('meowpad')" class="circle"></div>
-            <div @click="jumpTo('teamspeak')" class="circle"></div>
-            <div @click="jumpTo('support')" class="circle"></div>
-            <div class="circle current"></div>
-        </div>
         <div class="main">
             <div class="header">
                 <div class="logo">
@@ -32,10 +25,6 @@ import { ref, type Ref } from 'vue';
 import logo from "../assets/textlogo.svg";
 
 const members: Ref<{ avatar?: string; name?: string; desc?: string; url?: string }[]> = ref([{}]);
-
-const jumpTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView();
-}
 
 axios.get("/members.json").then((res: { data: { avatar?: string; name?: string; desc?: string; url?: string }[]; }) => {
     members.value = res.data;
@@ -63,33 +52,6 @@ const openURL = (url: string | undefined) => {
     align-items: center;
     position: relative;
     overflow: hidden;
-
-    .anchor-point {
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1;
-        height: 100px;
-
-        .circle {
-            cursor: pointer;
-            width: .8rem;
-            height: .8rem;
-            border-radius: 50%;
-            background-color: #fff;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-
-            &.current {
-                opacity: 1;
-            }
-        }
-    }
 
     .header {
         padding-bottom: 8vh;

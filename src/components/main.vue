@@ -8,7 +8,7 @@ let HshouldUpdate = ref(true);
 let VshouldUpdate = ref(true);
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
-import { KeyboardArrowDownFilled, AlternateEmailFilled } from "@vicons/material";
+import { KeyboardArrowDownFilled, AlternateEmailFilled, LogInRound } from "@vicons/material";
 
 //import MastodonIcon from "../assets/footer/mastodon.vue";
 //import OsuIcon from "../assets/footer/osu.vue";
@@ -21,7 +21,7 @@ const options = [
   {
     label: "邮箱",
     key: "https://mail.desu.life/"
-  }
+  },
 ];
 
 const toNewPage = (url: string) => {
@@ -78,6 +78,10 @@ const bgLoadFailed = () => {
 
 <template>
   <div class="container" id="main">
+    <div class="login-btn">
+      <LogInRound class="icon" />
+      <!-- <n-button size="tiny" type="primary">登录</n-button> -->
+    </div>
     <img :src="bgImg" alt="" class="bg" @error="bgLoadFailed" />
     <div class="menu-box" id="__menu-box">
       <div class="menu">
@@ -128,6 +132,21 @@ const bgLoadFailed = () => {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  .login-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    .icon {
+      width: 1.5rem;
+      margin: 0 0.5rem;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
 
   .menu-box {
     position: absolute;

@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     About: typeof import('./src/components/about.vue')['default']
+    AnchorPoint: typeof import('./src/components/anchor-point.vue')['default']
     Discord: typeof import('./src/components/discord.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']
     Kanonbot: typeof import('./src/components/kanonbot.vue')['default']

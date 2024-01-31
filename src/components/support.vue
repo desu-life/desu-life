@@ -11,13 +11,6 @@
                 class="danmu"
                 id="__danmu"
             ></vue-danmaku>
-        <div class="anchor-point" id="__anchor-point">
-            <div @click="jumpTo('kanonbot')" class="circle"></div>
-            <div @click="jumpTo('meowpad')" class="circle"></div>
-            <div @click="jumpTo('teamspeak')" class="circle"></div>
-            <div class="circle current"></div>
-            <div @click="jumpTo('about')" class="circle"></div>
-        </div>
         <div class="header" id="__anchor-point">
             <div class="logo">
                 <img :src="logo" draggable="false" />
@@ -52,10 +45,6 @@ import logo from "../assets/textlogo.svg"
 import support from "../assets/support/party_popper_color.svg"
 // import support from "../assets/support/support.png"
 const danmus = ref([''])
-
-const jumpTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView();
-}
 
 const toAfdian = () => {
     window.open("https://afdian.net/a/Mo0oOo0oOo0o")
@@ -103,34 +92,6 @@ onMounted(() => {
         user-select: none;
         font-family: SourceHanSC;
     }
-
-    .anchor-point {
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1;
-        height: 100px;
-
-        .circle {
-            cursor: pointer;
-            width: .8rem;
-            height: .8rem;
-            border-radius: 50%;
-            background-color: #fff;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-
-            &.current {
-                opacity: 1;
-            }
-        }
-    }
-
 
     .header {
         padding: 4%;

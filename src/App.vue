@@ -8,6 +8,7 @@ import Discord from './components/discord.vue'
 import Support from './components/support.vue'
 import About from './components/about.vue'
 import Footer from './components/footer.vue'
+import AnchorPoint from './components/anchor-point.vue'
 // import TheWelcome from './components/TheWelcome.vue'
 console.log(`
 ======================================
@@ -22,8 +23,16 @@ console.log(`
 const isMobile = ref(false)
 
 // 监听窗口大小
-window.addEventListener('resize', () => {
+const handleResize = () => {
     isMobile.value = window.innerWidth <= 768
+}
+
+onMounted(()=> {
+    window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', handleResize)
 })
 
 // const isMobile = () => {
@@ -35,6 +44,7 @@ window.addEventListener('resize', () => {
     <n-config-provider :theme="darkTheme">
         <n-message-provider>
             <!-- <div class="container"> -->
+                <AnchorPoint v-if="!isMobile" />
                 <Main class="component" />
                 <Kanonbot class="component" />
                 <Meowpad class="component" />

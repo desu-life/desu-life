@@ -1,12 +1,5 @@
 <template>
     <div class="container" id="kanonbot">
-        <div class="anchor-point" id="__anchor-point">
-            <div class="circle current"></div>
-            <div @click="jumpTo('meowpad')" class="circle"></div>
-            <div @click="jumpTo('teamspeak')" class="circle"></div>
-            <div @click="jumpTo('support')" class="circle"></div>
-            <div @click="jumpTo('about')" class="circle"></div>
-        </div>
         <div class="header" id="__header">
             <div class="logo">
                 <img :src="logo" draggable="false" />
@@ -44,10 +37,6 @@ import left from "../assets/kanonbot/kanonbot.png"
 const toDetail = () => {
     window.open("https://info.desu.life/?p=383")
 }
-
-const jumpTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView();
-}
 </script>
 
 <style scoped lang="scss">
@@ -58,31 +47,6 @@ const jumpTo = (id: string) => {
     flex-direction: column;
     align-items: center;
     position: relative;
-
-    .anchor-point {
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1;
-        height: 100px;
-        .circle {
-            cursor: pointer;
-            width: .8rem;
-            height: .8rem;
-            border-radius: 50%;
-            background-color: #fff;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-            &.current {
-                opacity: 1;
-            }
-        }
-    }
 
     .header {
         padding: 4%;
