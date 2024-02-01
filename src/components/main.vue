@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
+import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
+import { KeyboardArrowDownFilled, AlternateEmailFilled, LogInRound } from "@vicons/material";
 import defaultBgImg from "../assets/main/background.jpg";
+
 const bgImg = ref<string>("https://desu.life/resource/images/defaultbg.jpg");
 const HbgImg = ref<string>("null");
 const VbgImg = ref<string>("null");
 const viewType = ref<string>('');
 let HshouldUpdate = ref(true);
 let VshouldUpdate = ref(true);
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
-import { KeyboardArrowDownFilled, AlternateEmailFilled, LogInRound } from "@vicons/material";
+
+const router = useRouter();
 
 //import MastodonIcon from "../assets/footer/mastodon.vue";
 //import OsuIcon from "../assets/footer/osu.vue";
@@ -74,12 +78,16 @@ window.addEventListener('resize', handleResize);
 const bgLoadFailed = () => {
   bgImg.value = defaultBgImg;
 }
+
+const toLogin = () => {
+  router.push('/login');
+}
 </script>
 
 <template>
   <div class="container" id="main">
     <div class="login-btn">
-      <LogInRound class="icon" />
+      <LogInRound class="icon" @click="toLogin" />
       <!-- <n-button size="tiny" type="primary">登录</n-button> -->
     </div>
     <img :src="bgImg" alt="" class="bg" @error="bgLoadFailed" />
