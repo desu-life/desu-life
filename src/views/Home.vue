@@ -42,12 +42,12 @@ onBeforeUnmount(() => {
 <template>
     <AnchorPoint v-if="!isMobile" />
     <Main class="component" />
-    <Kanonbot class="component" />
-    <Meowpad class="component" />
-    <Discord class="component" />
-    <Support class="component" />
-    <About class="component" />
-    <Footer class="component"/>
+    <Kanonbot class="component dark" />
+    <Meowpad class="component dark" />
+    <Discord class="component dark" />
+    <Support class="component dark" />
+    <About class="component no-force-scroll dark" />
+    <Footer class="component dark"/>
     <n-back-top :bottom="95" :right="100" :visibility-height="188" v-if="!isMobile" />
 </template>
 
@@ -55,7 +55,11 @@ onBeforeUnmount(() => {
 .component {
     scroll-snap-align: start;
 }
-.about {
+.dark {
+    color: var(--vt-c-text-dark-2);
+    background: var(--vt-c-black); 
+}
+.no-force-scroll {
     scroll-snap-stop: always; 
 }
 </style>

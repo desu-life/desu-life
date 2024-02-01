@@ -45,8 +45,8 @@ const openURL = (url: string | undefined) => {
     }
 }
 .container {
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 120vh;
+    // max-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +59,8 @@ const openURL = (url: string | undefined) => {
 
         .logo {
             margin: 0 auto;
-            width: clamp(200px, 100%, 270px);
+            margin-top: 60px;
+            width: clamp(160px, 100%, 200px);
 
             img {
                 width: 100%;
@@ -69,7 +70,7 @@ const openURL = (url: string | undefined) => {
 
     .main {
         position: absolute;
-        top: 50%;
+        top: 45%;
         transform: translateY(-50%);
         display: flex;
         flex-direction: column;
