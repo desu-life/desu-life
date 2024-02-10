@@ -17,6 +17,9 @@ dependencies:
   axios:
     specifier: ^1.5.0
     version: 1.6.4
+  canvas-confetti:
+    specifier: ^1.9.2
+    version: 1.9.2
   sass:
     specifier: ^1.67.0
     version: 1.69.7
@@ -26,6 +29,9 @@ dependencies:
   vue-router:
     specifier: '4'
     version: 4.2.5(vue@3.4.4)
+  vue-turnstile:
+    specifier: ^1.0.7
+    version: 1.0.7(vue@3.4.4)
   vue3-danmaku:
     specifier: ^1.6.0
     version: 1.6.0(vue@3.4.4)
@@ -982,6 +988,10 @@ packages:
   /caniuse-lite@1.0.30001574:
     resolution: {integrity: sha512-BtYEK4r/iHt/txm81KBudCUcTy7t+s9emrIaHqjYurQ10x71zJ5VQ9x1dYPcz/b+pKSp4y/v1xSI67A+LzpNyg==}
     dev: true
+
+  /canvas-confetti@1.9.2:
+    resolution: {integrity: sha512-6Xi7aHHzKwxZsem4mCKoqP6YwUG3HamaHHAlz1hTNQPCqXhARFpSXnkC9TWlahHY5CG6hSL5XexNjxK8irVErg==}
+    dev: false
 
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -2361,6 +2371,14 @@ packages:
       semver: 7.5.4
       typescript: 5.1.6
     dev: true
+
+  /vue-turnstile@1.0.7(vue@3.4.4):
+    resolution: {integrity: sha512-IWYbp+hg0vNi3V/JJF0g8B1s+cX1XpEqtiEOuUwlcylKQOI9KxKnLagdRtSSkvuJJEAPeFRE42atzgU4GGRUJQ==}
+    peerDependencies:
+      vue: ^3.2.45
+    dependencies:
+      vue: 3.4.4(typescript@5.1.6)
+    dev: false
 
   /vue3-danmaku@1.6.0(vue@3.4.4):
     resolution: {integrity: sha512-XjwVKIelupDD3PWn6k22l5qS8y+SCdFUYq4sSpcPInqk7CyzXWSAfz2BL6WWx9HU9CRWS3x2oDMkepLkJoWvNQ==}
