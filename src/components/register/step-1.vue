@@ -70,30 +70,18 @@
                 />
             </n-steps>
         </div>
-        <div class="logo" v-if="isMobile">
-            <img
-            :src="logo"
-            alt="desu.life"
-            draggable="false"
-            v-if="theme == 'light'"
-          />
-          <img :src="logoDarkMode" alt="desu.life" draggable="false" v-else />
-        </div>
+        <Logo class="logo" v-if="isMobile" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { AlternateEmailRound, CloseRound } from "@vicons/material";
+import { AlternateEmailRound } from "@vicons/material";
 import VueTurnstile from "vue-turnstile";
-import { computed, ref, defineEmits } from "vue";
-import { type FormInst, FormRules, FormItemRule, useMessage, useOsTheme } from "naive-ui";
+import { ref } from "vue";
+import { type FormInst, FormRules, FormItemRule, useMessage } from "naive-ui";
 
-import logo from "@/assets/login/textlogo.svg";
-import logoDarkMode from "@/assets/textlogo.svg";
-
-const osThemeRef = useOsTheme();
-const theme = computed(() => (osThemeRef.value === "dark" ? "dark" : "light"));
+import Logo from "@/components/Logo.vue"
 
 const emit = defineEmits(['close']);
 
@@ -160,17 +148,7 @@ const isMobile = ref(window.innerWidth <= 800);
 
 <style scoped lang="scss">
 .logo {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 160px;
   margin-top: 2rem;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
 }
 .content {
   width: 100%;

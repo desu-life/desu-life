@@ -1,14 +1,6 @@
 <template>
   <div class="content">
-    <div class="logo">
-        <img
-          :src="logo"
-          alt="desu.life"
-          draggable="false"
-          v-if="theme == 'light'"
-        />
-        <img :src="logoDarkMode" alt="desu.life" draggable="false" v-else />
-      </div>
+    <Logo class="logo" />
     <div class="grid">
       <div class="form">
         <h3>创建 DESU.Life 账户</h3>
@@ -102,17 +94,14 @@
 
 <script setup lang="ts">
 import { PersonOutlineRound, PasswordRound } from "@vicons/material";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import {
   type FormInst,
   FormRules,
   FormItemRule,
-  useMessage,
-  useOsTheme,
 } from "naive-ui";
 
-import logo from "@/assets/login/textlogo.svg";
-import logoDarkMode from "@/assets/textlogo.svg";
+import Logo from "@/components/Logo.vue"
 
 const props = defineProps<{
   token: string;
@@ -124,12 +113,7 @@ const nextStep = () => {
   emit("next");
 };
 
-const osThemeRef = useOsTheme();
-const theme = computed(() => (osThemeRef.value === "dark" ? "dark" : "light"));
-
 const settingPassword = ref(false);
-
-const message = useMessage();
 
 const formRef = ref<FormInst | null>(null);
 
@@ -207,18 +191,8 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 .logo {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 160px;
   height: 120px;
   margin-top: -2vh;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
 }
 .content {
   width: 95%;

@@ -24,15 +24,7 @@
         />
       </div>
       <div class="content">
-        <div class="logo">
-          <img
-            :src="logo"
-            alt="desu.life"
-            draggable="false"
-            v-if="theme == 'light'"
-          />
-          <img :src="logoDarkMode" alt="desu.life" draggable="false" v-else />
-        </div>
+        <Logo />
         <div class="form">
           <h3>欢迎回来</h3>
           <h2>登录到 DESU.Life</h2>
@@ -88,15 +80,7 @@
       aria-modal="true"
     >
       <template #header>
-        <div class="logo" style="position: absolute; top: 65px; left: 60px">
-          <img
-            :src="logo"
-            alt="desu.life"
-            draggable="false"
-            v-if="theme == 'light'"
-          />
-          <img :src="logoDarkMode" alt="desu.life" draggable="false" v-else />
-        </div>
+        <Logo style="position: absolute; top: 65px; left: 60px" />
       </template>
       <Register />
     </n-card>
@@ -118,11 +102,11 @@ import Register from "@/components/register/step-1.vue";
 import bgImg from "@/assets/login/background.jpg";
 import bgWave from "@/assets/login/wave.svg";
 import bgWaveStroke from "@/assets/login/wave_stroke.svg";
-import logo from "@/assets/login/textlogo.svg";
 
-import logoDarkMode from "@/assets/textlogo.svg";
 import bgWaveDark from "@/assets/login/wave_dark.svg";
 import bgWaveStrokeDark from "@/assets/login/wave_stroke_dark.svg";
+
+import Logo from "@/components/Logo.vue";
 
 const osThemeRef = useOsTheme();
 const theme = computed(() => (osThemeRef.value === "dark" ? "dark" : "light"));
@@ -188,19 +172,6 @@ onBeforeUnmount(() => {
   background-color: #fff;
   border-radius: 24px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 160px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
 }
 
 .container {
