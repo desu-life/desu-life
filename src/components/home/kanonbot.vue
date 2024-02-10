@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import logo from "../assets/textlogo.svg"
-import left from "../assets/kanonbot/kanonbot.png"
+import logo from "@/assets/textlogo.svg"
+import left from "@/assets/kanonbot/kanonbot.png"
 
 const toDetail = () => {
     window.open("https://info.desu.life/?p=383")
@@ -40,7 +40,7 @@ const toDetail = () => {
 </script>
 
 <style scoped lang="scss">
-@import url("../assets/sub.css");
+@import url("../../assets/sub.css");
 .container {
     height: 100vh;
     display: flex;

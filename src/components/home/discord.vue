@@ -34,8 +34,8 @@
 <script setup lang="ts">
 import { useMessage } from 'naive-ui'
 
-import logo from "../assets/textlogo.svg"
-import catlogo from "../assets/desulife_logo.png"
+import logo from "@/assets/textlogo.svg"
+import catlogo from "@/assets/desulife_logo.png"
 
 const message = useMessage()
 
@@ -54,7 +54,7 @@ const copyStr = (str: string) => {
 </script>
 
 <style scoped lang="scss">
-@import url("../assets/sub.css");
+@import url("../../assets/sub.css");
 .container {
     height: 100vh;
     display: flex;

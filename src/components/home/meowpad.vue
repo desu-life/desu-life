@@ -111,14 +111,14 @@
 <script setup lang="ts">
 import { ref } from "vue"
 
-import logo from "../assets/textlogo.svg"
-import bg from "../assets/meowpad/bg.png"
-import meowpad from "../assets/meowpad/meowpad_v2.png"
+import logo from "@/assets/textlogo.svg"
+import bg from "@/assets/meowpad/bg.png"
+import meowpad from "@/assets/meowpad/meowpad_v2.png"
 
-import custom_trigger from "../assets/meowpad/custom-trigger.svg"
-import Light from "../assets/meowpad/LightbulbOutlined.svg"
-import Speed from "../assets/meowpad/SpeedFilled.svg"
-import USBC from "../assets/meowpad/usb-c-port.svg"
+import custom_trigger from "@/assets/meowpad/custom-trigger.svg"
+import Light from "@/assets/meowpad/LightbulbOutlined.svg"
+import Speed from "@/assets/meowpad/SpeedFilled.svg"
+import USBC from "@/assets/meowpad/usb-c-port.svg"
 
 const isMobile = () => {
     return window.innerWidth <= 768
@@ -140,7 +140,7 @@ const openDialog = () => {
 </script>
 
 <style scoped lang="scss">
-@import url("../assets/sub.css");
+@import url("../../assets/sub.css");
 .container {
     height: 100vh;
     display: flex;

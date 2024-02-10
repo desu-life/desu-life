@@ -41,9 +41,9 @@ import vueDanmaku from 'vue3-danmaku'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-import logo from "../assets/textlogo.svg"
-import support from "../assets/support/party_popper_color.svg"
-// import support from "../assets/support/support.png"
+import logo from "@/assets/textlogo.svg"
+import support from "@/assets/support/party_popper_color.svg"
+// import support from "@/assets/support/support.png"
 const danmus = ref([''])
 
 const toAfdian = () => {
@@ -62,7 +62,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import url("../assets/sub.css");
+@import url("../../assets/sub.css");
 .flip {
     -moz-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);

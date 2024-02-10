@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
 import { KeyboardArrowDownFilled, AlternateEmailFilled, LogInRound } from "@vicons/material";
-import defaultBgImg from "../assets/main/background.jpg";
+import defaultBgImg from "@/assets/main/background.jpg";
 
 const bgImg = ref<string>("https://desu.life/resource/images/defaultbg.jpg");
 const HbgImg = ref<string>("null");

@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ref, type Ref } from 'vue';
-import logo from "../assets/textlogo.svg";
+import logo from "@/assets/textlogo.svg";
 
 const members: Ref<{ avatar?: string; name?: string; desc?: string; url?: string }[]> = ref([{}]);
 
@@ -38,7 +38,7 @@ const openURL = (url: string | undefined) => {
 </script>
 
 <style scoped lang="scss">
-@import url("../assets/sub.css");
+@import url("../../assets/sub.css");
 @media screen and (max-width: 860px) {
     .container {
         min-height: 300vh !important;

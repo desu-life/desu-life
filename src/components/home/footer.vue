@@ -38,9 +38,9 @@
 <script setup lang="ts">
 import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled } from "@vicons/material";
-//import MastodonIcon from "../assets/footer/mastodon.vue";
-//import OsuIcon from "../assets/footer/osu.vue";
-import catlogo from "../assets/desulife_logo.png"
+//import MastodonIcon from "@/assets/footer/mastodon.vue";
+//import OsuIcon from "@/assets/footer/osu.vue";
+import catlogo from "@/assets/desulife_logo.png"
 
 import axios from 'axios'
 import { ref, type Ref } from 'vue'
@@ -57,7 +57,7 @@ const backTop = () => {
 </script>
 
 <style scoped lang="scss">
-@import url("../assets/sub.css");
+@import url("../../assets/sub.css");
 .footer-container {
     max-height: 40vh;
     display: flex;
