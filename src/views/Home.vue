@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import Main from '../components/main.vue'
-import Kanonbot from '../components/kanonbot.vue'
-import Meowpad from '../components/meowpad.vue'
-import Discord from '../components/discord.vue'
-import Support from '../components/support.vue'
-import About from '../components/about.vue'
-import Footer from '../components/footer.vue'
-import AnchorPoint from '../components/anchor-point.vue'
+import Main from '@/components/home/main.vue'
+import Kanonbot from '@/components/home/kanonbot.vue'
+import Meowpad from '@/components/home/meowpad.vue'
+import Discord from '@/components/home/discord.vue'
+import Support from '@/components/home/support.vue'
+import About from '@/components/home/about.vue'
+import Footer from '@/components/home/footer.vue'
+import AnchorPoint from '@/components/home/anchor-point.vue'
 // import TheWelcome from './components/TheWelcome.vue'
 console.log(`
 ======================================
