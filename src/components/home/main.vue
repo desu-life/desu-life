@@ -82,6 +82,16 @@ const bgLoadFailed = () => {
 const toLogin = () => {
   router.push('/login');
 }
+
+const flipanimate = ref(false);
+
+const handleFlipAnimate = () => {
+  if (flipanimate.value) return;
+  flipanimate.value = true;
+  setTimeout(() => {
+    flipanimate.value = false;
+  }, 1000);
+}
 </script>
 
 <template>
@@ -105,8 +115,8 @@ const toLogin = () => {
         <li @click="jumpTo('about')">关于</li>
       </div>
     </div>
-    <div class="title">
-      <span id="__title">DESU.Life</span>
+    <div class="title" @click="handleFlipAnimate">
+      <span id="__title" :class="flipanimate ? 'animate__animated animate__flip' : ''">DESU.Life</span>
     </div>
     <div class="micons" id="__micons">
       <News24Regular class="icon" @click="toNewPage('https://info.desu.life/')" />
