@@ -33,54 +33,24 @@
                 <p>邮箱</p>
                 <p>{{ email }}</p>
                 <p>osu!</p>
-                <p>{{ osuid ? osuid : "未绑定" }}</p>
+                <p>{{ osu_uid ? osu_uid : "未绑定" }}</p>
                 <p>QQ</p>
-                <p>{{ qq ? qq : "未绑定" }}</p>
+                <p>{{ qq_id ? qq_id : "未绑定" }}</p>
                 <p>discord</p>
-                <p>{{ discordid ? discordid : "未绑定" }}</p>
+                <p>{{ discord_uid ? discord_uid : "未绑定" }}</p>
                 <p></p>
               </div>
             </div>
           </n-card>
         </n-grid-item>
         <n-grid-item>
-          <n-card class="card" title="osu!">
-            <n-result
-              :status="osuid ? 'success' : 'info'"
-              :title="osuid ? `已绑定至 ${osuid}` : '未绑定 osu!'"
-              size="small"
-            >
-              <template #footer v-if="!osuid">
-                <n-button>点我绑定 osu!</n-button>
-              </template>
-            </n-result>
-          </n-card>
+          <BindOsu :osuid="osu_uid" />
         </n-grid-item>
         <n-grid-item>
-          <n-card class="card" title="QQ">
-            <n-result
-              :status="qq ? 'success' : 'info'"
-              :title="qq ? `已绑定至 ${qq} `: '未绑定 QQ'"
-              size="small"
-            >
-              <template #footer v-if="!qq">
-                <n-button>点我绑定 QQ</n-button>
-              </template>
-            </n-result>
-          </n-card>
+          <BindQQ :qq="qq_id" />
         </n-grid-item>
         <n-grid-item>
-          <n-card class="card" title="Discord">
-            <n-result
-              :status="discordid ? 'success' : 'info'"
-              :title="discordid ? `已绑定至 ${discordid}` : '未绑定 Discord'"
-              size="small"
-            >
-              <template #footer v-if="!discordid">
-                <n-button>点我绑定 Discord</n-button>
-              </template>
-            </n-result>
-          </n-card>
+          <BindDiscord :discordid="discord_uid" />
         </n-grid-item>
       </n-grid>
     </div>
@@ -91,17 +61,38 @@
 import { ExitToAppRound } from "@vicons/material";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useMessage } from "naive-ui";
 
 import Logo from "@/components/Logo.vue";
+import BindOsu from "@/components/user/bind-osu.vue";
+import BindQQ from "@/components/user/bind-qq.vue";
+import BindDiscord from "@/components/user/bind-discord.vue";
 import DefaultAvatar from "@/assets/user/default-profile-picture1.jpg";
 
-const router = useRouter();
+import service from "@/api"
+import type { ResponseError } from "@/api"
 
-const username = ref("mono");
-const email = ref("example@desu.life");
-const osuid = ref("");
-const qq = ref("");
-const discordid = ref("");
+const router = useRouter();
+const message = useMessage();
+
+const username = ref("");
+const email = ref("");
+const osu_uid = ref("");
+const qq_id = ref("");
+const discord_uid = ref("");
+
+onMounted(() => {
+  service.get("/get_user").then((res) => {
+    username.value = res.data.username ? res.data.username : "未设置";
+    email.value = res.data.email ? res.data.email : "未设置";
+    osu_uid.value = res.data.osu_uid ? res.data.osu_uid : "";
+    qq_id.value = res.data.qq_id ? res.data.qq_id : "";
+    discord_uid.value = res.data.discord_uid ? res.data.discord_uid : "";
+  }).catch((err: ResponseError) => {
+    message.error(err.message)
+    if(err.error.response.status === 401) router.push("/login");
+  })
+})
 
 const avatar = ref(DefaultAvatar);
 

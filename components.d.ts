@@ -9,6 +9,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     About: typeof import('./src/components/home/about.vue')['default']
     AnchorPoint: typeof import('./src/components/home/anchor-point.vue')['default']
+    BindDiscord: typeof import('./src/components/user/bind-discord.vue')['default']
+    BindOsu: typeof import('./src/components/user/bind-osu.vue')['default']
+    BindQq: typeof import('./src/components/user/bind-qq.vue')['default']
     copy: typeof import('./src/components/register/step-2 copy.vue')['default']
     Discord: typeof import('./src/components/home/discord.vue')['default']
     Footer: typeof import('./src/components/home/footer.vue')['default']

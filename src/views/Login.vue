@@ -28,19 +28,31 @@
         <div class="form">
           <h3>欢迎回来</h3>
           <h2>登录到 DESU.Life</h2>
-          <n-form size="large" :show-label="false">
-            <n-form-item-row>
-              <n-input placeholder="请输入邮箱">
+          <n-form
+            size="large"
+            :show-label="false"
+            ref="loginFormRef"
+            :rules="rules"
+            :model="loginFormModel"
+          >
+            <n-form-item-row path="mailAddress">
+              <n-input
+                placeholder="请输入邮箱"
+                v-model:value="loginFormModel.mailAddress"
+                @keydown.enter.prevent
+              >
                 <template #prefix>
                   <n-icon :component="AlternateEmailRound" />
                 </template>
               </n-input>
             </n-form-item-row>
-            <n-form-item-row>
+            <n-form-item-row path="password">
               <n-input
                 type="password"
                 show-password-on="click"
                 placeholder="请输入密码"
+                v-model:value="loginFormModel.password"
+                @keydown.enter.prevent
               >
                 <template #prefix>
                   <n-icon :component="PasswordRound" />
@@ -48,7 +60,14 @@
               </n-input>
             </n-form-item-row>
           </n-form>
-          <n-button type="primary" block secondary strong size="large">
+          <n-button
+            type="primary"
+            block
+            secondary
+            strong
+            size="large"
+            @click="handleLogin"
+          >
             登录
           </n-button>
           <p>
@@ -94,19 +113,23 @@
 
 <script setup lang="ts">
 import { AlternateEmailRound, PasswordRound } from "@vicons/material";
-import { useOsTheme } from "naive-ui";
+import { type FormInst, FormRules, FormItemRule, useOsTheme, useMessage } from "naive-ui";
 import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
 import Register from "@/components/register/step-1.vue";
+import Logo from "@/components/Logo.vue";
 
 import bgImg from "@/assets/login/background.jpg";
 import bgWave from "@/assets/login/wave.svg";
 import bgWaveStroke from "@/assets/login/wave_stroke.svg";
-
 import bgWaveDark from "@/assets/login/wave_dark.svg";
 import bgWaveStrokeDark from "@/assets/login/wave_stroke_dark.svg";
 
-import Logo from "@/components/Logo.vue";
+import service from "@/api";
+
+const router = useRouter();
+const message = useMessage();
 
 const osThemeRef = useOsTheme();
 const theme = computed(() => (osThemeRef.value === "dark" ? "dark" : "light"));
@@ -120,6 +143,66 @@ const handleOpenRegister = () => {
   } else {
     showModal.value = true;
   }
+};
+
+const loginFormRef = ref<FormInst | null>(null);
+
+const rules: FormRules = {
+  mailAddress: [
+    {
+      required: true,
+      validator(rule: FormItemRule, value: string) {
+        if (!value) {
+          return new Error("请输入邮箱");
+        }
+        return true;
+      },
+      trigger: ["blur", "input"],
+    },
+    {
+      validator(rule: FormItemRule, value: string) {
+        if (!/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value) && value) {
+          return new Error("请输入正确的邮箱格式");
+        }
+        return true;
+      },
+      trigger: "blur",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "请输入密码",
+    },
+  ],
+};
+
+const loginFormModel = ref({
+  mailAddress: "",
+  password: "",
+});
+
+const handleLogin = (e: MouseEvent) => {
+  e.preventDefault();
+  loginFormRef.value?.validate((errors) => {
+    if (!errors) {
+      service.post("/login", 
+        JSON.stringify(loginFormModel.value),
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      ).then((res) => {
+        router.push("/user");
+      }).catch((err) => {
+        // console.error(err)
+        message.error("登录失败，请检查用户名或密码");
+      });
+    } else {
+      console.log(errors);
+    }
+  });
 };
 
 const handleResize = () => {
