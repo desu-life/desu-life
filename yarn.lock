@@ -613,6 +613,11 @@
     "@vue/compiler-dom" "3.3.4"
     "@vue/shared" "3.3.4"
 
+"@vue/devtools-api@^6.5.1":
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.6.1.tgz#7c14346383751d9f6ad4bea0963245b30220ef83"
+  integrity sha512-LgPscpE3Vs0x96PzSSB4IGVSZXZBZHpfxs+ZA1d+VEPwHdOXowy/Y2CsvCAIFrf+ssVU1pD1jidj505EpUnfbA==
+
 "@vue/language-core@1.8.11":
   version "1.8.11"
   resolved "https://registry.npmmirror.com/@vue/language-core/-/language-core-1.8.11.tgz"
@@ -817,6 +822,11 @@ caniuse-lite@^1.0.30001517:
   version "1.0.30001538"
   resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001538.tgz"
   integrity sha512-HWJnhnID+0YMtGlzcp3T9drmBJUVDchPJ08tpUGFLs9CYlwWPH2uLgpHn8fND5pCgXVtnGS3H4QR9XLMHVNkHw==
+
+canvas-confetti@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/canvas-confetti/-/canvas-confetti-1.9.2.tgz#c9f74098c7fdf66dd9d1aab5d381061cf74e48f0"
+  integrity sha512-6Xi7aHHzKwxZsem4mCKoqP6YwUG3HamaHHAlz1hTNQPCqXhARFpSXnkC9TWlahHY5CG6hSL5XexNjxK8irVErg==
 
 chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
@@ -1101,9 +1111,9 @@ fill-range@^7.0.1:
     to-regex-range "^5.0.1"
 
 follow-redirects@^1.15.4:
-  version "1.15.4"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.4.tgz"
-  integrity sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==
+  version "1.15.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
+  integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
 
 for-each@^0.3.3:
   version "0.3.3"
@@ -2137,6 +2147,13 @@ vooks@^0.2.12, vooks@^0.2.4:
   dependencies:
     evtd "^0.2.2"
 
+vue-router@4:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.3.0.tgz#d5913f27bf68a0a178ee798c3c88be471811a235"
+  integrity sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==
+  dependencies:
+    "@vue/devtools-api" "^6.5.1"
+
 vue-template-compiler@^2.7.14:
   version "2.7.14"
   resolved "https://registry.npmmirror.com/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz"
@@ -2153,6 +2170,11 @@ vue-tsc@^1.8.11:
     "@vue/language-core" "1.8.11"
     "@vue/typescript" "1.8.11"
     semver "^7.3.8"
+
+vue-turnstile@^1.0.7:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/vue-turnstile/-/vue-turnstile-1.0.8.tgz#9115d541ee8f9258fdea66ef159ddd6a26314247"
+  integrity sha512-YpxW3YOIQxYYSqmVFG0hKzKHNtLpVAFtZVDU9iCBNJ4nkzYwY8bcW7+q4gXMVchmq1r0E5832wnoEDTZiML3Bg==
 
 vue3-danmaku@^1.6.0:
   version "1.6.0"
