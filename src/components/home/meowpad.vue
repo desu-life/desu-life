@@ -62,12 +62,26 @@
         <div class="modal" >
             <n-modal v-model:show="showModal" preset="card" :style="{ width: isMobile() ? '100%' : '50%', lineheight: '51px' }" title="下载 Meowpad 驱动" :bordered="false">
                 <p>
-                    Meowpad V2：
+                    desu.life device 交流群：722122663 | 309702152
                 </p>
                 <p>
-                    meowpad_v2 配置器(1.0.0)：
+                    <br>Meowpad V2：
+                </p>
+                <p>
+                    meowpad_v2 配置器(1.0.1)：
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfiguratorForV2_1.0.0_fix.msi">Windows x64</n-button>
+                              href="https://desu.life/device/app/download/MeowpadConfiguratorForV2_1.0.1.exe">Windows x64</n-button>
+                    |
+                    <n-button text type="info" tag="a"
+                              href="https://desu.life/device/app/download/meowpad-configurator-for-v2_1.0.1.deb">Linux x64(deb)</n-button>
+                    |
+                    <n-button text type="info" tag="a"
+                              href="https://desu.life/device/app/download/meowpad-configurator-for-v2_1.0.1.AppImage">Linux x64(appimage)</n-button>
+                </p>
+                <p>
+                    meowpad_v2 standard edition 固件 (1.0.1)：
+                    <n-button text type="info" tag="a"
+                              href="https://desu.life/device/firmware/meowpad_v2/meowpad_v2_standard_edition_app_0.1.1.bin">本地下载</n-button>
                 </p>
                 <p>
                     <br>Meowpad V1：
@@ -75,33 +89,33 @@
                 <p>
                     产品说明及固件升级教程：
                     <n-button text type="info" tag="a"
-                        href="https://info.desu.life/?p=338">前往资讯站查看</n-button>
+                              href="https://info.desu.life/?p=338">前往资讯站查看</n-button>
                 </p>
                 <p>
                     meowpad_v1 配置器(0.3.1)：
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_x64_en-US.msi.zip">Windows x64</n-button>
+                              href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_x64_en-US.msi.zip">Windows x64</n-button>
                     |
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_amd64.deb.zip">Linux x64 (deb)</n-button>
+                              href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_amd64.deb.zip">Linux x64 (deb)</n-button>
                     |
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_macos-app.zip">MacOS x64</n-button>
+                              href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_macos-app.zip">MacOS x64</n-button>
                 </p>
                 <p>
                     meowpad_v1.1_hs固件 (Hall Effect release 1.0.0 patch 23090101)：
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/firmware/meowpad_v1_hs_edition/download/meowpad_v1_app_hs_edition_1.0.0_ptach_23090101.bin">本地下载</n-button>
+                              href="https://desu.life/device/firmware/meowpad_v1_hs_edition/download/meowpad_v1_app_hs_edition_1.0.0_ptach_23090101.bin">本地下载</n-button>
                 </p>
                 <p>
                     meowpad_v1.0固件 (Mechanical beta 0.1.6)：
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/firmware/meowpad_v1/download/meowpad_v1_app_0.1.6.bin">本地下载</n-button>
+                              href="https://desu.life/device/firmware/meowpad_v1/download/meowpad_v1_app_0.1.6.bin">本地下载</n-button>
                 </p>
                 <p>
                     meowpad_v1固件升级套件 (dfu-util)：
                     <n-button text type="info" tag="a"
-                        href="https://desu.life/device/firmware/meowpad_v1/download/firmware_updater.zip">本地下载</n-button>
+                              href="https://desu.life/device/firmware/meowpad_v1/download/firmware_updater.zip">本地下载</n-button>
                 </p>
             </n-modal>
         </div>
