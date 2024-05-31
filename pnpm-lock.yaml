@@ -49,11 +49,14 @@ devDependencies:
   '@tsconfig/node18':
     specifier: ^18.2.2
     version: 18.2.2
+  '@types/canvas-confetti':
+    specifier: ^1.6.4
+    version: 1.6.4
   '@types/node':
-    specifier: ^18.17.15
+    specifier: ^18.19.4
     version: 18.19.4
   '@vitejs/plugin-vue':
-    specifier: ^4.3.4
+    specifier: ^4.6.2
     version: 4.6.2(vite@4.5.2)(vue@3.4.4)
   '@vitejs/plugin-vue-jsx':
     specifier: ^3.0.2
@@ -775,6 +778,10 @@ packages:
 
   /@tsconfig/node18@18.2.2:
     resolution: {integrity: sha512-d6McJeGsuoRlwWZmVIeE8CUA27lu6jLjvv1JzqmpsytOYYbVi1tHZEnwCNVOXnj4pyLvneZlFlpXUK+X9wBWyw==}
+    dev: true
+
+  /@types/canvas-confetti@1.6.4:
+    resolution: {integrity: sha512-fNyZ/Fdw/Y92X0vv7B+BD6ysHL4xVU5dJcgzgxLdGbn8O3PezZNIJpml44lKM0nsGur+o/6+NZbZeNTt00U1uA==}
     dev: true
 
   /@types/estree@1.0.5:

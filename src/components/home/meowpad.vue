@@ -10,35 +10,33 @@
         class="v2 anchor-item"
         :class="{ active: swiperAnchor === 0 }"
         @click="switchToOther(0)"
-      >
-      </div>
+      ></div>
       <div
         class="se anchor-item"
         :class="{ active: swiperAnchor === 1 }"
         @click="switchToOther(1)"
-      >
-      </div>
+      ></div>
     </div>
     <div v-if="isMobile">
       <v2 />
       <v2se />
     </div>
-    <Swiper
+    <SwiperContainer
       v-else
       :modules="[Autoplay, Scrollbar]"
       :spaceBetween="30"
       :slides-per-view="1"
+      @swiper="setSwiper"
+      @autoplayTimeLeft="onAutoplayTimeLeft"
+      @slideChange="handleSlideChange"
+      class="swiper"
       :autoplay="{
         delay: 10000,
         disableOnInteraction: true,
-      }"
+      } as any"
       :scrollbar="{
         hide: true,
-      }"
-      @swiper="setSwiper"
-      @autoplayTimeLeft="onAutoplayTimeLeft"
-      class="swiper"
-      @slideChange="handleSlideChange"
+      } as any"
     >
       <SwiperSlide class="swiper-item">
         <v2 />
@@ -54,13 +52,13 @@
           <span ref="progressContent"></span>
         </div>
       </template>
-    </Swiper>
+    </SwiperContainer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { Swiper as SwiperContainer, SwiperSlide } from "swiper/vue";
 import { Autoplay, Scrollbar } from "swiper/modules";
 import "swiper/css";
 // import 'swiper/css/navigation';
@@ -69,10 +67,11 @@ import logo from "@/assets/textlogo.svg";
 
 import v2 from "./meowpad/v2.vue";
 import v2se from "./meowpad/v2-se.vue";
+import { Swiper } from "swiper/types";
 
 const progressCircle = ref<HTMLElement | null>(null);
 const progressContent = ref<HTMLElement | null>(null);
-const onAutoplayTimeLeft = (s, timeLeft: number, percentage: number) => {
+const onAutoplayTimeLeft = (s: Swiper, timeLeft: number, percentage: number) => {
   progressCircle.value?.style.setProperty(
     "--progress",
     (1 - percentage).toString()
@@ -94,13 +93,13 @@ const switchToOther = (index: number) => {
   else swiperRef.value?.slideTo(0);
 };
 
-const swiperRef = ref<typeof Swiper | null>(null);
+const swiperRef = ref<Swiper | null>(null);
 
-const setSwiper = (swiper: typeof Swiper) => {
+const setSwiper = (swiper: Swiper) => {
   swiperRef.value = swiper;
 };
 
-const handleSlideChange = (swiper: typeof Swiper) => {
+const handleSlideChange = (swiper: Swiper) => {
   swiperAnchor.value = swiper.snapIndex;
   console.log(swiper.snapIndex, swiperAnchor.value);
 };
@@ -147,15 +146,17 @@ onBeforeUnmount(() => {
     font-weight: bold;
     color: var(--vt-c-white);
     font-family: SourceHanSans, "monospace";
-    transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
-    
+    transition:
+      transform 0.3s ease-in-out,
+      opacity 0.5s ease-in-out;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    
+
     &.active {
       cursor: default;
       background-color: rgba(255, 255, 255, 0.8);
@@ -172,7 +173,9 @@ onBeforeUnmount(() => {
       content: attr(data-text);
       // opacity: 0;
       // transform: scale(0.8);
-      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      transition:
+        opacity 0.5s ease-in-out,
+        transform 0.5s ease-in-out;
     }
   }
 
@@ -188,7 +191,6 @@ onBeforeUnmount(() => {
     // opacity: 0;
   }
 }
-
 
 .autoplay-progress {
   position: absolute;

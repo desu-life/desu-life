@@ -26,8 +26,9 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
-    "@types/node": "^18.17.15",
-    "@vitejs/plugin-vue": "^4.3.4",
+    "@types/canvas-confetti": "^1.6.4",
+    "@types/node": "^18.19.4",
+    "@vitejs/plugin-vue": "^4.6.2",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vue/tsconfig": "^0.4.0",
     "naive-ui": "^2.34.4",
