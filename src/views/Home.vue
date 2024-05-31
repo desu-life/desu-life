@@ -19,11 +19,11 @@ console.log(`
 `)
 // ↑ 怎么这样（哭）
 
-const isMobile = ref(false)
+const isMobile = ref(window.innerWidth < 860)
 
 // 监听窗口大小
 const handleResize = () => {
-    isMobile.value = window.innerWidth <= 768
+    isMobile.value = window.innerWidth < 860
 }
 
 onMounted(()=> {

@@ -5,20 +5,20 @@ const routes = [
         path: "/",
         component: () => import("../views/Home.vue")
     },
-    {
-        path: "/login",
-        component: () => import("../views/Login.vue"),
-        meta: {
-          title: "登录"
-        }
-    },
-    {
-        path: "/register",
-        component: () => import("../views/Register.vue"),
-        meta: {
-          title: "注册"
-        }
-    },
+    // {
+    //     path: "/login",
+    //     component: () => import("../views/Login.vue"),
+    //     meta: {
+    //       title: "登录"
+    //     }
+    // },
+    // {
+    //     path: "/register",
+    //     component: () => import("../views/Register.vue"),
+    //     meta: {
+    //       title: "注册"
+    //     }
+    // },
     {
       path: "/user",
       redirect: "/user/index",
