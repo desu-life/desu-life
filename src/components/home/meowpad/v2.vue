@@ -3,6 +3,8 @@ import { ref } from "vue";
 import axios from "axios";
 import { VueMarkdownIt } from '@f3ve/vue-markdown-it';
 
+import '@/assets/markdown.css';
+
 import meowpad from "@/assets/meowpad/meowpad_v2.webp";
 
 import custom_trigger from "@/assets/meowpad/custom-trigger.svg";
@@ -112,7 +114,7 @@ const openDialog = () => {
       title="下载 Meowpad 驱动"
       :bordered="false"
     >
-    <vue-markdown-it :source="content" v-if="content != ''" />
+    <vue-markdown-it :source="content" v-if="content != ''" class="markdown" />
     <div v-else>
       <p>desu.life device 交流群：722122663 | 309702152</p>
       <p><br />Meowpad V2：</p>
@@ -221,6 +223,8 @@ const openDialog = () => {
 </template>
 
 <style scoped lang="scss">
+// @import url("../../../assets/markdown.css");
+
 .main {
   display: flex;
   flex-direction: row;
