@@ -1,297 +1,275 @@
 <template>
-    <div class="container" id="meowpad">
-        <div class="bg" id="__hide">
-            <img :src="bg" alt="" draggable="false" />
-        </div>
-        <div class="header" id="__header">
-            <div class="logo">
-                <img :src="logo" draggable="false" />
-            </div>
-        </div>
-        <div class="main __rtl" id="__main">
-            <div class="left" id="__left">
-                <div class="text" id="__text">
-                    <h1>Meowpad V2</h1>
-                    <h2>适用 osu! 的磁轴小键盘</h2>
-                    <div class="icon-group" id="__icon-group">
-                        <div class="item">
-                            <div class="icon">
-                                <img :src="USBC" alt="" draggable="false">
-                            </div>
-                            <div class="label">USB-C 接口</div>
-                        </div>
-                        <div class="item">
-                            <div class="icon small">
-                                <img :src="Speed" alt="" draggable="false">
-                            </div>
-                            <div class="label">0.125ms 极速响应</div>
-                        </div>
-                        <div class="item">
-                            <div class="icon small">
-                                <img :src="Light" alt="" draggable="false">
-                            </div>
-                            <div class="label">多种灯效模式</div>
-                        </div>
-                        <div class="item">
-                            <div class="icon small">
-                                <img :src="custom_trigger" alt="" draggable="false">
-                            </div>
-                            <div class="label">自定义触发</div>
-                        </div>
-                    </div>
-                    <n-tooltip trigger="hover" v-if="!isMobile()">
-                        <template #trigger>
-                            <n-button text class="btn" type="info" @click="toMarket">这么好？给我也整一个！ >></n-button>
-                        </template>
-                        打开猫盘淘宝店铺页
-                    </n-tooltip>
-                    <n-button v-else text class="btn" id="__btn" type="info" @click="toMarket">这么好？给我也整一个！ >></n-button>
-                    <n-tooltip trigger="hover" v-if="!isMobile()">
-                        <template #trigger>
-                            <n-button text class="btn" type="info" @click="openDialog">已经整了？下载驱动！ >></n-button>
-                        </template>
-                        下载驱动程序
-                    </n-tooltip>
-                    <n-button v-else text class="btn" id="__btn" type="info" @click="openDialog">已经整了？下载驱动！ >></n-button>
-                </div>
-            </div>
-            <div class="right" id="__right">
-                <img :src="meowpad" alt="" draggable="false" />
-            </div>
-        </div>
-        <div class="modal" >
-            <n-modal v-model:show="showModal" preset="card" :style="{ width: isMobile() ? '100%' : '50%', lineheight: '51px' }" title="下载 Meowpad 驱动" :bordered="false">
-                <p>
-                    Meowpad V2：
-                </p>
-                <p>
-                    meowpad_v2 配置器(1.0.0)：
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfiguratorForV2_1.0.0_fix.msi">Windows x64</n-button>
-                </p>
-                <p>
-                    <br>Meowpad V1：
-                </p>
-                <p>
-                    产品说明及固件升级教程：
-                    <n-button text type="info" tag="a"
-                        href="https://info.desu.life/?p=338">前往资讯站查看</n-button>
-                </p>
-                <p>
-                    meowpad_v1 配置器(0.3.1)：
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_x64_en-US.msi.zip">Windows x64</n-button>
-                    |
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_amd64.deb.zip">Linux x64 (deb)</n-button>
-                    |
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_macos-app.zip">MacOS x64</n-button>
-                </p>
-                <p>
-                    meowpad_v1.1_hs固件 (Hall Effect release 1.0.0 patch 23090101)：
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/firmware/meowpad_v1_hs_edition/download/meowpad_v1_app_hs_edition_1.0.0_ptach_23090101.bin">本地下载</n-button>
-                </p>
-                <p>
-                    meowpad_v1.0固件 (Mechanical beta 0.1.6)：
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/firmware/meowpad_v1/download/meowpad_v1_app_0.1.6.bin">本地下载</n-button>
-                </p>
-                <p>
-                    meowpad_v1固件升级套件 (dfu-util)：
-                    <n-button text type="info" tag="a"
-                        href="https://desu.life/device/firmware/meowpad_v1/download/firmware_updater.zip">本地下载</n-button>
-                </p>
-            </n-modal>
-        </div>
+  <div class="container" id="meowpad">
+    <div class="header" id="__header">
+      <div class="logo">
+        <img :src="logo" draggable="false" />
+      </div>
     </div>
+    <div class="anchor" v-if="!isMobile">
+      <div
+        class="v2 anchor-item"
+        :class="{ active: swiperAnchor === 0 }"
+        @click="switchToOther(0)"
+      ></div>
+      <div
+        class="se anchor-item"
+        :class="{ active: swiperAnchor === 1 }"
+        @click="switchToOther(1)"
+      ></div>
+    </div>
+    <div v-if="isMobile">
+      <v2 />
+      <v2se />
+    </div>
+    <SwiperContainer
+      v-else
+      :modules="[Autoplay, Scrollbar]"
+      :spaceBetween="30"
+      :slides-per-view="1"
+      @swiper="setSwiper"
+      @autoplayTimeLeft="onAutoplayTimeLeft"
+      @slideChange="handleSlideChange"
+      class="swiper"
+      :autoplay="{
+        delay: 10000,
+        disableOnInteraction: true,
+      } as any"
+      :scrollbar="{
+        hide: true,
+      } as any"
+    >
+      <SwiperSlide class="swiper-item">
+        <v2 />
+      </SwiperSlide>
+      <SwiperSlide class="swiper-item">
+        <v2se />
+      </SwiperSlide>
+      <template #container-end>
+        <div class="autoplay-progress">
+          <svg viewBox="0 0 48 48" ref="progressCircle">
+            <circle cx="24" cy="24" r="20"></circle>
+          </svg>
+          <span ref="progressContent"></span>
+        </div>
+      </template>
+    </SwiperContainer>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { Swiper as SwiperContainer, SwiperSlide } from "swiper/vue";
+import { Autoplay, Scrollbar } from "swiper/modules";
+import "swiper/css";
+// import 'swiper/css/navigation';
+// import "swiper/css/scrollbar";
+import logo from "@/assets/textlogo.svg";
 
-import logo from "@/assets/textlogo.svg"
-import bg from "@/assets/meowpad/bg.png"
-import meowpad from "@/assets/meowpad/meowpad_v2.png"
+import v2 from "./meowpad/v2.vue";
+import v2se from "./meowpad/v2-se.vue";
+import { Swiper } from "swiper/types";
 
-import custom_trigger from "@/assets/meowpad/custom-trigger.svg"
-import Light from "@/assets/meowpad/LightbulbOutlined.svg"
-import Speed from "@/assets/meowpad/SpeedFilled.svg"
-import USBC from "@/assets/meowpad/usb-c-port.svg"
+const progressCircle = ref<HTMLElement | null>(null);
+const progressContent = ref<HTMLElement | null>(null);
+const onAutoplayTimeLeft = (s: Swiper, timeLeft: number, percentage: number) => {
+  progressCircle.value?.style.setProperty(
+    "--progress",
+    (1 - percentage).toString()
+  );
+  progressContent.value!.textContent = `${Math.ceil(timeLeft / 1000)}s`;
+};
 
-const isMobile = () => {
-    return window.innerWidth <= 768
-}
+const isMobile = ref(window.innerWidth <= 860);
 
-const toMarket = () => {
-    window.open("https://shop172145884.taobao.com/")
-}
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 860;
+};
 
-const jumpTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView();
-}
+const swiperAnchor = ref(0);
 
-const showModal = ref(false)
+const switchToOther = (index: number) => {
+  if (swiperRef.value?.snapIndex === index) return;
+  if (swiperRef.value?.snapIndex === 0) swiperRef.value?.slideTo(1);
+  else swiperRef.value?.slideTo(0);
+};
 
-const openDialog = () => {
-    showModal.value = true
-}
+const swiperRef = ref<Swiper | null>(null);
+
+const setSwiper = (swiper: Swiper) => {
+  swiperRef.value = swiper;
+};
+
+const handleSlideChange = (swiper: Swiper) => {
+  swiperAnchor.value = swiper.snapIndex;
+  console.log(swiper.snapIndex, swiperAnchor.value);
+};
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <style scoped lang="scss">
 @import url("../../assets/sub.css");
-.container {
-    height: 100vh;
+
+.anchor {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 200px;
+  width: 10vw;
+  height: 1.2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  // background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  overflow: hidden;
+
+  .anchor-item {
+    width: 46%;
+    height: 100%;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    z-index: 3;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    position: relative;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--vt-c-white);
+    font-family: SourceHanSans, "monospace";
+    transition:
+      transform 0.3s ease-in-out,
+      opacity 0.5s ease-in-out;
 
-    .modal {
-        p {
-            line-height: 5%;
-        }
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+
+    &.active {
+      cursor: default;
+      background-color: rgba(255, 255, 255, 0.8);
+      opacity: 1;
+      transform: translateX(0);
+
+      &::before {
+        opacity: 1;
+        // transform: scale(1);
+      }
     }
 
-    .bg {
-        position: absolute;
-        top: 0;
-        right: 5%;
-        height: 100vh;
-        overflow: hidden;
-        object-fit: cover;
-        z-index: -1;
-
-        img {
-            height: 100%;
-        }
+    &::before {
+      content: attr(data-text);
+      // opacity: 0;
+      // transform: scale(0.8);
+      transition:
+        opacity 0.5s ease-in-out,
+        transform 0.5s ease-in-out;
     }
+  }
 
-    .header {
-        padding: 4%;
+  .v2 {
+    left: 0;
+    // transform: translateX(120%);
+    // opacity: 0;
+  }
+
+  .se {
+    right: 0;
+    // transform: translateX(-120%);
+    // opacity: 0;
+  }
+}
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+.swiper {
+  width: 100%; /* 视口宽度 */
+  height: 100vh; /* 视口高度 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide {
+  width: 80%;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .modal {
+    p {
+      line-height: 5%;
+    }
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    height: 100vh;
+    overflow: hidden;
+    object-fit: cover;
+    z-index: -1;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .header {
+    padding: 4%;
+    width: 100%;
+
+    .logo {
+      width: clamp(200px, 100%, 270px);
+
+      img {
         width: 100%;
-
-        .logo {
-            width: clamp(200px, 100%, 270px);
-
-            img {
-                width: 100%;
-            }
-        }
+      }
     }
-
-    .main {
-        display: flex;
-        flex-direction: row;
-        width: 80%;
-
-        .right {
-            flex: 6;
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            // background-color: aqua;
-            img {
-                height: 75%;
-            }
-        }
-
-        .left {
-            flex: 4;
-            width: 100%;
-            max-height: 60vh;
-            // background-color: red;
-            display: flex;
-            align-items: center;
-
-            .text {
-                white-space: nowrap;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 75%;
-                max-height: 350px;
-                font-family: SourceHanSC;
-                color: #fff;
-                width: 100%;
-
-                h1 {
-                    font-size: 2.5rem;
-                }
-
-                h2 {
-                    font-size: 1.2rem;
-                    color: #ccc;
-                }
-
-                .btn {
-                    width: max-content;
-                    margin: .5rem 0;
-                }
-
-                .icon-group {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-around;
-                    align-items: center;
-                    width: 100%;
-                    max-width: 500px;
-                    margin: 1rem 0;
-
-                    .item {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-
-                        .icon {
-                            width: 4rem;
-                            height: 4rem;
-                            padding: 0.1rem;
-                            margin-bottom: 5px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-
-                            img {
-                                width: 100%
-                            }
-                        }
-
-                        .small {
-                            img {
-                                width: 90%
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+  }
 }
-
-@media screen and (max-width: 1280px) and (min-width: 860px) {
-    .container {
-        .main {
-            .left {
-                .text {
-                    height: 90% !important;
-                    max-height: 500px !important;
-                    .icon-group {
-                        display: grid !important;
-                        grid-template: 1fr 1fr / 1fr 1fr;
-                        grid-gap: 20px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-    
-
 </style>

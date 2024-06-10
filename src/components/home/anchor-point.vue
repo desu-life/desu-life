@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView();
@@ -40,7 +40,7 @@ const jumpTo = (id: string) => {
 const current = ref("");
 
 // 获取组件元素的位置信息
-const getComponentPosition = (componentId) => {
+const getComponentPosition = (componentId: string) => {
   const element = document.getElementById(componentId);
   return element ? element.offsetTop : -1;
 };
@@ -82,7 +82,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  z-index: 10;
   height: 100px;
 
   .circle {

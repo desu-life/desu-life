@@ -27,6 +27,8 @@ import logo from "@/assets/textlogo.svg";
 const members: Ref<{ avatar?: string; name?: string; desc?: string; url?: string }[]> = ref([{}]);
 
 axios.get("/members.json").then((res: { data: { avatar?: string; name?: string; desc?: string; url?: string }[]; }) => {
+    // 随机打乱数组
+    res.data.sort(() => Math.random() - 0.5);
     members.value = res.data;
 })
 
@@ -38,7 +40,8 @@ const openURL = (url: string | undefined) => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/sub.css");
+@import url("../../assets/markdown.css");
+
 @media screen and (max-width: 860px) {
     .container {
         min-height: 300vh !important;

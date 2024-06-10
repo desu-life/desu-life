@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 import confetti from 'canvas-confetti'
 import { useRouter } from "vue-router";

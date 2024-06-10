@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useOsTheme } from "naive-ui";
 import logo from "@/assets/login/textlogo.svg";
 import logoDarkMode from "@/assets/textlogo.svg";

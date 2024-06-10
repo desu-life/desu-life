@@ -96,10 +96,9 @@ const handleFlipAnimate = () => {
 
 <template>
   <div class="container" id="main">
-    <div class="login-btn">
+    <!-- <div class="login-btn">
       <LogInRound class="icon" @click="toLogin" />
-      <!-- <n-button size="tiny" type="primary">登录</n-button> -->
-    </div>
+    </div> -->
     <img :src="bgImg" alt="" class="bg" @error="bgLoadFailed" />
     <div class="menu-box" id="__menu-box">
       <div class="menu">

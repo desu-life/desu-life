@@ -113,6 +113,8 @@
 
 <script setup lang="ts">
 import { AlternateEmailRound, PasswordRound } from "@vicons/material";
+import { useOsTheme } from "naive-ui";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { type FormInst, FormRules, FormItemRule, useOsTheme, useMessage } from "naive-ui";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
@@ -225,7 +227,7 @@ const closeDrawer = () => {
 };
 
 // 手机返回键关闭抽屉
-const handleBack = (event) => {
+const handleBack = (event: any) => {
   if (showDrawer.value && event.state !== null) {
     showDrawer.value = false;
   }
@@ -234,15 +236,15 @@ const handleBack = (event) => {
 onMounted(() => {
   window.addEventListener("resize", handleResize);
   // 检查是否支持 history.pushState
-  if (window.history && window.history.pushState) {
-    history.pushState(null, null, document.URL);
+  if (window.history && typeof window.history.pushState === 'function') {
+    history.pushState(null, "", document.URL);
     window.addEventListener("popstate", handleBack, false);
   }
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", handleResize);
-  if (window.history && window.history.pushState) {
+  if (window.history && typeof window.history.pushState === 'function') {
     window.removeEventListener("popstate", handleBack);
   }
 });

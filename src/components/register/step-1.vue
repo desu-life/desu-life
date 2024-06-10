@@ -79,7 +79,7 @@
 import { AlternateEmailRound } from "@vicons/material";
 import VueTurnstile from "vue-turnstile";
 import { ref } from "vue";
-import { type FormInst, FormRules, FormItemRule, useMessage } from "naive-ui";
+import { type FormInst, type FormRules, type FormItemRule, useMessage } from "naive-ui";
 
 import Logo from "@/components/Logo.vue"
 
