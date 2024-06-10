@@ -113,10 +113,8 @@
 
 <script setup lang="ts">
 import { AlternateEmailRound, PasswordRound } from "@vicons/material";
-import { useOsTheme } from "naive-ui";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { type FormInst, FormRules, FormItemRule, useOsTheme, useMessage } from "naive-ui";
-import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 
 import Register from "@/components/register/step-1.vue";
