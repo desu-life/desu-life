@@ -4,33 +4,6 @@ const routes = [
     {
         path: "/",
         component: () => import("../views/Home.vue")
-    },
-    // {
-    //     path: "/login",
-    //     component: () => import("../views/Login.vue"),
-    //     meta: {
-    //       title: "登录"
-    //     }
-    // },
-    // {
-    //     path: "/register",
-    //     component: () => import("../views/Register.vue"),
-    //     meta: {
-    //       title: "注册"
-    //     }
-    // },
-    {
-      path: "/user",
-      redirect: "/user/index",
-      children: [
-        {
-          path: "index",
-          component: () => import("../views/User/Index.vue"),
-          meta: {
-            title: "用户中心"
-          }
-        }
-      ]
     }
 ]
 
