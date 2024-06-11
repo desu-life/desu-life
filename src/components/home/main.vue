@@ -53,6 +53,7 @@ const fetchRandomImage = async (viewType: string) => {
 
 onMounted(() => {
   // fetchRandomImage(viewType.value);
+  handleFlipAnimate();
 });
 
 onBeforeUnmount(() => {
@@ -86,12 +87,14 @@ const toLogin = () => {
 const flipanimate = ref(false);
 
 const handleFlipAnimate = () => {
+  if (Math.random() * 100 <= 98) return;
   if (flipanimate.value) return;
   flipanimate.value = true;
   setTimeout(() => {
     flipanimate.value = false;
   }, 1000);
 }
+
 </script>
 
 <template>
@@ -124,7 +127,7 @@ const handleFlipAnimate = () => {
       <OsuIcon class="icon" @click="toNewPage('https://osu.desu.life/')" />-->
     </div>
     <div class="arrowdown">
-      <i>
+      <i @click="jumpTo('kanonbot')">
         <KeyboardArrowDownFilled class="arrowdown-icon scroll-down-effects" />
       </i>
     </div>
