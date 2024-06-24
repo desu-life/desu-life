@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="meowpad">
+  <div class="container" id="device">
     <div class="header" id="__header">
       <div class="logo">
         <img :src="logo" draggable="false" />
@@ -65,8 +65,8 @@ import "swiper/css";
 // import "swiper/css/scrollbar";
 import logo from "@/assets/textlogo.svg";
 
-import v2 from "./meowpad/v2.vue";
-import v2se from "./meowpad/v2-se.vue";
+import v2 from "./device/v2.vue";
+import v2se from "./device/v2-se.vue";
 import { Swiper } from "swiper/types";
 
 const progressCircle = ref<HTMLElement | null>(null);

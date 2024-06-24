@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Main from '@/components/home/main.vue'
 import Kanonbot from '@/components/home/kanonbot.vue'
-import Meowpad from '@/components/home/meowpad.vue'
+import Device from '@/components/home/device.vue'
 import Discord from '@/components/home/discord.vue'
 import Support from '@/components/home/support.vue'
 import About from '@/components/home/about.vue'
@@ -28,6 +28,17 @@ const handleResize = () => {
 
 onMounted(()=> {
     window.addEventListener('resize', handleResize)
+    // 检测是否带有锚点
+    if (window.location.hash) {
+        const id = window.location.hash.slice(1)
+        jumpTo(id)
+    }
+    // 检测 search 参数
+    const search = new URLSearchParams(window.location.search)
+    if (search.has('to')) {
+        const id = search.get('to')
+        jumpTo(id)
+    }
 })
 
 onBeforeUnmount(() => {
@@ -37,13 +48,17 @@ onBeforeUnmount(() => {
 // const isMobile = () => {
 //     return window.innerWidth <= 768
 // }
+const jumpTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView();
+}
+
 </script>
 
 <template>
     <AnchorPoint v-if="!isMobile" />
     <Main class="component" />
     <Kanonbot class="component dark" />
-    <Meowpad class="component dark" />
+    <Device class="component dark" />
     <Discord class="component dark" />
     <Support class="component dark" />
     <About class="component no-force-scroll dark" />

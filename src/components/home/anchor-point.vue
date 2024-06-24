@@ -7,9 +7,9 @@
             :class="current == 'kanonbot' ? 'current' : ''"
           ></div>
           <div
-            @click="jumpTo('meowpad')"
+            @click="jumpTo('device')"
             class="circle"
-            :class="current == 'meowpad' ? 'current' : ''"
+            :class="current == 'device' ? 'current' : ''"
           ></div>
           <div
             @click="jumpTo('discord')"
@@ -53,7 +53,7 @@ const handleScroll = () => {
   for (let i = 0; i < 5; i++) {
     const componentId = [
       "kanonbot",
-      "meowpad",
+      "device",
       "discord",
       "support",
       "about",

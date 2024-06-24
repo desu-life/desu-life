@@ -111,7 +111,7 @@ const handleFlipAnimate = () => {
           </n-dropdown>
         </li>
         <li @click="jumpTo('kanonbot')">Bot</li>
-        <li @click="jumpTo('meowpad')">猫盘</li>
+        <li @click="jumpTo('device')">猫盘</li>
         <li @click="jumpTo('discord')">Discord</li>
         <li @click="jumpTo('support')">赞助</li>
         <li @click="jumpTo('about')">关于</li>
