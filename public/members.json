@@ -41,7 +41,6 @@
     {
         "avatar": "https://a.ppy.sh/16573996?1667099597.jpeg",
         "name": "Voidmoyu",
-        "desc": "←↖↑这三位我认识，这两位不认识↗→",
         "url": "https://space.bilibili.com/8046795"
     },
     {
@@ -70,5 +69,33 @@
         "name": "BK_Moe",
         "desc": "月虫真滴帅嗷",
         "url": "https://osu.ppy.sh/users/5462423"
+    },
+    {
+        "avatar": "https://a.ppy.sh/1243669?1652632667.jpeg",
+        "name": "yf_bmp",
+        "url": "https://osu.ppy.sh/users/1243669"
+    },
+    {
+        "avatar": "https://a.ppy.sh/3072921?1716493261.jpeg",
+        "name": "Callionet",
+        "url": "https://osu.ppy.sh/users/3072921"
+    },
+    {
+        "avatar": "https://a.ppy.sh/15650011?1712387510.jpeg",
+        "name": "MotherShip",
+        "desc": "别捅我别捅我别捅我别捅我",
+        "url": "https://osu.ppy.sh/users/15650011"
+    },
+    {
+        "avatar": "https://a.ppy.sh/16586663?1716536496.jpeg",
+        "name": "[GB]ChickenGold",
+        "desc": "我爱你们❤️",
+        "url": "https://osu.ppy.sh/users/16586663"
+    },
+    {
+        "avatar": "https://a.ppy.sh/11350021?1700746039.jpeg",
+        "name": "Wanna Accuracy",
+        "url": "https://osu.ppy.sh/users/11350021"
     }
+    
 ]
