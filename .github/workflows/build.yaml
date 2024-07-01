@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile
 
+    - name: Verify TypeScript config
+      run: cat tsconfig.json tsconfig.app.json tsconfig.node.json
+
     - name: Build project
       run: pnpm run build
 
