@@ -21,8 +21,8 @@ jobs:
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile
 
-    - name: Verify TypeScript config
-      run: cat tsconfig.json tsconfig.app.json tsconfig.node.json
+    # - name: Verify TypeScript config
+    #   run: cat tsconfig.json tsconfig.app.json tsconfig.node.json
 
     - name: Build project
       run: pnpm run build
@@ -32,14 +32,16 @@ jobs:
 
     - name: Create Release
       uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: 'beta-${{ github.run_number }}'
         release_name: 'Beta Release ${{ github.run_number }}'
         draft: false
         prerelease: true  # 标记为 pre-release
-        generate_release_notes: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # generate_release_notes: true
+        body: |
+            Auto-generated release notes by the release action.
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
