@@ -10,7 +10,7 @@ import meowpad from "@/assets/meowpad/meowpad_v2.webp";
 import custom_trigger from "@/assets/meowpad/custom-trigger.svg";
 import Light from "@/assets/meowpad/LightbulbOutlined.svg";
 import Speed from "@/assets/meowpad/SpeedFilled.svg";
-import Lightning from "@/assets/meowpad/lightning.svg";
+import Lightning from "@/assets/meowpad/Lightning.svg";
 
 const isMobile = () => {
   return window.innerWidth <= 768;
