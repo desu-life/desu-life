@@ -30,18 +30,30 @@ jobs:
     - name: Archive production artifact
       run: tar -czvf release.tar.gz -C dist .
 
+    # - name: Create Release
+    #   uses: actions/create-release@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     tag_name: 'beta-${{ github.run_number }}'
+    #     release_name: 'Beta Release ${{ github.run_number }}'
+    #     draft: false
+    #     prerelease: true  # 标记为 pre-release
+    #     # generate_release_notes: true
+    #     body: |
+    #         Auto-generated release notes by the release action.
+
     - name: Create Release
-      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
         tag_name: 'beta-${{ github.run_number }}'
         release_name: 'Beta Release ${{ github.run_number }}'
-        draft: false
-        prerelease: true  # 标记为 pre-release
-        # generate_release_notes: true
-        body: |
-            Auto-generated release notes by the release action.
+      run: |
+        gh release create "$tag_name" \
+          --repo="$GITHUB_REPOSITORY" \
+          --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+          --generate-notes \
+          --prerelease
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
