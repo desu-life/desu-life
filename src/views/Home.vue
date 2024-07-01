@@ -36,7 +36,7 @@ onMounted(()=> {
     // 检测 search 参数
     const search = new URLSearchParams(window.location.search)
     if (search.has('to')) {
-        const id = search.get('to')
+        const id = search.get('to') as string
         jumpTo(id)
     }
 })

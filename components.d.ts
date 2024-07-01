@@ -15,7 +15,6 @@ declare module 'vue' {
     Kanonbot: typeof import('./src/components/home/kanonbot.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
     Main: typeof import('./src/components/home/main.vue')['default']
-    Meowpad: typeof import('./src/components/home/meowpad.vue')['default']
     NBackTop: typeof import('naive-ui')['NBackTop']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
