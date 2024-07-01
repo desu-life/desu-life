@@ -43,9 +43,12 @@ jobs:
     #     body: |
     #         Auto-generated release notes by the release action.
 
+    - name: Authenticate GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+
     - name: Create Release
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         tag_name: 'beta-${{ github.run_number }}'
         release_name: 'Beta Release ${{ github.run_number }}'
       run: |
