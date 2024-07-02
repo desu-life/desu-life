@@ -23,6 +23,10 @@
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
                     <span v-else>{{ i }}</span>
                 </div>
+                <div v-if="footer.icp && FromChina">
+                    <a v-if="footer.icp.includes('<link>')" :href="footer.icp.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ footer.icp.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
+                    <span v-else>{{ footer.icp }}</span>
+                </div>
             </div>
             <div class="right footer-block">
                 <span>Web Design By <a href="https://im0o.top">Jz0ojiang</a></span>
@@ -43,8 +47,8 @@ import { AlternateEmailFilled } from "@vicons/material";
 import catlogo from "@/assets/desulife_logo.png"
 
 import axios from 'axios'
-import { ref, type Ref } from 'vue'
-const footer: Ref<{ left?: string[], center?: string[], right?: string[] }> = ref({})
+import { ref, type Ref, onMounted } from 'vue'
+const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref({})
 axios.get("/footer.json").then((res: { data: {}; }) => {
     footer.value = res.data
 })
@@ -54,6 +58,17 @@ const toNewPage = (url: string) => {
 const backTop = () => {
   document.getElementById("main")?.scrollIntoView();
 }
+
+const FromChina = ref(true)
+
+onMounted(() => {
+    axios.get("https://ipinfo.io/json").then((res: {data: {country: string};}) => {
+        FromChina.value = (res.data.country === "CN")
+    }).catch(() => {
+        FromChina.value = true
+    })
+})
+
 </script>
 
 <style scoped lang="scss">
