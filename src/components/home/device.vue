@@ -101,7 +101,7 @@ const setSwiper = (swiper: Swiper) => {
 
 const handleSlideChange = (swiper: Swiper) => {
   swiperAnchor.value = swiper.snapIndex;
-  console.log(swiper.snapIndex, swiperAnchor.value);
+  // console.log(swiper.snapIndex, swiperAnchor.value);
 };
 
 onMounted(() => {
