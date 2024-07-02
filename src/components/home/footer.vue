@@ -23,7 +23,7 @@
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
                     <span v-else>{{ i }}</span>
                 </div>
-                <div v-if="footer.icp && FromChina">
+                <div v-if="footer.icp && fromChina">
                     <a v-if="footer.icp.includes('<link>')" :href="footer.icp.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ footer.icp.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
                     <span v-else>{{ footer.icp }}</span>
                 </div>
@@ -48,6 +48,8 @@ import catlogo from "@/assets/desulife_logo.png"
 
 import axios from 'axios'
 import { ref, type Ref, onMounted } from 'vue'
+import { getCookie } from 'typescript-cookie'
+
 const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref({})
 axios.get("/footer.json").then((res: { data: {}; }) => {
     footer.value = res.data
@@ -59,14 +61,16 @@ const backTop = () => {
   document.getElementById("main")?.scrollIntoView();
 }
 
-const FromChina = ref(true)
+const fromChina = ref(true)
 
 onMounted(() => {
-    axios.get("https://ipinfo.io/json").then((res: {data: {country: string};}) => {
-        FromChina.value = (res.data.country === "CN")
-    }).catch(() => {
-        FromChina.value = true
-    })
+    // axios.get("https://ipinfo.io/json").then((res: {data: {country: string};}) => {
+    //     FromChina.value = (res.data.country === "CN")
+    // }).catch(() => {
+    //     FromChina.value = true
+    // })
+    fromChina.value = getCookie('region') == 'CN'
+    
 })
 
 </script>
