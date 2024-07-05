@@ -63,13 +63,30 @@ const backTop = () => {
 
 const fromChina = ref(true)
 
+const checkRegion = () => {
+    // query 方式
+    const search = new URLSearchParams(window.location.search)
+    if (search.has('region') || search.has('from')) {
+        fromChina.value = (search.get('region').toUpperCase() == 'CN')
+    } else {
+        // cookie 方式
+        let region = getCookie('region')
+        if (region != undefined) {
+            console.log("欢迎来自", region, "的用户")
+            fromChina.value = (region.toUpperCase() == 'CN')
+        } else {
+            // 来源 ip 方式
+            axios.get("https://ipinfo.io/json").then((res: {data: {country: string};}) => {
+                fromChina.value = (res.data.country.toUpperCase() === "CN")
+            }).catch(() => {
+                fromChina.value = true
+            })
+        }
+    }
+}
+
 onMounted(() => {
-    // axios.get("https://ipinfo.io/json").then((res: {data: {country: string};}) => {
-    //     FromChina.value = (res.data.country === "CN")
-    // }).catch(() => {
-    //     FromChina.value = true
-    // })
-    fromChina.value = getCookie('region') == 'CN'
+    checkRegion()
     
 })
 
