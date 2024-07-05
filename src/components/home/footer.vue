@@ -67,7 +67,7 @@ const checkRegion = () => {
     // query 方式
     const search = new URLSearchParams(window.location.search)
     if (search.has('region') || search.has('from')) {
-        fromChina.value = (search.get('region').toUpperCase() == 'CN')
+        fromChina.value = (search.get('region')?.toUpperCase() == 'CN')
     } else {
         // cookie 方式
         let region = getCookie('region')
