@@ -1,5 +1,7 @@
 # desu.life
 
+![](https://github.com/desu-life/desu-life/workflows/Build%20and%20Release/badge.svg)
+
 🎉 desu.life 主页源码
 
 ## 预览
