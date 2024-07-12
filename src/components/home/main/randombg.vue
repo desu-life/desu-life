@@ -62,14 +62,14 @@ export default defineComponent({
             bgload.value ? "bg-base bg-preview hide" : "bg-base bg-preview"
           }
           alt=""
-          onload={onPreviewLoad}
+          onLoad={onPreviewLoad}
         />
         <img
           src={bg.value}
           alt=""
           class={!bgpreviewload.value ? "bg-base bg hide" : "bg-base bg"}
-          onload={onBGload}
-          onerror={onBGLoadFail}
+          onLoad={onBGload}
+          onError={onBGLoadFail}
         />
       </div>
     );
