@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useRouter } from "vue-router";
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
-import { KeyboardArrowDownFilled, AlternateEmailFilled, LogInRound } from "@vicons/material";
+import {
+  KeyboardArrowDownFilled,
+  AlternateEmailFilled,
+  LogInRound,
+} from "@vicons/material";
 import defaultBgImg from "@/assets/main/background.jpg";
+import axios from "axios";
+import randombg from "./main/randombg.vue"
 
-const bgImg = ref<string>("https://desu.life/resource/images/defaultbg.jpg");
-const HbgImg = ref<string>("null");
-const VbgImg = ref<string>("null");
-const viewType = ref<string>('');
+const bgImg = ref<string>("");
+const bgImgPreview = ref<string>("");
+// const HbgImg = ref<string>("null");
+// const VbgImg = ref<string>("null");
+const viewType = ref<string>("");
 let HshouldUpdate = ref(true);
 let VshouldUpdate = ref(true);
 
@@ -20,36 +27,20 @@ const router = useRouter();
 const options = [
   {
     label: "资讯站",
-    key: "https://info.desu.life/"
+    key: "https://info.desu.life/",
   },
   {
     label: "邮箱",
-    key: "https://mail.desu.life/"
+    key: "https://mail.desu.life/",
   },
 ];
 
 const toNewPage = (url: string) => {
-  window.open(url)
-}
+  window.open(url);
+};
 const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView();
-}
-
-const fetchRandomImage = async (viewType: string) => {
-  try {
-    if (viewType === 'h') {
-      if (HbgImg.value === "null")
-        HbgImg.value = (await fetch(`https://desu.life/random_image?viewType=${viewType}`)).url;
-      if (bgImg.value !== HbgImg.value) bgImg.value = HbgImg.value;
-    } else {
-      if (VbgImg.value === "null")
-        VbgImg.value = (await fetch(`https://desu.life/random_image?viewType=${viewType}`)).url;
-      if (bgImg.value !== VbgImg.value) bgImg.value = VbgImg.value;
-    }
-  } catch (error) {
-    console.error('Failed to fetch random image:', error);
-  }
-}
+};
 
 onMounted(() => {
   // fetchRandomImage(viewType.value);
@@ -57,7 +48,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize);
+  window.removeEventListener("resize", handleResize);
 });
 
 const handleResize = () => {
@@ -65,24 +56,20 @@ const handleResize = () => {
   const shouldUpdate = isWideScreen ? HshouldUpdate.value : VshouldUpdate.value;
 
   if (shouldUpdate) {
-    viewType.value = isWideScreen ? 'h' : 'v';
+    viewType.value = isWideScreen ? "h" : "v";
     HshouldUpdate.value = !isWideScreen;
     VshouldUpdate.value = isWideScreen;
-    fetchRandomImage(viewType.value);
   }
 };
 
+
 handleResize();
 
-window.addEventListener('resize', handleResize);
-
-const bgLoadFailed = () => {
-  bgImg.value = defaultBgImg;
-}
+window.addEventListener("resize", handleResize);
 
 const toLogin = () => {
-  router.push('/login');
-}
+  router.push("/login");
+};
 
 const flipanimate = ref(false);
 
@@ -93,20 +80,24 @@ const handleFlipAnimate = () => {
   setTimeout(() => {
     flipanimate.value = false;
   }, 1000);
-}
-
+};
 </script>
 
 <template>
   <div class="container" id="main">
+    <randombg :view-type="viewType" />
     <!-- <div class="login-btn">
       <LogInRound class="icon" @click="toLogin" />
     </div> -->
-    <img :src="bgImg" alt="" class="bg" @error="bgLoadFailed" />
     <div class="menu-box" id="__menu-box">
       <div class="menu">
         <li>
-          <n-dropdown trigger="click" :options="options" @select="toNewPage" placement="bottom-start">
+          <n-dropdown
+            trigger="click"
+            :options="options"
+            @select="toNewPage"
+            placement="bottom-start"
+          >
             <KeyCommand16Filled class="more" />
           </n-dropdown>
         </li>
@@ -118,11 +109,21 @@ const handleFlipAnimate = () => {
       </div>
     </div>
     <div class="title" @click="handleFlipAnimate">
-      <span id="__title" :class="flipanimate ? 'animate__animated animate__flip' : ''">DESU.Life</span>
+      <span
+        id="__title"
+        :class="flipanimate ? 'animate__animated animate__flip' : ''"
+        >DESU.Life</span
+      >
     </div>
     <div class="micons" id="__micons">
-      <News24Regular class="icon" @click="toNewPage('https://info.desu.life/')" />
-      <AlternateEmailFilled class="icon" @click="toNewPage('https://mail.desu.life/')" />
+      <News24Regular
+        class="icon"
+        @click="toNewPage('https://info.desu.life/')"
+      />
+      <AlternateEmailFilled
+        class="icon"
+        @click="toNewPage('https://mail.desu.life/')"
+      />
       <!--<MastodonIcon class="icon" @click="toNewPage('https://m.desu.life/')" />
       <OsuIcon class="icon" @click="toNewPage('https://osu.desu.life/')" />-->
     </div>
@@ -135,16 +136,6 @@ const handleFlipAnimate = () => {
 </template>
 
 <style scoped lang="scss">
-.bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(70%);
-}
 
 .container {
   display: flex;

@@ -24,6 +24,7 @@ declare module 'vue' {
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NModal: typeof import('naive-ui')['NModal']
     NTooltip: typeof import('naive-ui')['NTooltip']
+    Randombg: typeof import('./src/components/home/main/randombg.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Support: typeof import('./src/components/home/support.vue')['default']
