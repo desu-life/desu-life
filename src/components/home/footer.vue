@@ -13,14 +13,16 @@
         </div>
         <div class="footer" id="__footer">
             <div class="left footer-block">
-                <div v-for="i in footer.left">
+                <div v-for="i in footer.left" :key="i">
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
+                    <span v-else-if="i.includes('<i18n>')">{{ $t(i.replace('<i18n>', '')) }}</span>
                     <span v-else>{{ i }}</span>
                 </div>
             </div>
             <div class="center footer-block">
-                <div v-for="i in footer.center">
+                <div v-for="i in footer.center" :key="i">
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
+                    <span v-else-if="i.includes('<i18n>')">{{ $t(i.replace('<i18n>', '')) }}</span>
                     <span v-else>{{ i }}</span>
                 </div>
                 <div v-if="footer.icp && siteState.isCN">
@@ -30,8 +32,19 @@
             </div>
             <div class="right footer-block">
                 <span>Web Design By <a href="https://im0o.top">Jz0ojiang</a></span>
-                <div v-for="i in footer.right">
+                <n-popselect v-model:value="currentLanguage" :options="Languages" trigger="click" v-if="!siteState.isCN">
+                    <div class="inline i18n-block">
+                        <n-icon size="1.6rem">
+                            <LanguageFilled />
+                        </n-icon>
+                        <span>
+                            {{ $t("lang.languageName") }}
+                        </span>
+                    </div>
+                </n-popselect>
+                <div v-for="i in footer.right" :key="i">
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
+                    <span v-else-if="i.includes('<i18n>')">{{ $t(i.replace('<i18n>', '')) }}</span>
                     <span v-else>{{ i }}</span>
                 </div>
             </div>
@@ -41,14 +54,28 @@
 
 <script setup lang="ts">
 import { News24Regular } from "@vicons/fluent"
-import { AlternateEmailFilled } from "@vicons/material";
+import { AlternateEmailFilled, LanguageFilled } from "@vicons/material";
 import catlogo from "@/assets/desulife_logo.png"
 
 import axios from 'axios'
-import { ref, type Ref } from 'vue'
+import { ref, type Ref, watch } from 'vue'
 
 import { useSiteStore } from "@/store/site-state";
+
 const siteState = useSiteStore()
+
+const currentLanguage = ref(siteState.i18nLanguage)
+
+const Languages = [
+    { label: "简体中文", value: "zh-Hans" },
+    { label: "繁體中文", value: "zh-Hant" },
+    { label: "日本語", value: "ja"},
+    { label: "English", value: "en" }
+]
+
+watch(currentLanguage, (newVal) => {
+    siteState.i18nLanguage = newVal
+})
 
 const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref({})
 axios.get("/footer.json").then((res: { data: {}; }) => {
@@ -67,6 +94,19 @@ const backTop = () => {
 
 <style scoped lang="scss">
 @import url("../../assets/sub.css");
+.inline {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+.i18n-block {
+    
+    cursor: pointer;
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
 .footer-container {
     max-height: 40vh;
     display: flex;
@@ -149,6 +189,7 @@ const backTop = () => {
             a {
                 color: #fff;
                 text-decoration: none;
+                transition: color 0.2s;
                 &:hover {
                     color: #369
                 }
@@ -158,16 +199,19 @@ const backTop = () => {
         .left {
             flex: 1;
             text-align: left;
+            align-items: flex-start;
         }
 
         .center {
             flex: 1;
             text-align: center;
+            align-items: center;
         }
 
         .right {
             flex: 1;
             text-align: right;
+            align-items: flex-end;
         }
     }
 }

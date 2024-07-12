@@ -60,9 +60,8 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { Swiper as SwiperContainer, SwiperSlide } from "swiper/vue";
 import { Autoplay, Scrollbar } from "swiper/modules";
+
 import "swiper/css";
-// import 'swiper/css/navigation';
-// import "swiper/css/scrollbar";
 import logo from "@/assets/textlogo.svg";
 
 import v2 from "./device/v2.vue";
@@ -101,7 +100,6 @@ const setSwiper = (swiper: Swiper) => {
 
 const handleSlideChange = (swiper: Swiper) => {
   swiperAnchor.value = swiper.snapIndex;
-  // console.log(swiper.snapIndex, swiperAnchor.value);
 };
 
 onMounted(() => {

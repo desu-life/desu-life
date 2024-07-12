@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import axios from "axios";
+import { onMounted, ref } from "vue";
 import { VueMarkdownIt } from '@f3ve/vue-markdown-it';
+
+import defaultModalVue from "./default-modal.vue"
+import getMarkdown from "@/components/home/device/getmd";
 
 import '@/assets/markdown.css';
 
 import meowpad from "@/assets/meowpad/meowpad_v2_se.webp";
-
 import custom_trigger from "@/assets/meowpad/custom-trigger.svg";
 import Light from "@/assets/meowpad/LightbulbOutlined.svg";
 import Speed from "@/assets/meowpad/SpeedFilled.svg";
@@ -22,9 +23,9 @@ const toMarket = () => {
 
 const content = ref("");
 
-axios.get("/meowpad_v2_se.md").then((res: { data: string }) => {
-  content.value = res.data;
-});
+onMounted(async () => {
+  content.value = await getMarkdown("meowpad_v2_se");
+})
 
 const showModal = ref(false);
 
@@ -37,41 +38,41 @@ const openDialog = () => {
   <div class="main __rtl" id="__main">
     <div class="left" id="__left">
       <div class="text" id="__text">
-        <h1>Meowpad SE v2</h1>
-        <h2>多场景适用的磁轴小键盘</h2>
+        <h1>{{ $t("page.device.v2Se.title") }}</h1>
+        <h2>{{ $t("page.device.v2Se.subtitle") }}</h2>
         <div class="icon-group" id="__icon-group">
           <div class="item">
             <div class="icon">
               <img :src="USBC" alt="" draggable="false" />
             </div>
-            <div class="label">USB-C 接口</div>
+            <div class="label">{{ $t("page.device.v2Se.benefits.0") }}</div>
           </div>
           <div class="item">
             <div class="icon small">
               <img :src="Speed" alt="" draggable="false" />
             </div>
-            <div class="label">1ms 高速响应</div>
+            <div class="label">{{ $t("page.device.v2Se.benefits.1") }}</div>
           </div>
           <div class="item">
             <div class="icon small">
               <img :src="Light" alt="" draggable="false" />
             </div>
-            <div class="label">可调背光</div>
+            <div class="label">{{ $t("page.device.v2Se.benefits.2") }}</div>
           </div>
           <div class="item">
             <div class="icon small">
               <img :src="custom_trigger" alt="" draggable="false" />
             </div>
-            <div class="label">自定义触发</div>
+            <div class="label">{{ $t("page.device.v2Se.benefits.3") }}</div>
           </div>
         </div>
         <n-tooltip trigger="hover" v-if="!isMobile()">
           <template #trigger>
             <n-button text class="btn" type="info" @click="toMarket"
-              >这么好？给我也整一个！ >></n-button
+              >{{ $t("page.device.v2Se.linkToMarket") }}</n-button
             >
           </template>
-          打开猫盘淘宝店铺页
+          {{ $t("page.device.v2Se.linkTooltip") }}
         </n-tooltip>
         <n-button
           v-else
@@ -80,15 +81,15 @@ const openDialog = () => {
           id="__btn"
           type="info"
           @click="toMarket"
-          >这么好？给我也整一个！ >></n-button
+          >{{ $t("page.device.v2Se.linkToMarket") }}</n-button
         >
         <n-tooltip trigger="hover" v-if="!isMobile()">
           <template #trigger>
             <n-button text class="btn" type="info" @click="openDialog"
-              >已经整了？下载驱动！ >></n-button
+              >{{ $t("page.device.v2Se.btnOpenDialog") }}</n-button
             >
           </template>
-          下载驱动程序
+          {{ $t("page.device.v2Se.btnTooltip") }}
         </n-tooltip>
         <n-button
           v-else
@@ -97,7 +98,7 @@ const openDialog = () => {
           id="__btn"
           type="info"
           @click="openDialog"
-          >已经整了？下载驱动！ >></n-button
+          >{{ $t("page.device.v2Se.btnOpenDialog") }}</n-button
         >
       </div>
     </div>
@@ -110,112 +111,12 @@ const openDialog = () => {
       v-model:show="showModal"
       preset="card"
       :style="{ width: isMobile() ? '100%' : '50%', lineheight: '51px' }"
-      title="下载 Meowpad 驱动"
+      :title="$t('page.device.v2Se.modalTitle')"
       :bordered="false"
     >
     <vue-markdown-it :source="content" v-if="content != ''" class="markdown" />
     <div v-else>
-      <p>desu.life device 交流群：722122663 | 309702152</p>
-      <p><br />Meowpad V2：</p>
-      <p>
-        meowpad_v2 配置器(1.0.1)：
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/app/download/MeowpadConfiguratorForV2_1.0.1.exe"
-          >Windows x64</n-button
-        >
-        |
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/app/download/meowpad-configurator-for-v2_1.0.1.deb"
-          >Linux x64(deb)</n-button
-        >
-        |
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/app/download/meowpad-configurator-for-v2_1.0.1.AppImage"
-          >Linux x64(appimage)</n-button
-        >
-      </p>
-      <p>
-        meowpad_v2 standard edition 固件 (1.0.1)：
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/firmware/meowpad_v2/meowpad_v2_standard_edition_app_0.1.1.bin"
-          >本地下载</n-button
-        >
-      </p>
-      <p><br />Meowpad V1：</p>
-      <p>
-        产品说明及固件升级教程：
-        <n-button text type="info" tag="a" href="https://info.desu.life/?p=338"
-          >前往资讯站查看</n-button
-        >
-      </p>
-      <p>
-        meowpad_v1 配置器(0.3.1)：
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_x64_en-US.msi.zip"
-          >Windows x64</n-button
-        >
-        |
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_amd64.deb.zip"
-          >Linux x64 (deb)</n-button
-        >
-        |
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/app/download/MeowpadConfigurator_0.3.1_macos-app.zip"
-          >MacOS x64</n-button
-        >
-      </p>
-      <p>
-        meowpad_v1.1_hs固件 (Hall Effect release 1.0.0 patch 23090101)：
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/firmware/meowpad_v1_hs_edition/download/meowpad_v1_app_hs_edition_1.0.0_ptach_23090101.bin"
-          >本地下载</n-button
-        >
-      </p>
-      <p>
-        meowpad_v1.0固件 (Mechanical beta 0.1.6)：
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/firmware/meowpad_v1/download/meowpad_v1_app_0.1.6.bin"
-          >本地下载</n-button
-        >
-      </p>
-      <p>
-        meowpad_v1固件升级套件 (dfu-util)：
-        <n-button
-          text
-          type="info"
-          tag="a"
-          href="https://desu.life/device/firmware/meowpad_v1/download/firmware_updater.zip"
-          >本地下载</n-button
-        >
-      </p>
+      <defaultModalVue />
     </div>
     </n-modal>
   </div>

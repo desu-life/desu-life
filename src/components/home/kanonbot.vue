@@ -11,18 +11,18 @@
             </div>
             <div class="right" id="__right">
                 <div class="text">
-                    <h1>KanonBot</h1>
-                    <h2>支持多平台的 osu! 查分机器人</h2>
+                    <h1>{{ $t("page.kanonbot.title") }}</h1>
+                    <h2>{{ $t("page.kanonbot.subtitle" )}}</h2>
                     <p></p>
-                    <p>个人资料、游玩成绩、对比 pp+ 数据</p>
-                    <p>查询赛事 cost 值、查询今日新增 bp、推荐铺面（std）</p>
-                    <p>Kanon 勋章系统、自定义 osu! infopanel 图像</p>
+                    <p>{{ $t("page.kanonbot.description.0") }}</p>
+                    <p>{{ $t("page.kanonbot.description.1") }}</p>
+                    <p>{{ $t("page.kanonbot.description.2") }}</p>
                     <p></p>
                     <n-tooltip trigger="hover">
                         <template #trigger>
-                            <n-button text class="btn" id="__btn" type="info" @click="toDetail">猫猫还可以做的更多！ >></n-button>
+                            <n-button text class="btn" id="__btn" type="info" @click="toDetail">{{ $t("page.kanonbot.linkToDetail") }}</n-button>
                         </template>
-                        前往资讯站查看 KanonBot2022 使用文档
+                        {{ $t("page.kanonbot.linkTooltip") }}
                     </n-tooltip>
                 </div>
             </div>

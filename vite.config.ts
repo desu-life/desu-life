@@ -1,8 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -28,6 +31,9 @@ export default defineConfig({
     }),
     Components({
       resolvers: [NaiveUiResolver()]
+    }),
+    VueI18nPlugin({
+      include: [path.resolve(__dirname, './src/locales/**')],
     })
   ],
   resolve: {

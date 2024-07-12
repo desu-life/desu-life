@@ -11,17 +11,17 @@
                     <img :src="catlogo" alt="" draggable="false" />
                 </div>
                 <div class="label">
-                    DESU.Life 邀请您加入
+                    {{ $t("page.discord.label") }}
                 </div>
                 <div class="name">
-                    Discord 服务器
+                    {{ $t("page.discord.name") }}
                 </div>
                 <div class="btn-group" id="__btn-group">
                     <div class="btn">
                         <n-button size="medium" color="#00000045" @click="toDiscord">
                             <div class="circle-icon"></div>
                             <span>
-                                点击加入
+                                {{ $t("page.discord.btn") }}
                             </span>
                         </n-button>
                     </div>
@@ -43,14 +43,6 @@ const toDiscord = () => {
     window.open("https://discord.gg/eGAm24FjQ8")
 }
 
-const copyStr = (str: string) => {
-    navigator.clipboard.writeText(str).then(() => {
-        message.success(`成功复制 ${str}`)
-    },
-    () => {
-        message.error(`无法访问剪贴板`)
-    })
-}
 </script>
 
 <style scoped lang="scss">

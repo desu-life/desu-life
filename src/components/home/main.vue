@@ -1,39 +1,41 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { useRouter } from "vue-router";
+import i18n from '@/i18n';
+
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
+import randombg from "./main/randombg.vue"
 import {
   KeyboardArrowDownFilled,
   AlternateEmailFilled,
   LogInRound,
 } from "@vicons/material";
-import defaultBgImg from "@/assets/main/background.jpg";
-import axios from "axios";
-import randombg from "./main/randombg.vue"
 
-const bgImg = ref<string>("");
-const bgImgPreview = ref<string>("");
-// const HbgImg = ref<string>("null");
-// const VbgImg = ref<string>("null");
+const router = useRouter();
+
 const viewType = ref<string>("");
 let HshouldUpdate = ref(true);
 let VshouldUpdate = ref(true);
 
-const router = useRouter();
 
-//import MastodonIcon from "../assets/footer/mastodon.vue";
-//import OsuIcon from "../assets/footer/osu.vue";
+watch(() => i18n.global.locale.value, () => {
+  options.value = updateOptions();
+});
 
-const options = [
-  {
-    label: "资讯站",
-    key: "https://info.desu.life/",
-  },
-  {
-    label: "邮箱",
-    key: "https://mail.desu.life/",
-  },
-];
+const updateOptions = () => {
+  return [
+    {
+      label: i18n.global.t('page.main.menu.options.info'),
+      key: "https://info.desu.life/",
+    },
+    {
+      label: i18n.global.t('page.main.menu.options.mail'),
+      key: "https://mail.desu.life/",
+    },
+  ];
+}
+
+const options = ref(updateOptions());
 
 const toNewPage = (url: string) => {
   window.open(url);
@@ -101,11 +103,11 @@ const handleFlipAnimate = () => {
             <KeyCommand16Filled class="more" />
           </n-dropdown>
         </li>
-        <li @click="jumpTo('kanonbot')">Bot</li>
-        <li @click="jumpTo('device')">猫盘</li>
-        <li @click="jumpTo('discord')">Discord</li>
-        <li @click="jumpTo('support')">赞助</li>
-        <li @click="jumpTo('about')">关于</li>
+        <li @click="jumpTo('kanonbot')">{{$t('page.main.menu.kanonbot')}}</li>
+        <li @click="jumpTo('device')">{{$t('page.main.menu.device')}}</li>
+        <li @click="jumpTo('discord')">{{$t('page.main.menu.discord')}}</li>
+        <li @click="jumpTo('support')">{{$t('page.main.menu.support')}}</li>
+        <li @click="jumpTo('about')">{{$t('page.main.menu.about')}}</li>
       </div>
     </div>
     <div class="title" @click="handleFlipAnimate">
