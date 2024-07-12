@@ -4,9 +4,9 @@
         "All rights reserved."
     ],
     "center": [
+        "<i18n>page.footer.topimgCopyRight"
     ],
     "right": [
-        "头图来自来自随机图库，作品版权源于各作者"
     ],
-    "icp": "<link>[测ICP备123456789](#)"
+    "icp": "<link>[京ICP备2024065766号-1](https://beian.miit.gov.cn/)"
 }
