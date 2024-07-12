@@ -3,6 +3,20 @@ import { computed } from 'vue'
 import { useOsTheme, darkTheme } from 'naive-ui'
 import { RouterView } from 'vue-router'
 
+import { useI18n } from 'vue-i18n'
+// import i18n from '@/i18n'
+import { useSiteStore } from '@/store/site-state'
+
+const i18n = useI18n()
+const siteStore = useSiteStore()
+
+i18n.locale.value = siteStore.i18nLanguage
+
+siteStore.$subscribe((mutation, state) => {
+    i18n.locale.value = state.i18nLanguage
+    localStorage.setItem('i18nLanguage', state.i18nLanguage)
+})
+
 const osThemeRef = useOsTheme()
 
 const theme = computed(() => (osThemeRef.value === 'dark' ? darkTheme : null))
