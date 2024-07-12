@@ -23,7 +23,7 @@
                     <a v-if="i.includes('<link>')" :href="i.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ i.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
                     <span v-else>{{ i }}</span>
                 </div>
-                <div v-if="footer.icp && fromChina">
+                <div v-if="footer.icp && siteState.isCN">
                     <a v-if="footer.icp.includes('<link>')" :href="footer.icp.match(/\((.*)\)/)?.[0].slice(1,-1)" target="_blank">{{ footer.icp.match(/\[(.*)\]/)?.[0].slice(1,-1) }}</a>
                     <span v-else>{{ footer.icp }}</span>
                 </div>
@@ -42,13 +42,13 @@
 <script setup lang="ts">
 import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled } from "@vicons/material";
-//import MastodonIcon from "@/assets/footer/mastodon.vue";
-//import OsuIcon from "@/assets/footer/osu.vue";
 import catlogo from "@/assets/desulife_logo.png"
 
 import axios from 'axios'
-import { ref, type Ref, onMounted } from 'vue'
-import { getCookie } from 'typescript-cookie'
+import { ref, type Ref } from 'vue'
+
+import { useSiteStore } from "@/store/site-state";
+const siteState = useSiteStore()
 
 const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref({})
 axios.get("/footer.json").then((res: { data: {}; }) => {
@@ -61,34 +61,7 @@ const backTop = () => {
   document.getElementById("main")?.scrollIntoView();
 }
 
-const fromChina = ref(true)
 
-const checkRegion = () => {
-    // query 方式
-    const search = new URLSearchParams(window.location.search)
-    if (search.has('region') || search.has('from')) {
-        fromChina.value = (search.get('region')?.toUpperCase() == 'CN')
-    } else {
-        // cookie 方式
-        let region = getCookie('region')
-        if (region != undefined) {
-            console.log("欢迎来自", region, "的用户")
-            fromChina.value = (region.toUpperCase() == 'CN')
-        } else {
-            // 来源 ip 方式
-            axios.get("https://ipinfo.io/json").then((res: {data: {country: string};}) => {
-                fromChina.value = (res.data.country.toUpperCase() === "CN")
-            }).catch(() => {
-                fromChina.value = true
-            })
-        }
-    }
-}
-
-onMounted(() => {
-    checkRegion()
-    
-})
 
 </script>
 
