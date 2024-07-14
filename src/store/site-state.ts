@@ -25,7 +25,7 @@ function getSystemLanguage() : string {
 
 export const useSiteStore = defineStore('site', () => {
     const isCN = ref(checkRegion())
-    const i18nLanguage = ref(isCN.value ? 'zh-CN': getSystemLanguage())
+    const i18nLanguage = ref(isCN.value ? 'zh-Hans': getSystemLanguage())
     const setLanguage = (language: string) => {
         i18nLanguage.value = language
     }
