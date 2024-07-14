@@ -20,6 +20,9 @@
 
 - [animate.css](https://animate.style/)
 
+- tsx/jsx
+
+- [vue-18n](https://github.com/intlify/vue-i18n)
 
 ## 本地开发
 
