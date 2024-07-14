@@ -234,12 +234,14 @@ const backTop = () => {
         }
         .left {
             text-align: center;
+            align-items: center;
         }
         .center {
             text-align: center;
         }
         .right {
             text-align: center;
+            align-items: center;
         }
     }
     #__f-menu {
