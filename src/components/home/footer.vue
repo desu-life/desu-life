@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="right footer-block">
-                <span>Web Design By <a href="https://im0o.top">Jz0ojiang</a></span>
+                <span>Web Design By <a href="https://im0o.cn" v-if=siteState.isCN>Jz0ojiang</a><a href="https://im0o.top" v-else>Jz0ojiang</a></span>
                 <n-popselect v-model:value="currentLanguage" :options="Languages" trigger="click" v-if="!siteState.isCN">
                     <div class="inline i18n-block">
                         <n-icon size="1.6rem">

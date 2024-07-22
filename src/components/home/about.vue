@@ -7,7 +7,7 @@
                 </div>
             </div>
             <n-grid cols="2 s:3 m:4 l:5 xl:6 2xl:7" responsive="screen" :collapsed-rows=3>
-                <n-gi class="p-card" v-for="i in members" @click="openURL(i.url)">
+                <n-gi class="p-card" v-for="i in members" @click="openURL(i.url)" :style="{cursor: i.url ? 'pointer' : 'default'}" :key="i.name">
                     <div class="avatar" v-if="i.avatar">
                         <img :src="i.avatar" alt="" draggable="false" />
                     </div>
@@ -47,6 +47,7 @@ const openURL = (url: string | undefined) => {
         min-height: 300vh !important;
     }
 }
+
 .container {
     min-height: 120vh;
     // max-height: 100vh;
