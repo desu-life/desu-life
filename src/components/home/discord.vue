@@ -35,7 +35,7 @@
 import { useMessage } from 'naive-ui'
 
 import logo from "@/assets/textlogo.svg"
-import catlogo from "@/assets/desulife_logo.png"
+import catlogo from "@/assets/desu.life_logo_2023.svg"
 
 const message = useMessage()
 
@@ -82,7 +82,9 @@ const toDiscord = () => {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2%;
+            padding: 4%;
+            border: 1px solid #FFFFFF80;
+            outline: 2px solid #55555560;
 
             .mlogo {
                 width: 150px;

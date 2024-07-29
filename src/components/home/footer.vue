@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled, LanguageFilled } from "@vicons/material";
-import catlogo from "@/assets/desulife_logo.png"
+import catlogo from "@/assets/desu.life_logo_2023.svg"
 
 import axios from 'axios'
 import { ref, type Ref, watch } from 'vue'
