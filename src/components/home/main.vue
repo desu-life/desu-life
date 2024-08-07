@@ -20,6 +20,7 @@ let VshouldUpdate = ref(true);
 
 watch(() => i18n.global.locale.value, () => {
   options.value = updateOptions();
+  document.documentElement.setAttribute("lang", i18n.global.locale.value)
 });
 
 const updateOptions = () => {
