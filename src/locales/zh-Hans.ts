@@ -57,6 +57,7 @@ export default {
           "自定义触发"
         ],
         linkToMarket: "这么好？给我也整一个！ >>",
+        linkToOldMarket: "点这里购买配件 >>",
         linkTooltip: "打开猫盘淘宝店铺页",
         btnOpenDialog: "已经整了？下载驱动！ >>",
         btnTooltip: "下载驱动程序",
@@ -72,6 +73,7 @@ export default {
           "自定义触发"
         ],
         linkToMarket: "这么好？给我也整一个！ >>",
+        linkToOldMarket: "点这里购买配件 >>",
         linkTooltip: "打开猫盘淘宝店铺页",
         btnOpenDialog: "已经整了？下载驱动！ >>",
         btnTooltip: "下载驱动程序",

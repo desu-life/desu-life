@@ -57,6 +57,7 @@ export default {
           "自定義觸發"
         ],
         linkToMarket: "這麼好？給我也整一個！ >>",
+        linkToOldMarket: "點這裡購買配件 >>",
         linkTooltip: "打開貓盤淘寶店鋪頁",
         btnOpenDialog: "已經整了？下載驅動！ >>",
         btnTooltip: "下載驅動程序",
@@ -72,6 +73,7 @@ export default {
           "自定義觸發"
         ],
         linkToMarket: "這麼好？給我也整一個！ >>",
+        linkToOldMarket: "點這裡購買配件 >>",
         linkTooltip: "打開貓盤淘寶店鋪頁",
         btnOpenDialog: "已經整了？下載驅動！ >>",
         btnTooltip: "下載驅動程序",

@@ -23,6 +23,10 @@ const toMarket = () => {
   window.open("https://shop245156856.taobao.com/");
 };
 
+const toOldMarket = () => {
+  window.open("https://shop172145884.taobao.com/");
+}
+
 const content = ref("");
 
 watch(() => i18n.global.locale.value, async () => {
@@ -81,14 +85,26 @@ const openDialog = () => {
           </template>
           {{ $t("page.device.v2.linkTooltip") }}
         </n-tooltip>
+        <n-button text class="btn" type="info" @click="toOldMarket" v-if="!isMobile()"
+          >{{ $t("page.device.v2.linkToOldMarket") }}</n-button
+        >
         <n-button
-          v-else
+          v-if="isMobile()"
           text
           class="btn"
           id="__btn"
           type="info"
           @click="toMarket"
           >{{ $t("page.device.v2.linkToMarket") }}</n-button
+        >
+        <n-button
+          v-if="isMobile()"
+          text
+          class="btn"
+          id="__btn"
+          type="info"
+          @click="toOldMarket"
+          >{{ $t("page.device.v2.linkToOldMarket") }}</n-button
         >
         <n-tooltip trigger="hover" v-if="!isMobile()">
           <template #trigger>

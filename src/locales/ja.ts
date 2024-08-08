@@ -57,6 +57,7 @@ export default {
             "カスタマイズ可能なトリガー"
           ],
           linkToMarket: "こんなにいいの？私にも一つ！>>",
+          linkToOldMarket: "アクセサリーの購入はこちら >>",
           linkTooltip: "Meowpadのタオバオページを開く",
           btnOpenDialog: "もう持ってる？ドライバーをダウンロード！>>",
           btnTooltip: "ドライバープログラムをダウンロード",
@@ -72,6 +73,7 @@ export default {
             "カスタマイズ可能なトリガー"
           ],
           linkToMarket: "こんなにいいの？私にも一つ！>>",
+          linkToOldMarket: "アクセサリーの購入はこちら >>",
           linkTooltip: "Meowpadのタオバオページを開く",
           btnOpenDialog: "もう持ってる？ドライバーをダウンロード！>>",
           btnTooltip: "ドライバープログラムをダウンロード",

@@ -57,6 +57,7 @@ export default {
           "Customizable trigger"
         ],
         linkToMarket: "Sounds great! I want one too! >>",
+        linkToOldMarket: "Click here to buy accessories >>",
         linkTooltip: "Open the Meowpad Taobao shop page",
         btnOpenDialog: "Already have one? Download the driver! >>",
         btnTooltip: "Download driver",
@@ -72,6 +73,7 @@ export default {
           "Customizable trigger"
         ],
         linkToMarket: "Sounds great! I want one too! >>",
+        linkToOldMarket: "Click here to buy accessories >>",
         linkTooltip: "Open the Meowpad Taobao shop page",
         btnOpenDialog: "Already have one? Download the driver! >>",
         btnTooltip: "Download driver",
