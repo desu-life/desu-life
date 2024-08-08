@@ -20,7 +20,7 @@ const isMobile = () => {
 };
 
 const toMarket = () => {
-  window.open("https://shop172145884.taobao.com/");
+  window.open("https://shop245156856.taobao.com/");
 };
 
 const content = ref("");
