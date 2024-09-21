@@ -9,19 +9,18 @@ function notificationLang(language: string, isFirst: boolean = false, notificati
   // 获取语言名称和地区名称
   if (isFirst) {
     language = navigator.language
-    lang = getLanguageName(language)
     region = getRegionName(language)
   }
   // 提示切换语言
   const n = notification.info({
     title: i18n.global.t("notify.lang.title"),
-    content: `${i18n.global.t(key, { lang, region })}
+    content: `${i18n.global.t(key, { region })}
 ${i18n.global.t("notify.lang.countdown", { countdown })}`,
     duration: 10000,
     onAfterEnter: () => {
       const minusCount = () => {
         countdown--
-        n.content = `${i18n.global.t(key, { lang, region })}
+        n.content = `${i18n.global.t(key, { region })}
 ${i18n.global.t("notify.lang.countdown", { countdown })}`
         if (countdown > 0) {
           window.setTimeout(minusCount, 1000)
@@ -57,16 +56,6 @@ function getLanguageName(lang: string): string {
 }
 
 function getSystemLanguage() : string {
-  if (localStorage.getItem('i18nLanguage')) {
-    if (localStorage.getItem('autoLanguage') === "true") {
-      localStorage.removeItem('autoLanguage')
-    }
-    return localStorage.getItem('i18nLanguage') as string
-  }
-
-  if (localStorage.getItem('autoLanguage') === null) {
-    localStorage.setItem('autoLanguage', "true")
-  }
 
   let params = new URLSearchParams(window.location.search)
   if (params.get('lang')) return params.get('lang') as string

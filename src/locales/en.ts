@@ -8,7 +8,7 @@ export default {
   notify: {
     lang: {
       title: "Language Changed",
-      content_first: "We detected that you're in {region}, and the language has been automatically set to {lang}. If needed, you can change the language in the footer.",
+      content_first: "We detected that you're in {region}, and the language has been automatically set to @:{'lang.languageName'}. If needed, you can change the language in the footer.",
       content: "Successfully changed the language to @:{'lang.languageName'}.",
       countdown: "This notification will close automatically in {countdown} seconds."
     }
