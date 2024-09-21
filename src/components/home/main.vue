@@ -10,17 +10,28 @@ import {
   AlternateEmailFilled,
   LogInRound,
 } from "@vicons/material";
+import { useNotification } from "naive-ui";
+import { notificationLang } from "@/utils/locale";
 
 const router = useRouter();
+const notification = useNotification()
 
 const viewType = ref<string>("");
 let HshouldUpdate = ref(true);
 let VshouldUpdate = ref(true);
 
+onMounted(() => {
+    if (localStorage.getItem("autoLanguage") === "true") {
+        notificationLang(i18n.global.locale.value, true, notification)
+        localStorage.setItem("autoLanguage", "false")
+    }
+})
 
 watch(() => i18n.global.locale.value, () => {
   options.value = updateOptions();
   document.documentElement.setAttribute("lang", i18n.global.locale.value)
+  notification.destroyAll()
+  notificationLang(i18n.global.locale.value, false, notification)
 });
 
 const updateOptions = () => {

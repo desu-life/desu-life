@@ -24,9 +24,11 @@ const theme = computed(() => (osThemeRef.value === 'dark' ? darkTheme : null))
 
 <template>
     <n-config-provider :theme="theme">
-        <n-message-provider>
-            <RouterView />
-        </n-message-provider>
+        <n-notification-provider>
+            <n-message-provider>
+                <RouterView />
+            </n-message-provider>
+        </n-notification-provider>
     </n-config-provider>
 </template>
 

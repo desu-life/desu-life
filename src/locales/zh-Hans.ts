@@ -5,6 +5,14 @@ export default {
     language: "zh-Hans",
     languageName: "简体中文",
   },
+  notify: {
+    lang: {
+      title: "语言已切换",
+      content_first: "检测到您位于{region}，已自动将语言设置为{lang}。如需更改，请在页脚修改语言设置。",
+      content: "已成功将语言切换为@:{'lang.languageName'}。",
+      countdown: "此提示将在 {countdown} 秒后自动关闭。"
+    }
+  },  
   page: {
     // 首页
     main: {

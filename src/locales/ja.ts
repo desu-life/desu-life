@@ -5,6 +5,14 @@ export default {
       language: "ja",
       languageName: "日本語",
     },
+    notify: {
+      lang: {
+        title: "言語が変更されました",
+        content_first: "{region}にいることが検出されたため、言語が{lang}に自動設定されました。必要に応じて、フッターで言語設定を変更できます。",
+        content: "言語を@:{'lang.languageName'}に正常に変更しました。",
+        countdown: "この通知は {countdown} 秒後に自動的に閉じます。"
+      }
+    },    
     page: {
       // 首页
       main: {

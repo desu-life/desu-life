@@ -5,6 +5,14 @@ export default {
     language: "zh-Hant",
     languageName: "繁體中文",
   },
+  notify: {
+    lang: {
+      title: "語言已切換",
+      content_first: "檢測到您位於{region}，已自動將語言設置為{lang}。如需更改，請在頁腳修改語言設定。",
+      content: "已成功將語言切換為@:{'lang.languageName'}。",
+      countdown: "此提示將在 {countdown} 秒後自動關閉。"
+    }
+  },
   page: {
     // 首頁
     main: {

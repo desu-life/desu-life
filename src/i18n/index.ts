@@ -5,7 +5,7 @@ import zhHant from '@/locales/zh-Hant'
 import en from '@/locales/en'
 import ja from '@/locales/ja'
 
-const messages = {
+export const messages = {
     'zh-Hans': zhHans,
     'zh-Hant': zhHant,
     en,
@@ -14,7 +14,7 @@ const messages = {
 
 export default createI18n({
     locale: "",
-    fallbackLocale: 'zh-Hans',
+    fallbackLocale: 'en',
     globalInjection: true, // 全局注册$t方法
     legacy: false,
     messages,
