@@ -1,6 +1,6 @@
 # desu.life
 
-![](https://github.com/desu-life/desu-life/workflows/Build%20and%20Release/badge.svg)
+![](https://github.com/desu-life/desu-life/workflows/Build%20and%20Release/badge.svg) [![gitlocalized ](https://gitlocalize.com/repo/9929/whole_project/badge.svg)](https://gitlocalize.com/repo/9929?utm_source=badge)
 
 🎉 desu.life 主页源码
 
@@ -33,3 +33,7 @@ pnpm install
 # 启动本地服务
 pnpm dev
 ```
+
+## 本地化
+
+[GitLocalize](https://gitlocalize.com/repo/9929)
