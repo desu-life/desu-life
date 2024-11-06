@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import 'animate.css'
 import router from './router/route'
-import i18n from './i18n'
+import i18n from './utils/i18n'
 
 const pinia = createPinia()
 

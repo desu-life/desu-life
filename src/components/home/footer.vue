@@ -57,7 +57,8 @@ import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled, LanguageFilled } from "@vicons/material";
 import catlogo from "@/assets/desu.life_logo_2023.svg"
 
-import axios from 'axios'
+// import axios from 'axios'
+import footerdata from "@/data/footer.json"
 import { ref, type Ref, watch } from 'vue'
 
 import { useSiteStore } from "@/store/site-state";
@@ -70,17 +71,18 @@ const Languages = [
     { label: "简体中文", value: "zh-Hans" },
     { label: "繁體中文", value: "zh-Hant" },
     { label: "日本語", value: "ja"},
-    { label: "English", value: "en" }
+    { label: "English", value: "en" },
+    { label: "한국어", value: "ko" }
 ]
 
 watch(currentLanguage, (newVal) => {
     siteState.i18nLanguage = newVal
 })
 
-const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref({})
-axios.get("/footer.json").then((res: { data: {}; }) => {
-    footer.value = res.data
-})
+const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref(footerdata)
+// axios.get("/footer.json").then((res: { data: {}; }) => {
+    // footer.value = res.data
+// })
 const toNewPage = (url: string) => {
   window.open(url)
 }

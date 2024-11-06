@@ -32,12 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import { useMessage } from 'naive-ui'
+// import { useMessage } from 'naive-ui'
 
 import logo from "@/assets/textlogo.svg"
 import catlogo from "@/assets/desu.life_logo_2023.svg"
 
-const message = useMessage()
+// const message = useMessage()
 
 const toDiscord = () => {
     window.open("https://discord.gg/eGAm24FjQ8")

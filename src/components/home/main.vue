@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { useRouter } from "vue-router";
-import i18n from '@/i18n';
+import i18n from '@/utils/i18n';
 
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
 import randombg from "./main/randombg.vue"

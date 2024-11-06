@@ -20,17 +20,18 @@
 </template>
   
 <script setup lang="ts">
-import axios from 'axios';
+// import axios from 'axios';
 import { ref, type Ref } from 'vue';
 import logo from "@/assets/textlogo.svg";
+import members_json from "@/data/members.json"
 
-const members: Ref<{ avatar?: string; name?: string; desc?: string; url?: string }[]> = ref([{}]);
+const members: Ref<{ avatar: string; name: string; desc?: any; url?: any; }[]> = ref(members_json.sort(() => Math.random() - 0.5))
 
-axios.get("/members.json").then((res: { data: { avatar?: string; name?: string; desc?: string; url?: string }[]; }) => {
-    // 随机打乱数组
-    res.data.sort(() => Math.random() - 0.5);
-    members.value = res.data;
-})
+// axios.get("/members.json").then((res: { data: { avatar?: string; name?: string; desc?: string; url?: string }[]; }) => {
+//     // 随机打乱数组
+//     res.data.sort(() => Math.random() - 0.5);
+//     members.value = res.data;
+// })
 
 const openURL = (url: string | undefined) => {
     if(url) {
@@ -40,7 +41,7 @@ const openURL = (url: string | undefined) => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/markdown.css");
+@import url("../../assets/styles/markdown.css");
 
 @media screen and (max-width: 860px) {
     .container {

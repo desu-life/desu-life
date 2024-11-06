@@ -3,9 +3,16 @@ import { onMounted, ref } from "vue";
 import { VueMarkdownIt } from '@f3ve/vue-markdown-it';
 
 import defaultModalVue from "./default-modal.vue"
-import getMarkdown from "@/components/home/device/getmd";
 
-import '@/assets/markdown.css';
+import i18n from "@/utils/i18n";
+
+import md_zhHans from "@/locales/device/zh-Hans/meowpad_v2.md?raw";
+import md_zhHant from "@/locales/device/zh-Hant/meowpad_v2.md?raw";
+import md_en from "@/locales/device/en/meowpad_v2.md?raw";
+import md_ja from "@/locales/device/ja/meowpad_v2.md?raw";
+import md_ko from "@/locales/device/ko/meowpad_v2.md?raw";
+
+import '@/assets/styles/markdown.css';
 
 import meowpad from "@/assets/meowpad/meowpad_v2_se.webp";
 import custom_trigger from "@/assets/meowpad/custom-trigger.svg";
@@ -25,10 +32,32 @@ const toOldMarket = () => {
   window.open("https://shop172145884.taobao.com/");
 }
 
+const getMarkdown = async () => {
+  switch (i18n.global.locale.value) {
+    case "zh-Hans":
+      content.value = md_zhHans;
+      break;
+    case "zh-Hant":
+      content.value = md_zhHant;
+      break;
+    case "en":
+      content.value = md_en;
+      break;
+    case "ja":
+      content.value = md_ja;
+      break;
+    case "ko":
+      content.value = md_ko;
+      break;
+    default:
+      content.value = md_en;
+  }
+}
+
 const content = ref("");
 
 onMounted(async () => {
-  content.value = await getMarkdown("meowpad_v2_se");
+  await getMarkdown();
 })
 
 const showModal = ref(false);

@@ -39,25 +39,21 @@
 <script setup lang="ts">
 import vueDanmaku from 'vue3-danmaku'
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 import logo from "@/assets/textlogo.svg"
 import support from "@/assets/support/party_popper_color.svg"
-// import support from "@/assets/support/support.png"
+
+import supporters from "@/data/supporters.json"
+
 const danmus = ref([''])
 
-const toAfdian = () => {
-    window.open("https://afdian.net/a/Mo0oOo0oOo0o")
-}
-
 onMounted(() => {
-    axios.get("/supporters.json").then((res: { data: any[] }) => {
-        var result: string[] = []
-        res.data.sort(() => Math.random() - .5).forEach((el: any) => {
-            result.push(`￥${el.value} ${el.comment} @${el.name}${el.qq?`[${el.qq}]`:''} - ${el.time}`)
-        });
-        danmus.value = result
-    })
+    var result: string[] = []
+    supporters.sort(() => Math.random() - .5).forEach((el: any) => {
+        result.push(`￥${el.value} ${el.comment} @${el.name}${el.qq?`[${el.qq}]`:''} - ${el.time}`)
+    });
+    danmus.value = result
 })
 </script>
 

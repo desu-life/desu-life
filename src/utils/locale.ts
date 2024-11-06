@@ -1,4 +1,4 @@
-import i18n from "@/i18n";
+import i18n from "./i18n";
 import type { NotificationApiInjection } from "naive-ui/es/notification/src/NotificationProvider";
 
 function notificationLang(language: string, isFirst: boolean = false, notification: NotificationApiInjection) {
@@ -14,14 +14,14 @@ function notificationLang(language: string, isFirst: boolean = false, notificati
   // 提示切换语言
   const n = notification.info({
     title: i18n.global.t("notify.lang.title"),
-    content: `${i18n.global.t(key, { region })}
-${i18n.global.t("notify.lang.countdown", { countdown })}`,
+    content: `${i18n.global.t(key, { region })} \
+              ${i18n.global.t("notify.lang.countdown", { countdown })}`,
     duration: 10000,
     onAfterEnter: () => {
       const minusCount = () => {
         countdown--
-        n.content = `${i18n.global.t(key, { region })}
-${i18n.global.t("notify.lang.countdown", { countdown })}`
+        n.content = `${i18n.global.t(key, { region })} \
+                     ${i18n.global.t("notify.lang.countdown", { countdown })}`
         if (countdown > 0) {
           window.setTimeout(minusCount, 1000)
         }

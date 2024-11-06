@@ -1,15 +1,17 @@
 import { createI18n } from 'vue-i18n'
 
-import zhHans from '@/locales/zh-Hans'
-import zhHant from '@/locales/zh-Hant'
-import en from '@/locales/en'
-import ja from '@/locales/ja'
+import zhHans from '@/locales/lang/zh-Hans.json'
+import zhHant from '@/locales/lang/zh-Hant.json'
+import en from '@/locales/lang/en.json'
+import ja from '@/locales/lang/ja.json'
+import ko from '@/locales/lang/ko.json'
 
 export const messages = {
     'zh-Hans': zhHans,
     'zh-Hant': zhHant,
     en,
-    ja
+    ja,
+    ko
 }
 
 export default createI18n({
