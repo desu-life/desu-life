@@ -50,8 +50,8 @@ const openURL = (url: string | undefined) => {
 }
 
 .container {
-    min-height: 120vh;
-    // max-height: 100vh;
+    // min-height: 120vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
