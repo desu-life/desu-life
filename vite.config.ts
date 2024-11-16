@@ -1,6 +1,8 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
+import vitePluginDeadcodes from 'vite-plugin-deadcodes'
+
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -15,6 +17,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   assetsInclude:['**/*.md'],
   plugins: [
+    vitePluginDeadcodes(),
     vue(),
     vueJsx(),
     AutoImport({
