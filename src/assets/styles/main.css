@@ -1,4 +1,5 @@
 @import './base.css';
+@import './responsive.css';
 
 @font-face {
   font-family: SourceHanSans;
@@ -33,3 +34,4 @@
   -ms-user-select: none;
   user-select: none;
 }
+

@@ -13,11 +13,11 @@ import md_ko from "@/locales/device/ko/meowpad_v2.md?raw";
 
 import '@/assets/styles/markdown.css';
 
-import meowpad from "@/assets/meowpad/meowpad_v2.webp";
-import custom_trigger from "@/assets/meowpad/custom-trigger.svg";
-import Light from "@/assets/meowpad/LightbulbOutlined.svg";
-import Speed from "@/assets/meowpad/SpeedFilled.svg";
-import Lightning from "@/assets/meowpad/Lightning.svg";
+import meowpad from "@/assets/static/device/meowpad/v2.webp";
+import custom_trigger from "@/assets/icons/custom-trigger.svg";
+import Light from "@/assets/icons/LightbulbOutlined.svg";
+import Speed from "@/assets/icons/SpeedFilled.svg";
+import Lightning from "@/assets/icons/Lightning.svg";
 
 
 const isMobile = () => {

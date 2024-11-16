@@ -5,7 +5,7 @@
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main" id="__main">
+        <div class="members" id="__main">
             <div class="left" id="__left">
                 <img :src="left" alt="" draggable="false" />
             </div>
@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import logo from "@/assets/textlogo.svg"
-import left from "@/assets/kanonbot/kanonbot.png"
+import logo from "@/assets/desulife-logo-typography.svg"
+import left from "@/assets/static/kanonbot/kanonbot.png"
 
 const toDetail = () => {
     window.open("https://info.desu.life/?p=383")
@@ -40,7 +40,7 @@ const toDetail = () => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/sub.css");
+
 .container {
     height: 100vh;
     display: flex;
@@ -58,7 +58,7 @@ const toDetail = () => {
             }
         }
     }
-    .main {
+    .members {
         display: flex;
         flex-direction: row;
         width: 80%;

@@ -14,7 +14,7 @@
 import { computed } from "vue";
 import { useOsTheme } from "naive-ui";
 import logo from "@/assets/login/textlogo.svg";
-import logoDarkMode from "@/assets/textlogo.svg";
+import logoDarkMode from "@/assets/desulife-logo-typography.svg";
 const osThemeRef = useOsTheme();
 const theme = computed(() => (osThemeRef.value === "dark" ? "dark" : "light"));
 </script>

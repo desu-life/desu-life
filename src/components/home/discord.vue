@@ -5,9 +5,9 @@
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="main" id="__main">
+        <div class="members" id="__main">
             <div class="card" id="__card">
-                <div class="mlogo">
+                <div class="mlogo" id="__mlogo">
                     <img :src="catlogo" alt="" draggable="false" />
                 </div>
                 <div class="label">
@@ -34,8 +34,8 @@
 <script setup lang="ts">
 // import { useMessage } from 'naive-ui'
 
-import logo from "@/assets/textlogo.svg"
-import catlogo from "@/assets/desu.life_logo_2023.svg"
+import logo from "@/assets/desulife-logo-typography.svg"
+import catlogo from "@/assets/desulife-logo-icon-text.svg"
 
 // const message = useMessage()
 
@@ -46,7 +46,7 @@ const toDiscord = () => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/sub.css");
+
 .container {
     height: 100vh;
     display: flex;
@@ -67,7 +67,7 @@ const toDiscord = () => {
         }
     }
 
-    .main {
+    .members {
         width: 100%;
         position: absolute;
         top: 50%;
@@ -141,6 +141,9 @@ const toDiscord = () => {
     #__card {
         width: 100%;
         background-color: #00000000;
+        border: none;
+        outline: none;
+        
     }
     #__btn-group {
         flex-direction: column;
@@ -148,6 +151,10 @@ const toDiscord = () => {
         .btn {
             margin-bottom: 1rem;
         }
+    }
+    #__mlogo {
+        width: 120px;
+        height: 120px;
     }
 }
 

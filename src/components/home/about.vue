@@ -1,6 +1,6 @@
 <template>
     <div class="container" id="about">
-        <div class="main">
+        <div class="members">
             <div class="header">
                 <div class="logo">
                     <img :src="logo" draggable="false" />
@@ -16,22 +16,19 @@
                 </n-gi>
             </n-grid>
         </div>
+        <div class="collaborator">
+            111222333
+        </div>
     </div>
 </template>
   
 <script setup lang="ts">
 // import axios from 'axios';
 import { ref, type Ref } from 'vue';
-import logo from "@/assets/textlogo.svg";
+import logo from "@/assets/desulife-logo-typography.svg";
 import members_json from "@/data/members.json"
 
 const members: Ref<{ avatar: string; name: string; desc?: any; url?: any; }[]> = ref(members_json.sort(() => Math.random() - 0.5))
-
-// axios.get("/members.json").then((res: { data: { avatar?: string; name?: string; desc?: string; url?: string }[]; }) => {
-//     // 随机打乱数组
-//     res.data.sort(() => Math.random() - 0.5);
-//     members.value = res.data;
-// })
 
 const openURL = (url: string | undefined) => {
     if(url) {
@@ -43,19 +40,12 @@ const openURL = (url: string | undefined) => {
 <style scoped lang="scss">
 @import url("../../assets/styles/markdown.css");
 
-@media screen and (max-width: 860px) {
-    .container {
-        min-height: 300vh !important;
-    }
-}
-
 .container {
-    // min-height: 120vh;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    justify-content: center;
     overflow: hidden;
 
     .header {
@@ -64,7 +54,6 @@ const openURL = (url: string | undefined) => {
 
         .logo {
             margin: 0 auto;
-            margin-top: 60px;
             width: clamp(160px, 100%, 200px);
 
             img {
@@ -73,12 +62,11 @@ const openURL = (url: string | undefined) => {
         }
     }
 
-    .main {
-        position: absolute;
-        top: 45%;
-        transform: translateY(-50%);
+    .members {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         width: 75%;
 
         .p-card {
@@ -123,4 +111,23 @@ const openURL = (url: string | undefined) => {
             background-color: #33669945;
         }
     }
-}</style>
+
+    .collaborator {
+        margin-top: 8vh;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .container {
+        // min-height: 180vh;
+        display: block;
+        position: unset;
+        padding: 0 6vw;
+        .members {
+            width: 100%;
+            position: unset;
+            transform: none;
+        }
+    }
+}
+</style>

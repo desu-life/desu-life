@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled, LanguageFilled } from "@vicons/material";
-import catlogo from "@/assets/desu.life_logo_2023.svg"
+import catlogo from "@/assets/desulife-logo-icon-text.svg"
 
 // import axios from 'axios'
 import footerdata from "@/data/footer.json"
@@ -95,7 +95,6 @@ const backTop = () => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/sub.css");
 .inline {
     display: flex;
     align-items: center;

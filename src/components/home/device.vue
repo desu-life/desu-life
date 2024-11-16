@@ -62,7 +62,7 @@ import { Swiper as SwiperContainer, SwiperSlide } from "swiper/vue";
 import { Autoplay, Scrollbar } from "swiper/modules";
 
 import "swiper/css";
-import logo from "@/assets/textlogo.svg";
+import logo from "@/assets/desulife-logo-typography.svg";
 
 import v2 from "./device/v2.vue";
 import v2se from "./device/v2-se.vue";
@@ -112,7 +112,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/sub.css");
 
 .anchor {
   position: absolute;

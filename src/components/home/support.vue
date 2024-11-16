@@ -41,8 +41,8 @@ import vueDanmaku from 'vue3-danmaku'
 import { ref, onMounted } from 'vue'
 // import axios from 'axios'
 
-import logo from "@/assets/textlogo.svg"
-import support from "@/assets/support/party_popper_color.svg"
+import logo from "@/assets/desulife-logo-typography.svg"
+import support from "@/assets/static/support/party-popper-color.svg"
 
 import supporters from "@/data/supporters.json"
 
@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import url("../../assets/sub.css");
+
 .flip {
     -moz-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
