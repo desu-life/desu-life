@@ -20,7 +20,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
-const router = useRouter();
+// const router = useRouter();
 
 const decodedUrl = decodeURIComponent(route.query.url as string || '');
 const countdown = ref(5); // 倒计时（单位：秒）
