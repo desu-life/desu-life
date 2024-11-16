@@ -7,7 +7,7 @@
       <n-divider></n-divider>
       <n-flex justify="end">
         <n-button @click="proceed" type="primary" secondary>继续访问</n-button>
-        <n-button @click="cancel" type="error" secondary>取消</n-button>
+        <!-- <n-button @click="cancel" type="error" secondary>取消</n-button> -->
       </n-flex>
     </n-card>
   </div>
@@ -31,9 +31,9 @@ const proceed = () => {
 };
 
 // 返回上一页
-const cancel = () => {
-  router.back();
-};
+// const cancel = () => {
+//   router.back();
+// };
 
 // 倒计时逻辑
 let interval: number | undefined;

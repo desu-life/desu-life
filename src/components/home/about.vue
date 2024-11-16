@@ -17,7 +17,7 @@
             </n-grid>
         </div>
         <div class="collaborator">
-            111222333
+            <img v-for="i in collaborators" :src="i.logo" :alt="i.name" draggable="false" @click="openURL(i.url)" :style="{cursor: i.url ? 'pointer' : 'default'}" />
         </div>
     </div>
 </template>
@@ -27,12 +27,15 @@
 import { ref, type Ref } from 'vue';
 import logo from "@/assets/desulife-logo-typography.svg";
 import members_json from "@/data/members.json"
+import collaborators_json from "@/data/collaborators.json"
 
 const members: Ref<{ avatar: string; name: string; desc?: any; url?: any; }[]> = ref(members_json.sort(() => Math.random() - 0.5))
+const collaborators: Ref<{ logo: string; name: string; url?: any; }[]> = ref(collaborators_json)
 
 const openURL = (url: string | undefined) => {
     if(url) {
-        window.open(url);
+        // router.push({ path: "/external-redirect", query: { url: url }})
+        window.open("/external-redirect?url=" + url, "_blank")
     }
 }
 </script>
@@ -114,6 +117,14 @@ const openURL = (url: string | undefined) => {
 
     .collaborator {
         margin-top: 8vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        img {
+            width: 100%;
+            max-width: 100px;
+        }
     }
 }
 
@@ -127,6 +138,13 @@ const openURL = (url: string | undefined) => {
             width: 100%;
             position: unset;
             transform: none;
+        }
+        .collaborator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 3rem;
+            justify-self: center;
+            margin: 5vh 0;
         }
     }
 }
