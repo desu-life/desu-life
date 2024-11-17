@@ -8,7 +8,7 @@
     <div class="anchor" v-if="!isMobile">
       <div
         class="anchor-item"
-        v-for="(device, index) in Object.values(devices)"
+        v-for="(_, index) in Object.values(devices)"
         :key="index"
         :class="{ active: swiperAnchor === index }"
         @click="switchToOther(index)"
@@ -69,8 +69,6 @@ import DeviceInfo from "@/components/home/device/DeviceInfo.vue";
 import { Swiper } from "swiper/types";
 
 import { devices } from "@/components/home/device/config"
-
-console.log(Object.values(devices).length)
 
 const progressCircle = ref<HTMLElement | null>(null);
 const progressContent = ref<HTMLElement | null>(null);
@@ -145,7 +143,6 @@ onBeforeUnmount(() => {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--vt-c-white);
-    font-family: SourceHanSans, "monospace";
     transition:
       transform 0.3s ease-in-out,
       opacity 0.5s ease-in-out;

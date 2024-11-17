@@ -10,7 +10,7 @@ import {
   AlternateEmailFilled,
   // LogInRound,
 } from "@vicons/material";
-import textlogo from "@/assets/images/main/desulife-logo-text.svg";
+// import textlogo from "@/assets/images/main/desulife-logo-text.svg";
 
 import { useNotification } from "naive-ui";
 import { notificationLang } from "@/utils/locale";
@@ -125,13 +125,18 @@ const handleFlipAnimate = () => {
       </div>
     </div>
     <div class="title" @click="handleFlipAnimate">
-      <img
+      <!-- <img
         :src="textlogo"
         alt="DESU.Life"
         id="__title"
         :class="flipanimate ? 'animate__animated animate__flip' : ''"
         draggable="false"
-      />
+      /> -->
+      <span
+        id="__title"
+        :class="flipanimate ? 'animate__animated animate__flip' : ''"
+        >DESU.Life</span
+      >
     </div>
     <div class="micons" id="__micons">
       <News24Regular
@@ -193,10 +198,14 @@ const handleFlipAnimate = () => {
     padding: 5px;
     max-height: 3rem;
 
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     li {
       list-style: none;
       margin: 0 1rem;
-      font-family: SourceHanSans;
       font-weight: 600;
       font-size: 1.2rem;
       color: #fff;
@@ -226,6 +235,14 @@ const handleFlipAnimate = () => {
 
     img {
       height: 5.5rem;
+      flex: 3;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    span {
+      font-weight: 600;
+      font-size: 6rem;
+      color: #fff;
       flex: 3;
       -webkit-user-select: none;
       user-select: none;

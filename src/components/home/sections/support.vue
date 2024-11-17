@@ -86,7 +86,6 @@ onMounted(() => {
         -webkit-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        font-family: SourceHanSC;
     }
 
     .header {
@@ -137,7 +136,6 @@ onMounted(() => {
                 flex-direction: column;
                 justify-content: space-between;
                 height: 60%;
-                font-family: SourceHanSC;
                 color: #fff;
                 width: 100%;
 

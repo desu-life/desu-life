@@ -1,48 +1,90 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vitePluginDeadcodes from 'vite-plugin-deadcodes'
+import { defineConfig } from "vite";
+import vitePluginDeadcodes from "vite-plugin-deadcodes";
 
-import path from 'path'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from "path";
+import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+// 国际化
+import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
 
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+// 按需引入
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
+
+// 优化构建体积
+// import { visualizer } from 'rollup-plugin-visualizer';
+import ViteCompressionPlugin from "vite-plugin-compression";
+import ViteImagemin from 'vite-plugin-imagemin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  assetsInclude:['**/*.md'],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern'
+      }
+    }
+  },
+  assetsInclude: ["**/*.md"],
   plugins: [
     vitePluginDeadcodes(),
     vue(),
     vueJsx(),
     AutoImport({
       imports: [
-        'vue',
+        "vue",
         {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar'
-          ]
-        }
-      ]
+          "naive-ui": [
+            "useDialog",
+            "useMessage",
+            "useNotification",
+            "useLoadingBar",
+          ],
+        },
+      ],
     }),
     Components({
-      resolvers: [NaiveUiResolver()]
+      resolvers: [NaiveUiResolver()],
     }),
     VueI18nPlugin({
-      include: [path.resolve(__dirname, './src/locales/**')],
-    })
+      include: [path.resolve(__dirname, "./src/locales/**")],
+    }),
+    // visualizer({
+    //   emitFile: false,
+    //   open: true // 是否在构建完成后自动打开生成的统计图文件
+    // })
+    ViteCompressionPlugin({
+      algorithm: "gzip",
+      ext: ".gz",
+      deleteOriginFile: true,
+    }),
+    // ViteCompressionPlugin({
+		// 	algorithm: "brotliCompress", // 压缩效果比 gzip 好，但是只支持 HTTPS
+		// 	ext: ".br",
+		// 	deleteOriginFile: true,
+		// }),
+    ViteImagemin({
+      optipng: {
+        optimizationLevel: 5,
+      },
+      gifsicle: {
+        interlaced: false,
+      },
+      mozjpeg: {
+        quality: 75,
+      },
+      svgo: {
+        plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+      },
+    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
-})
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+});

@@ -182,7 +182,6 @@ const backTop = () => {
             padding: 1rem;
             font-size: 1.2rem;
             color: #fff;
-            font-family: SourceHanSans;
             display: flex;
             flex-direction: column;
             justify-content: center;

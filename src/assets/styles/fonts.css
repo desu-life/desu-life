@@ -1,0 +1,44 @@
+/* Simplified Chinese */
+@font-face {
+  font-family: 'SourceHanSans';
+  src: url('../fonts/SourceHanSansCN-VF.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900; /* 可变字体范围 */
+  unicode-range: U+4E00-9FFF, U+3400-4DBF; /* 中文汉字 */
+}
+
+/* Traditional Chinese */
+@font-face {
+  font-family: 'SourceHanSans';
+  src: url('../fonts/SourceHanSansTW-VF.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+F900-FAFF; /* 繁体字和扩展 */
+}
+
+/* Japanese */
+@font-face {
+  font-family: 'SourceHanSans';
+  src: url('../fonts/SourceHanSansJP-VF.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  unicode-range: U+3040-309F, U+30A0-30FF, U+31F0-31FF, U+FF00-FFEF;
+}
+
+/* Korean */
+@font-face {
+  font-family: 'SourceHanSans';
+  src: url('../fonts/SourceHanSansKR-VF.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  unicode-range: U+AC00-D7AF, U+1100-11FF; /* 韩文字母 */
+}
+
+/* English (Fallback) */
+@font-face {
+  font-family: 'SourceHanSans';
+  src: url('../fonts/SourceHanSansHW-VF.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  unicode-range: U+0020-007F; /* 基本拉丁字母 */
+}

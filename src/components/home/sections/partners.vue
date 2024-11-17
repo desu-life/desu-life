@@ -35,7 +35,6 @@ const partners: Ref<{ logo: string; name: string; url?: any; }[]> = ref(partners
      font-weight: 600;
      margin-bottom: 3vh;
      color: #fff;
-     font-family: SourceSanSC;
    }
   }
   .partner {
@@ -62,7 +61,6 @@ const partners: Ref<{ logo: string; name: string; url?: any; }[]> = ref(partners
         font-weight: 600;
         margin-bottom: 3vh;
         color: #fff;
-        font-family: SourceSanSC;
       }
     }
     .partner {

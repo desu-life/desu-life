@@ -108,7 +108,6 @@ const members: Ref<{ avatar: string; name: string; desc?: any; url?: any }[]> =
 
       .name {
         text-align: center;
-        font-family: SourceHanSans;
         font-weight: 600;
         font-size: 1.2rem;
         color: #fff;

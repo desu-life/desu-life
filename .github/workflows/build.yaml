@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
@@ -21,8 +21,8 @@ jobs:
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile
 
-    # - name: Verify TypeScript config
-    #   run: cat tsconfig.json tsconfig.app.json tsconfig.node.json
+    - name: Generate Fonts
+      run: pnpm run prepare-fonts
 
     - name: Build project
       run: pnpm run build
@@ -30,39 +30,23 @@ jobs:
     - name: Archive production artifact
       run: tar -czvf release.tar.gz -C dist .
 
-    # - name: Create Release
-    #   uses: actions/create-release@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     tag_name: 'beta-${{ github.run_number }}'
-    #     release_name: 'Beta Release ${{ github.run_number }}'
-    #     draft: false
-    #     prerelease: true  # 标记为 pre-release
-    #     # generate_release_notes: true
-    #     body: |
-    #         Auto-generated release notes by the release action.
-
-    - name: Authenticate GitHub CLI
-      run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+    - name: Determine Release Type
+      id: determine-release
+      run: |
+        if [[ "${{ github.event.head_commit.message }}" == *"[beta-release]"* ]]; then
+          echo "release_type=beta" >> $GITHUB_ENV
+        else
+          echo "release_type=ci" >> $GITHUB_ENV
+        fi
 
     - name: Create Release
       env:
-        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        tag_name: 'beta-${{ github.run_number }}'
-        release_name: 'Beta Release ${{ github.run_number }}'
+        tag_name: '${{ env.release_type }}-${{ github.run_number }}'
+        release_name: '${{ env.release_type | upper }} Release ${{ github.run_number }}'
       run: |
         gh release create "$tag_name" \
           --repo="$GITHUB_REPOSITORY" \
-          --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+          --title="${GITHUB_REPOSITORY#*/} ${tag_name}" \
           --generate-notes \
-          --prerelease \
+          $([[ "${{ env.release_type }}" == "beta" ]] && echo "--prerelease") \
           ./release.tar.gz
-
-    # - name: Upload Release Asset
-    #   uses: actions/upload-release-asset@v1
-    #   with:
-    #     upload_url: ${{ steps.create-release.outputs.upload_url }}
-    #     asset_path: ./release.tar.gz
-    #     asset_name: release.tar.gz
-    #     asset_content_type: application/gzip

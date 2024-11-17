@@ -1,16 +1,12 @@
 @import './base.css';
 @import './responsive.css';
-
-@font-face {
-  font-family: SourceHanSans;
-  src: url(../fonts/SourceHanSansCN-VF.otf.woff2);
-  font-display: auto;
-}
+@import './fonts.css';
 
 :root {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
   overflow: overlay;
+  font-family: 'SourceHanSans', 'Arial', sans-serif;
 }
 
 ::-webkit-scrollbar {

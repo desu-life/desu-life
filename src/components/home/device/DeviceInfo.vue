@@ -131,7 +131,6 @@ onMounted(async () => {
     flex: 4;
     display: flex;
     flex-direction: column;
-    font-family: SourceHanSC;
     gap: .6rem;
 
     h1 {

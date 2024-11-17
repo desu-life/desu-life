@@ -7,10 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    About: typeof import('./src/components/home/about.vue')['default']
     AnchorNavigation: typeof import('./src/components/common/AnchorNavigation.vue')['default']
-    AnchorPoint: typeof import('./src/components/home/anchor-point.vue')['default']
-    DefaultModal: typeof import('./src/components/home/device/default-modal.vue')['default']
     Device: typeof import('./src/components/home/sections/device.vue')['default']
     DeviceInfo: typeof import('./src/components/home/device/DeviceInfo.vue')['default']
     Discord: typeof import('./src/components/home/sections/discord.vue')['default']
@@ -34,14 +31,10 @@ declare module 'vue' {
     NPopselect: typeof import('naive-ui')['NPopselect']
     NTooltip: typeof import('naive-ui')['NTooltip']
     Partners: typeof import('./src/components/home/sections/partners.vue')['default']
-    Randombg: typeof import('./src/components/common/randombg.vue')['default']
     RandomBg: typeof import('./src/components/common/RandomBg.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Support: typeof import('./src/components/home/sections/support.vue')['default']
     Team: typeof import('./src/components/home/sections/team.vue')['default']
-    V2: typeof import('./src/components/home/device/V2.vue')['default']
-    V2Se: typeof import('./src/components/home/device/v2-se.vue')['default']
-    V2SE: typeof import('./src/components/home/device/V2SE.vue')['default']
   }
 }

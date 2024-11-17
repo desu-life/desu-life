@@ -84,7 +84,6 @@ const toDetail = () => {
                 flex-direction: column;
                 justify-content: space-between;
                 height: 32vh;
-                font-family: SourceHanSC;
                 color: #fff;
 
                 h1 {
