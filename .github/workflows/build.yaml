@@ -37,18 +37,18 @@ jobs:
       id: determine-release
       run: |
         if [[ "${{ github.event.head_commit.message }}" == *"[beta-release]"* ]]; then
-          echo "release_type=beta" >> $GITHUB_ENV
+          echo "RELEASE_TYPE=beta" >> $GITHUB_ENV
         else
-          echo "release_type=ci" >> $GITHUB_ENV
+          echo "RELEASE_TYPE=ci" >> $GITHUB_ENV
         fi
 
     - name: Create Release
       env:
-        tag_name: ${{ env.release_type }}-${{ github.run_number }}
-        release_name: ${{ env.release_type }} Release ${{ github.run_number }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
+        tag_name="${RELEASE_TYPE:-ci}-${GITHUB_RUN_NUMBER}"
+        release_name="${RELEASE_TYPE:-ci} Release ${GITHUB_RUN_NUMBER}"
         gh release create "$tag_name" \
-          --repo="$GITHUB_REPOSITORY" \
           --title="${GITHUB_REPOSITORY#*/} $tag_name" \
           --generate-notes \
           $([[ "$RELEASE_TYPE" == "beta" ]] && echo "--prerelease") \
