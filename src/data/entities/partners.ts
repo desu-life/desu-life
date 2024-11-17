@@ -1,4 +1,4 @@
-import hsc_series from "@/assets/images/partners/HSC-Series.webp"
+import hsc_series from "@/assets/images/partners/hsc-series.webp"
 import kita_cup from "@/assets/images/partners/kita-cup.webp"
 import ocnt from "@/assets/images/partners/ocnt.webp"
 import mp5_series from "@/assets/images/partners/mp5-series.webp"
