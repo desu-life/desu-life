@@ -30,6 +30,9 @@ jobs:
     - name: Archive production artifact
       run: tar -czvf release.tar.gz -C dist .
 
+    - name: Authenticate GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+
     - name: Determine Release Type
       id: determine-release
       run: |
