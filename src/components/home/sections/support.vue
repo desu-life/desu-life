@@ -42,9 +42,9 @@ import { ref, onMounted } from 'vue'
 // import axios from 'axios'
 
 import logo from "@/assets/desulife-logo-typography.svg"
-import support from "@/assets/static/support/party-popper-color.svg"
+import support from "@/assets/images/support/party-popper-color.svg"
 
-import supporters from "@/data/supporters.json"
+import supporters from "@/data/content/supporters.json"
 
 const danmus = ref([''])
 

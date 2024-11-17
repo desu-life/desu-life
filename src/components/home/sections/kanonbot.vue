@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import logo from "@/assets/desulife-logo-typography.svg"
-import left from "@/assets/static/kanonbot/kanonbot.png"
+import left from "@/assets/images/kanonbot/kanonbot.webp"
 
 const toDetail = () => {
     window.open("https://info.desu.life/?p=383")
@@ -66,7 +66,6 @@ const toDetail = () => {
             flex: 6;
             width: 100%;
             height: 60vh;
-            // background-color: aqua;
             img {
                 height: 100%;
             }

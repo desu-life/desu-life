@@ -76,4 +76,4 @@ function getSystemLanguage() : string {
   return navigator.language.split('-')[0]
 }
 
-export { getLanguageName, getRegionName, getSystemLanguage, notificationLang }
+export { getLanguageName, getRegionName, getSystemLanguage, notificationLang };

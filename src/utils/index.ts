@@ -1,14 +1,8 @@
-function openURL(url: string): void
-function openURL(url: undefined): void
+// utils/index.ts
 
-function openURL(url: string | undefined) {
-  if (typeof url === "string" && url) {
-    // 处理字符串类型输入
-    window.open("/external-redirect?url=" + encodeURIComponent(url), "_blank");
-  } else {
-    // 处理 undefined 输入
-    console.warn("No URL provided");
-  }
-}
-
-export { openURL };
+export { default as i18n, messages } from "./i18n"; // 国际化工具
+export * from "./scrollHelper";                     // 滚动相关工具
+export * from "./performance";                      // 性能优化工具
+export * from "./locale";                           // 语言设置工具
+export * from "./markdownLoader";                   // markdown加载器
+export * from "./navigation";                       // 导航工具

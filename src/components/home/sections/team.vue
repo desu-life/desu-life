@@ -36,7 +36,7 @@ import { ref, type Ref } from "vue";
 import { openURL } from "@/utils";
 
 import logo from "@/assets/desulife-logo-typography.svg";
-import members_json from "@/data/members.json";
+import members_json from "@/data/entities/members.json";
 
 const members: Ref<{ avatar: string; name: string; desc?: any; url?: any }[]> =
   ref(members_json.sort(() => Math.random() - 0.5));

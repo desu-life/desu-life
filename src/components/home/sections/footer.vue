@@ -58,7 +58,7 @@ import { AlternateEmailFilled, LanguageFilled } from "@vicons/material";
 import catlogo from "@/assets/desulife-logo-icon-text.svg"
 
 // import axios from 'axios'
-import footerdata from "@/data/footer.json"
+import footerdata from "@/data/content/footer.json"
 import { ref, type Ref, watch } from 'vue'
 
 import { useSiteStore } from "@/store/site-state";

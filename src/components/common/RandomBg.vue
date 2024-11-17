@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { defineComponent, ref } from "vue";
-import defaultbg from "@/assets/static/main/background.webp";
+import defaultbg from "@/assets/images/main/background.webp";
 import axios from "axios";
 export default defineComponent({
   name: "randombg",

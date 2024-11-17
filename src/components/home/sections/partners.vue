@@ -12,7 +12,7 @@
 import { ref, type Ref } from 'vue';
 import { openURL } from "@/utils";
 
-import partners_data from "@/data/partners"
+import partners_data from "@/data/entities/partners"
 const partners: Ref<{ logo: string; name: string; url?: any; }[]> = ref(partners_data)
 
 </script>

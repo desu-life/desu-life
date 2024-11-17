@@ -4,13 +4,13 @@ import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import i18n from "@/utils/i18n";
 
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
-import randombg from "./main/randombg.vue";
+import randombg from "@/components/common/RandomBg.vue";
 import {
   KeyboardArrowDownFilled,
   AlternateEmailFilled,
   // LogInRound,
 } from "@vicons/material";
-import textlogo from "@/assets/static/main/desulife-logo-text.svg";
+import textlogo from "@/assets/images/main/desulife-logo-text.svg";
 
 import { useNotification } from "naive-ui";
 import { notificationLang } from "@/utils/locale";

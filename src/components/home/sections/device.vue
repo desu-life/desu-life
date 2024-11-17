@@ -7,19 +7,19 @@
     </div>
     <div class="anchor" v-if="!isMobile">
       <div
-        class="v2 anchor-item"
-        :class="{ active: swiperAnchor === 0 }"
-        @click="switchToOther(0)"
-      ></div>
-      <div
-        class="se anchor-item"
-        :class="{ active: swiperAnchor === 1 }"
-        @click="switchToOther(1)"
+        class="anchor-item"
+        v-for="(device, index) in Object.values(devices)"
+        :key="index"
+        :class="{ active: swiperAnchor === index }"
+        @click="switchToOther(index)"
       ></div>
     </div>
     <div v-if="isMobile">
-      <v2 />
-      <v2se />
+      <DeviceInfo
+        v-for="(device, index) in devices"
+        :key="index"
+        :config="device"
+      />
     </div>
     <SwiperContainer
       v-else
@@ -38,11 +38,12 @@
         hide: true,
       } as any"
     >
-      <SwiperSlide class="swiper-item">
-        <v2 />
-      </SwiperSlide>
-      <SwiperSlide class="swiper-item">
-        <v2se />
+      <SwiperSlide
+        v-for="(device, index) in devices"
+        :key="index"
+        class="swiper-item"
+      >
+        <DeviceInfo :config="device" />
       </SwiperSlide>
       <template #container-end>
         <div class="autoplay-progress">
@@ -63,13 +64,17 @@ import { Autoplay, Scrollbar } from "swiper/modules";
 
 import "swiper/css";
 import logo from "@/assets/desulife-logo-typography.svg";
+import DeviceInfo from "@/components/home/device/DeviceInfo.vue";
 
-import v2 from "./device/v2.vue";
-import v2se from "./device/v2-se.vue";
 import { Swiper } from "swiper/types";
+
+import { devices } from "@/components/home/device/config"
+
+console.log(Object.values(devices).length)
 
 const progressCircle = ref<HTMLElement | null>(null);
 const progressContent = ref<HTMLElement | null>(null);
+
 const onAutoplayTimeLeft = (s: Swiper, timeLeft: number, percentage: number) => {
   progressCircle.value?.style.setProperty(
     "--progress",
@@ -88,8 +93,7 @@ const swiperAnchor = ref(0);
 
 const switchToOther = (index: number) => {
   if (swiperRef.value?.snapIndex === index) return;
-  if (swiperRef.value?.snapIndex === 0) swiperRef.value?.slideTo(1);
-  else swiperRef.value?.slideTo(0);
+  swiperRef.value?.slideTo(index);
 };
 
 const swiperRef = ref<Swiper | null>(null);
@@ -125,16 +129,15 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  // background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   overflow: hidden;
+  gap: 1rem;
 
   .anchor-item {
     width: 46%;
     height: 100%;
     border-radius: 100px;
     background-color: rgba(255, 255, 255, 0.5);
-    position: absolute;
     z-index: 3;
     display: flex;
     justify-content: center;
@@ -162,30 +165,15 @@ onBeforeUnmount(() => {
 
       &::before {
         opacity: 1;
-        // transform: scale(1);
       }
     }
 
     &::before {
       content: attr(data-text);
-      // opacity: 0;
-      // transform: scale(0.8);
       transition:
         opacity 0.5s ease-in-out,
         transform 0.5s ease-in-out;
     }
-  }
-
-  .v2 {
-    left: 0;
-    // transform: translateX(120%);
-    // opacity: 0;
-  }
-
-  .se {
-    right: 0;
-    // transform: translateX(-120%);
-    // opacity: 0;
   }
 }
 
@@ -239,20 +227,6 @@ onBeforeUnmount(() => {
   .modal {
     p {
       line-height: 5%;
-    }
-  }
-
-  .bg {
-    position: absolute;
-    top: 0;
-    right: 5%;
-    height: 100vh;
-    overflow: hidden;
-    object-fit: cover;
-    z-index: -1;
-
-    img {
-      height: 100%;
     }
   }
 

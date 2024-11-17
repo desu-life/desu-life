@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import Main from "@/components/home/main.vue";
-import Kanonbot from "@/components/home/kanonbot.vue";
-import Device from "@/components/home/device.vue";
-import Discord from "@/components/home/discord.vue";
-import Support from "@/components/home/support.vue";
-import Team from "@/components/home/team.vue";
-import Footer from "@/components/home/footer.vue";
-import AnchorPoint from "@/components/home/anchor-point.vue";
-import Partners from "@/components/home/partners.vue";
+import AnchorPoint from "@/components/common/AnchorNavigation.vue";
+import Main from "@/components/home/sections/main.vue";
+import Kanonbot from "@/components/home/sections/kanonbot.vue";
+import Device from "@/components/home/sections/device.vue";
+import Discord from "@/components/home/sections/discord.vue";
+import Support from "@/components/home/sections/support.vue";
+import Team from "@/components/home/sections/team.vue";
+import Footer from "@/components/home/sections/footer.vue";
+import Partners from "@/components/home/sections/partners.vue";
 // import TheWelcome from './components/TheWelcome.vue'
 console.log(`
 ======================================
@@ -55,7 +55,7 @@ const jumpTo = (id: string) => {
 </script>
 
 <template>
-  <AnchorPoint v-if="!isMobile" />
+  <AnchorPoint />
   <Main class="component" />
   <Kanonbot class="component dark" />
   <Device class="component dark" />
