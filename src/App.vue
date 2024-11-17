@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useOsTheme, darkTheme } from 'naive-ui'
+import { darkTheme } from 'naive-ui'
 import { RouterView } from 'vue-router'
 
 import { useI18n } from 'vue-i18n'
@@ -17,13 +16,10 @@ siteStore.$subscribe((mutation, state) => {
     localStorage.setItem('i18nLanguage', state.i18nLanguage)
 })
 
-const osThemeRef = useOsTheme()
-
-const theme = computed(() => (osThemeRef.value === 'dark' ? darkTheme : null))
 </script>
 
 <template>
-    <n-config-provider :theme="theme">
+    <n-config-provider :theme="darkTheme">
         <n-notification-provider>
             <n-message-provider>
                 <RouterView />
