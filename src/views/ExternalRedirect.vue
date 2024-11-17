@@ -17,10 +17,9 @@
 import logo from "@/assets/desulife-logo-typography.svg";
 
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 const route = useRoute();
-// const router = useRouter();
 
 const decodedUrl = decodeURIComponent(route.query.url as string || '');
 const countdown = ref(5); // 倒计时（单位：秒）
@@ -29,11 +28,6 @@ const countdown = ref(5); // 倒计时（单位：秒）
 const proceed = () => {
   window.location.href = decodedUrl || "/";
 };
-
-// 返回上一页
-// const cancel = () => {
-//   router.back();
-// };
 
 // 倒计时逻辑
 let interval: number | undefined;
@@ -58,6 +52,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+
 p, span {
   line-height: 2em;
 }
