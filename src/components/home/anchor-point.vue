@@ -22,9 +22,14 @@
             :class="current == 'support' ? 'current' : ''"
           ></div>
           <div
-            @click="jumpTo('about')"
+            @click="jumpTo('team')"
             class="circle"
-            :class="current == 'about' ? 'current' : ''"
+            :class="current == 'team' ? 'current' : ''"
+          ></div>
+          <div
+            @click="jumpTo('partners')"
+            class="circle"
+            :class="current == 'partners' ? 'current' : ''"
           ></div>
         </div>
     </Transition>
@@ -50,13 +55,14 @@ const handleScroll = () => {
         current.value = "";
         return;
     }
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     const componentId = [
       "kanonbot",
       "device",
       "discord",
       "support",
-      "about",
+      "team",
+      "partners",
     ][i];
     if (getComponentPosition(componentId) >= window.scrollY) {
       current.value = componentId;
@@ -83,7 +89,7 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  height: 100px;
+  height: 126px;
 
   .circle {
     cursor: pointer;

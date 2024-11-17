@@ -31,10 +31,12 @@ declare module 'vue' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NPopselect: typeof import('naive-ui')['NPopselect']
     NTooltip: typeof import('naive-ui')['NTooltip']
+    Partners: typeof import('./src/components/home/partners.vue')['default']
     Randombg: typeof import('./src/components/home/main/randombg.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Support: typeof import('./src/components/home/support.vue')['default']
+    Team: typeof import('./src/components/home/team.vue')['default']
     V2: typeof import('./src/components/home/device/v2.vue')['default']
     V2Se: typeof import('./src/components/home/device/v2-se.vue')['default']
   }
