@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="right" id="__right">
-                <img :src="support" class="flip" draggable="false" />
+                <img :src="support" class="flip party-popper" draggable="false" />
             </div>
         </div>
     </div>
@@ -117,7 +117,9 @@ onMounted(() => {
 
             // background-color: aqua;
             img {
+                width: 100%;
                 height: 100%;
+                max-height: 50vh;
             }
         }
 
@@ -161,6 +163,7 @@ onMounted(() => {
         width: 90%;
         margin: 0 auto;
         p {
+            line-height: 2rem;
             white-space: normal;
         }
     }
@@ -168,6 +171,12 @@ onMounted(() => {
         top: 0;
         height: 80%;
         
+    }
+
+    #__right {
+        img {
+            max-height: 40vh;
+        }
     }
 }
 </style>

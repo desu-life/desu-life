@@ -5,7 +5,7 @@
                 <img :src="logo" draggable="false" />
             </div>
         </div>
-        <div class="members" id="__main">
+        <div class="kanonbot" id="__main">
             <div class="left" id="__left">
                 <img :src="left" alt="" draggable="false" />
             </div>
@@ -58,7 +58,7 @@ const toDetail = () => {
             }
         }
     }
-    .members {
+    .kanonbot {
         display: flex;
         flex-direction: row;
         width: 80%;
@@ -68,6 +68,8 @@ const toDetail = () => {
             height: 60vh;
             img {
                 height: 100%;
+                max-width: 40vw;
+                object-fit: contain;
             }
         }
         .right {
@@ -98,4 +100,11 @@ const toDetail = () => {
         }
     }
 }
+
+@media screen and (max-width: 860px) {
+    #__main {
+        gap: 1rem;
+    }
+}
+
 </style>
