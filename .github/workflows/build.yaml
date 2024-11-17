@@ -41,12 +41,12 @@ jobs:
 
     - name: Create Release
       env:
-        tag_name: '${{ env.release_type }}-${{ github.run_number }}'
-        release_name: '${{ env.release_type | upper }} Release ${{ github.run_number }}'
+        tag_name: ${{ env.release_type }}-${{ github.run_number }}
+        release_name: ${{ env.release_type }} Release ${{ github.run_number }}
       run: |
         gh release create "$tag_name" \
           --repo="$GITHUB_REPOSITORY" \
-          --title="${GITHUB_REPOSITORY#*/} ${tag_name}" \
+          --title="${GITHUB_REPOSITORY#*/} $tag_name" \
           --generate-notes \
-          $([[ "${{ env.release_type }}" == "beta" ]] && echo "--prerelease") \
+          $([[ "$RELEASE_TYPE" == "beta" ]] && echo "--prerelease") \
           ./release.tar.gz
