@@ -36,9 +36,7 @@ export default defineComponent({
     };
 
     const onPreviewLoad = () => {
-      setTimeout(() => {
-        bgpreviewload.value = true;
-      }, 100);
+      bgpreviewload.value = true;
     };
 
     const onBGLoadFail = () => {

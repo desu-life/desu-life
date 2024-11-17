@@ -1,51 +1,58 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
-import { useRouter } from "vue-router";
-import i18n from '@/utils/i18n';
+// import { useRouter } from "vue-router";
+import i18n from "@/utils/i18n";
 
 import { KeyCommand16Filled, News24Regular } from "@vicons/fluent";
-import randombg from "./main/randombg.vue"
+import randombg from "./main/randombg.vue";
 import {
   KeyboardArrowDownFilled,
   AlternateEmailFilled,
-  LogInRound,
+  // LogInRound,
 } from "@vicons/material";
+import textlogo from "@/assets/static/main/desulife-logo-text.svg";
+
 import { useNotification } from "naive-ui";
 import { notificationLang } from "@/utils/locale";
 
-const router = useRouter();
-const notification = useNotification()
+// const router = useRouter();
+const notification = useNotification();
 
 const viewType = ref<string>("");
 let HshouldUpdate = ref(true);
 let VshouldUpdate = ref(true);
 
 onMounted(() => {
-    if (localStorage.getItem("autoLanguage") === "true") {
-        notificationLang(i18n.global.locale.value, true, notification)
-        localStorage.setItem("autoLanguage", "false")
-    }
-})
-
-watch(() => i18n.global.locale.value, () => {
-  options.value = updateOptions();
-  document.documentElement.setAttribute("lang", i18n.global.locale.value)
-  notification.destroyAll()
-  notificationLang(i18n.global.locale.value, false, notification)
+  if (localStorage.getItem("autoLanguage") === "true") {
+    notificationLang(i18n.global.locale.value, true, notification);
+    localStorage.setItem("autoLanguage", "false");
+  }
+  handleFlipAnimate();
+  document.documentElement.style.background = "inherit";
 });
+
+watch(
+  () => i18n.global.locale.value,
+  () => {
+    options.value = updateOptions();
+    document.documentElement.setAttribute("lang", i18n.global.locale.value);
+    notification.destroyAll();
+    notificationLang(i18n.global.locale.value, false, notification);
+  }
+);
 
 const updateOptions = () => {
   return [
     {
-      label: i18n.global.t('page.main.menu.options.info'),
+      label: i18n.global.t("page.main.menu.options.info"),
       key: "https://info.desu.life/",
     },
     {
-      label: i18n.global.t('page.main.menu.options.mail'),
+      label: i18n.global.t("page.main.menu.options.mail"),
       key: "https://mail.desu.life/",
     },
   ];
-}
+};
 
 const options = ref(updateOptions());
 
@@ -55,11 +62,6 @@ const toNewPage = (url: string) => {
 const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView();
 };
-
-onMounted(() => {
-  // fetchRandomImage(viewType.value);
-  handleFlipAnimate();
-});
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", handleResize);
@@ -76,14 +78,13 @@ const handleResize = () => {
   }
 };
 
-
 handleResize();
 
 window.addEventListener("resize", handleResize);
 
-const toLogin = () => {
-  router.push("/login");
-};
+// const toLogin = () => {
+//   router.push("/login");
+// };
 
 const flipanimate = ref(false);
 
@@ -115,19 +116,22 @@ const handleFlipAnimate = () => {
             <KeyCommand16Filled class="more" />
           </n-dropdown>
         </li>
-        <li @click="jumpTo('kanonbot')">{{$t('page.main.menu.kanonbot')}}</li>
-        <li @click="jumpTo('device')">{{$t('page.main.menu.device')}}</li>
-        <li @click="jumpTo('discord')">{{$t('page.main.menu.discord')}}</li>
-        <li @click="jumpTo('support')">{{$t('page.main.menu.support')}}</li>
-        <li @click="jumpTo('about')">{{$t('page.main.menu.about')}}</li>
+        <li @click="jumpTo('kanonbot')">{{ $t("page.main.menu.kanonbot") }}</li>
+        <li @click="jumpTo('device')">{{ $t("page.main.menu.device") }}</li>
+        <li @click="jumpTo('discord')">{{ $t("page.main.menu.discord") }}</li>
+        <li @click="jumpTo('support')">{{ $t("page.main.menu.support") }}</li>
+        <li @click="jumpTo('team')">{{ $t("page.main.menu.team") }}</li>
+        <li @click="jumpTo('partners')">{{ $t("page.main.menu.partners") }}</li>
       </div>
     </div>
     <div class="title" @click="handleFlipAnimate">
-      <span
+      <img
+        :src="textlogo"
+        alt="DESU.Life"
         id="__title"
         :class="flipanimate ? 'animate__animated animate__flip' : ''"
-        >DESU.Life</span
-      >
+        draggable="false"
+      />
     </div>
     <div class="micons" id="__micons">
       <News24Regular
@@ -150,7 +154,6 @@ const handleFlipAnimate = () => {
 </template>
 
 <style scoped lang="scss">
-
 .container {
   display: flex;
   flex-direction: column;
@@ -221,11 +224,8 @@ const handleFlipAnimate = () => {
     justify-content: center;
     align-items: center;
 
-    span {
-      font-family: SourceHanSans;
-      font-weight: 600;
-      font-size: 6rem;
-      color: #fff;
+    img {
+      height: 5.5rem;
       flex: 3;
       -webkit-user-select: none;
       user-select: none;
@@ -283,10 +283,10 @@ const handleFlipAnimate = () => {
 
 @media screen and (max-width: 860px) {
   #__title {
-    font-size: 3rem;
+    height: 3rem;
     flex: none;
     padding: 0;
-    margin: 0;
+    margin: 1rem 0;
   }
 
   #__micons {
