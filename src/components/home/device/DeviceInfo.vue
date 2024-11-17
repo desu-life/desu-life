@@ -70,7 +70,7 @@
 import { ref, watch, onMounted } from "vue";
 import { VueMarkdownIt } from "@f3ve/vue-markdown-it";
 import { importDeviceModel, i18n } from "@/utils";
-import { DeviceInfo } from "./config"
+import { type DeviceInfo } from "./config"
 import '@/assets/styles/markdown.css';
 
 const { config } = defineProps({
