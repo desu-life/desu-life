@@ -62,9 +62,9 @@ jobs:
           await github.rest.actions.createWorkflowDispatch({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            workflow_id: 'deploy.yml', # 部署工作流文件名
+            workflow_id: 'deploy.yml',
             ref: 'main',
             inputs: {
-              tag_name: '${{ steps.release-info.outputs.tag_name }}'
+              tag_name: `${{ steps.release-info.outputs.tag_name }}`
             }
           });
