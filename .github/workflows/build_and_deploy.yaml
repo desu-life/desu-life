@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      release_type: ${{ steps.determine-release.outputs.release_type }}
-      tag_name: ${{ steps.determine-release.outputs.tag_name }}
+      release_type: ${{ env.release_type }}
+      tag_name: ${{ env.tag_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -46,35 +46,34 @@ jobs:
             echo "release_type=ci" >> $GITHUB_ENV
             echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
           fi
-        env:
-          GITHUB_ENV: $GITHUB_ENV
-      - name: Set Output Variables
-        id: set-output
-        run: |
-          echo "::set-output name=release_type::$(grep '^release_type=' $GITHUB_ENV | cut -d'=' -f2)"
-          echo "::set-output name=tag_name::$(grep '^tag_name=' $GITHUB_ENV | cut -d'=' -f2)"
 
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
 
       - name: Create Release
-        if: ${{ steps.set-output.outputs.release_type == 'release' }}
+        if: ${{ env.release_type == 'release' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ steps.determine-release.outputs.tag_name }}" \
-            --title="${{ github.repository }} ${{ steps.determine-release.outputs.tag_name }}" \
+          gh release create "${{ env.tag_name }}" \
+            --title="${{ github.repository }} ${{ env.tag_name }}" \
             --generate-notes \
             ./release.tar.gz
 
       - name: Upload Artifact for Deployment
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifact
           path: release.tar.gz
 
       - name: Cleanup Build Artifact
         run: rm -f release.tar.gz
+      
+      - name: Debug Outputs
+        run: |
+          echo "Release Type: ${{ needs.build.outputs.release_type }}"
+          echo "Tag Name: ${{ needs.build.outputs.tag_name }}"
+
 
   deploy:
     needs: build
@@ -82,7 +81,7 @@ jobs:
     if: ${{ needs.build.outputs.release_type == 'release' }}
     steps:
       - name: Download Release Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release-artifact
 
