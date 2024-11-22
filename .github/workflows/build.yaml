@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: pnpm-setup
+    - name: Setup pnpm
       uses: pnpm/action-setup@v3
       with:
         version: 8
@@ -30,27 +30,38 @@ jobs:
     - name: Archive production artifact
       run: tar -czvf release.tar.gz -C dist .
 
-    - name: Authenticate GitHub CLI
-      run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
-
     - name: Determine Release Type
-      id: determine-release
+      id: release-info
       run: |
         if [[ "${{ github.event.head_commit.message }}" =~ \[release/v([0-9]+\.[0-9]+\.[0-9]+)\] ]]; then
-          echo "release_type=release" >> $GITHUB_ENV
-          echo "tag_name=v${BASH_REMATCH[1]}" >> $GITHUB_ENV
+          echo "::set-output name=type::release"
+          echo "::set-output name=tag_name::v${BASH_REMATCH[1]}"
         else
-          echo "release_type=ci" >> $GITHUB_ENV
-          echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+          echo "::set-output name=type::ci"
+          echo "::set-output name=tag_name::ci-${GITHUB_RUN_NUMBER}"
         fi
 
     - name: Create Release
       env:
-        # GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        tag_name: ${{ env.tag_name }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create "$tag_name" \
-          --title="${GITHUB_REPOSITORY#*/} $tag_name" \
+        gh release create "${{ steps.release-info.outputs.tag_name }}" \
+          --title="${{ github.repository }} ${{ steps.release-info.outputs.tag_name }}" \
           --generate-notes \
-          $([[ "$RELEASE_TYPE" == "ci" ]] && echo "--prerelease") \
+          $([[ "${{ steps.release-info.outputs.type }}" == "ci" ]] && echo "--prerelease") \
           ./release.tar.gz
+          
+    - name: Trigger Deploy
+      if: ${{ steps.release-info.outputs.type == 'release' }}
+      uses: actions/github-script@v6
+      with:
+        script: |
+          await github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'deploy.yml', # 部署工作流文件名
+            ref: 'main',
+            inputs: {
+              tag_name: '${{ steps.release-info.outputs.tag_name }}'
+            }
+          });
