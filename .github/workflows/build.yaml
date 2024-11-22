@@ -45,7 +45,7 @@ jobs:
         fi
 
     - name: Create Release
-      env:
+      # env:
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh release create "${{ steps.release-info.outputs.tag_name }}" \
