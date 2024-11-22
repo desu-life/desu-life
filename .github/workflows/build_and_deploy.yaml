@@ -16,95 +16,90 @@ jobs:
       release_type: ${{ steps.determine-release.outputs.release_type }}
       tag_name: ${{ steps.determine-release.outputs.tag_name }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v3
-      with:
-        version: 8
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
-    - name: Install dependencies
-      run: pnpm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
-    - name: Generate Fonts
-      run: pnpm run prepare-fonts
+      - name: Generate Fonts
+        run: pnpm run prepare-fonts
 
-    - name: Build project
-      run: pnpm run build
+      - name: Build project
+        run: pnpm run build
 
-    - name: Archive production artifact
-      run: tar -czvf release.tar.gz -C dist .
+      - name: Archive production artifact
+        run: tar -czvf release.tar.gz -C dist .
 
-    - name: Determine Release Type
-      id: determine-release
-      run: |
-        if [[ "${{ github.event.head_commit.message }}" =~ \[release/v([0-9]+\.[0-9]+\.[0-9]+)\] ]]; then
-          echo "release_type=release" >> $GITHUB_ENV
-          echo "tag_name=v${BASH_REMATCH[1]}" >> $GITHUB_ENV
-        else
-          echo "release_type=ci" >> $GITHUB_ENV
-          echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
-        fi
-      outputs:
-        release_type: ${{ env.release_type }}
-        tag_name: ${{ env.tag_name }}
+      - name: Determine Release Type
+        id: determine-release
+        run: |
+          if [[ "${GITHUB_EVENT_HEAD_COMMIT_MESSAGE}" =~ \[release/v([0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?)\] ]]; then
+            echo "release_type=release" >> $GITHUB_ENV
+            echo "tag_name=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+          else
+            echo "release_type=ci" >> $GITHUB_ENV
+            echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+          fi
+        outputs:
+          release_type: ${{ env.release_type }}
+          tag_name: ${{ env.tag_name }}
 
-    - name: Create Release
-      if: ${{ env.release_type == 'release' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        gh release create "${{ env.tag_name }}" \
-          --title="${{ github.repository }} ${{ env.tag_name }}" \
-          --generate-notes \
-          ./release.tar.gz
+      - name: Install GitHub CLI
+        run: sudo apt-get install -y gh
 
-    - name: Cleanup Build Artifact
-      run: rm -f release.tar.gz
+      - name: Create Release
+        if: ${{ steps.determine-release.outputs.release_type == 'release' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.determine-release.outputs.tag_name }}" \
+            --title="${{ github.repository }} ${{ steps.determine-release.outputs.tag_name }}" \
+            --generate-notes \
+            ./release.tar.gz
+
+      - name: Upload Artifact for Deployment
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifact
+          path: release.tar.gz
+
+      - name: Cleanup Build Artifact
+        run: rm -f release.tar.gz
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     if: ${{ needs.build.outputs.release_type == 'release' }}
     steps:
-    - name: Download Release Artifact
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const { data: release } = await github.rest.repos.getReleaseByTag({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            tag: '${{ needs.build.outputs.tag_name }}'
-          });
-          const asset = release.assets.find(a => a.name === 'release.tar.gz');
-          if (!asset) throw new Error('Release asset not found!');
-          const { data } = await github.rest.repos.getReleaseAsset({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            asset_id: asset.id,
-            headers: { accept: 'application/octet-stream' }
-          });
-          require('fs').writeFileSync('./release.tar.gz', Buffer.from(data, 'binary'));
+      - name: Download Release Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: release-artifact
 
-    - name: Extract Release Artifact
-      run: |
-        tar -xzvf release.tar.gz -C ./dist
+      - name: Extract Release Artifact
+        run: |
+          tar -xzvf release.tar.gz -C ./dist
 
-    - name: Generate Rsync Password
-      run: |
-        set +x
-        PASSWORD=$(eval "${{ secrets.RSYNC_PASSWORD_COMMAND }}" | awk '{ print $2 }')
-        echo "$PASSWORD" > /tmp/rsync.password
-        chmod 600 /tmp/rsync.password
-        unset PASSWORD
+      - name: Generate Rsync Password
+        run: |
+          set +x
+          PASSWORD=$(eval "${{ secrets.RSYNC_PASSWORD_COMMAND }}" | awk '{ print $2 }')
+          echo "$PASSWORD" > /tmp/rsync.password
+          chmod 600 /tmp/rsync.password
+          unset PASSWORD
 
-    - name: Deploy to Server
-      run: |
-        rsync -avz --password-file=/tmp/rsync.password ./dist/ ${{ secrets.RSYNC_ADDRESS }} \
-          --delete \
-          --delete-excluded \
-          --exclude=".git" \
-          --exclude=".github" \
-          --exclude="rsync.password" \
-          --port=${{ secrets.RSYNC_PORT }}
+      - name: Deploy to Server
+        run: |
+          rsync -avz --password-file=/tmp/rsync.password ./dist/ ${{ secrets.RSYNC_ADDRESS }} \
+            --delete \
+            --delete-excluded \
+            --exclude=".git" \
+            --exclude=".github" \
+            --exclude="rsync.password" \
+            --port=${{ secrets.RSYNC_PORT }}
