@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      release_type: ${{ steps.release-info.outputs.type }}
-      tag_name: ${{ steps.release-info.outputs.tag_name }}
+      release_type: ${{ steps.determine-release.outputs.release_type }}
+      tag_name: ${{ steps.determine-release.outputs.tag_name }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -37,17 +37,17 @@ jobs:
       run: tar -czvf release.tar.gz -C dist .
 
     - name: Determine Release Type
-      id: release-info
+      id: determine-release
       run: |
         if [[ "${{ github.event.head_commit.message }}" =~ \[release/v([0-9]+\.[0-9]+\.[0-9]+)\] ]]; then
-          echo "type=release" >> $GITHUB_ENV
+          echo "release_type=release" >> $GITHUB_ENV
           echo "tag_name=v${BASH_REMATCH[1]}" >> $GITHUB_ENV
         else
-          echo "type=ci" >> $GITHUB_ENV
+          echo "release_type=ci" >> $GITHUB_ENV
           echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
         fi
-      outputs:
-        release_type: ${{ env.type }}
+      env:
+        release_type: ${{ env.release_type }}
         tag_name: ${{ env.tag_name }}
 
     - name: Upload Build Artifact
@@ -57,7 +57,7 @@ jobs:
         path: release.tar.gz
 
     - name: Create Release
-      if: ${{ env.type == 'release' }}
+      if: ${{ env.release_type == 'release' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
