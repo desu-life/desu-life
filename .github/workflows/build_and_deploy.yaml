@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Deploy
 
 on:
   push:
@@ -6,13 +6,15 @@ on:
       - main
 
 permissions:
-  contents: write
   actions: write
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      release_type: ${{ steps.release-info.outputs.type }}
+      tag_name: ${{ steps.release-info.outputs.tag_name }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -31,9 +33,6 @@ jobs:
     - name: Build project
       run: pnpm run build
 
-    # - name: Authenticate GitHub CLI
-    #   run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
-
     - name: Archive production artifact
       run: tar -czvf release.tar.gz -C dist .
 
@@ -49,26 +48,41 @@ jobs:
         fi
 
     - name: Create Release
+      if: ${{ steps.release-info.outputs.type == 'release' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh release create "${{ steps.release-info.outputs.tag_name }}" \
           --title="${{ github.repository }} ${{ steps.release-info.outputs.tag_name }}" \
           --generate-notes \
-          $([[ "${{ steps.release-info.outputs.type }}" == "ci" ]] && echo "--prerelease") \
           ./release.tar.gz
 
-    - name: Trigger Deploy
-      if: ${{ steps.release-info.outputs.type == 'release' }}
-      uses: actions/github-script@v6
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ needs.build.outputs.release_type == 'release' }}
+    steps:
+    - name: Download Release Artifact
+      uses: actions/download-artifact@v3
       with:
-        script: |
-          await github.rest.actions.createWorkflowDispatch({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            workflow_id: 'deploy.yml',
-            ref: 'main',
-            inputs: {
-              tag_name: `${{ steps.release-info.outputs.tag_name }}`
-            }
-          });
+        name: release
+
+    - name: Generate Rsync Password
+      run: |
+        set +x
+        PASSWORD=$(eval "${{ secrets.RSYNC_PASSWORD_COMMAND }}" | awk '{ print $2 }')
+        echo "$PASSWORD" > /tmp/rsync.password
+        chmod 600 /tmp/rsync.password
+        unset PASSWORD
+
+    - name: Extract and Deploy
+      run: |
+        tar -xzvf release.tar.gz -C ./dist
+        echo "Deploying to server..."
+        rsync -avz --password-file=/tmp/rsync.password ./dist/ ${{ secrets.RSYNC_ADDRESS }} \
+          --delete \
+          --delete-excluded \
+          --exclude=".git" \
+          --exclude=".github" \
+          --exclude="rsync.password" \
+          --port=${{ secrets.RSYNC_PORT }}
