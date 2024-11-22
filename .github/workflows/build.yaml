@@ -27,6 +27,9 @@ jobs:
     - name: Build project
       run: pnpm run build
 
+    - name: Authenticate GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+
     - name: Archive production artifact
       run: tar -czvf release.tar.gz -C dist .
 
@@ -50,7 +53,7 @@ jobs:
           --generate-notes \
           $([[ "${{ steps.release-info.outputs.type }}" == "ci" ]] && echo "--prerelease") \
           ./release.tar.gz
-          
+
     - name: Trigger Deploy
       if: ${{ steps.release-info.outputs.type == 'release' }}
       uses: actions/github-script@v6
