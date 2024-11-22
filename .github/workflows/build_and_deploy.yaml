@@ -87,6 +87,7 @@ jobs:
 
       - name: Extract Release Artifact
         run: |
+          mkdir -p ./dist
           tar -xzvf release.tar.gz -C ./dist
 
       - name: Generate Rsync Password
