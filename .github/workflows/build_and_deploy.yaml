@@ -46,15 +46,9 @@ jobs:
           echo "release_type=ci" >> $GITHUB_ENV
           echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
         fi
-      env:
+      outputs:
         release_type: ${{ env.release_type }}
         tag_name: ${{ env.tag_name }}
-
-    - name: Upload Build Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-artifact
-        path: release.tar.gz
 
     - name: Create Release
       if: ${{ env.release_type == 'release' }}
@@ -66,17 +60,34 @@ jobs:
           --generate-notes \
           ./release.tar.gz
 
+    - name: Cleanup Build Artifact
+      run: rm -f release.tar.gz
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     if: ${{ needs.build.outputs.release_type == 'release' }}
     steps:
-    - name: Download Build Artifact
-      uses: actions/download-artifact@v3
+    - name: Download Release Artifact
+      uses: actions/github-script@v6
       with:
-        name: build-artifact
+        script: |
+          const { data: release } = await github.rest.repos.getReleaseByTag({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            tag: '${{ needs.build.outputs.tag_name }}'
+          });
+          const asset = release.assets.find(a => a.name === 'release.tar.gz');
+          if (!asset) throw new Error('Release asset not found!');
+          const { data } = await github.rest.repos.getReleaseAsset({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            asset_id: asset.id,
+            headers: { accept: 'application/octet-stream' }
+          });
+          require('fs').writeFileSync('./release.tar.gz', Buffer.from(data, 'binary'));
 
-    - name: Extract Build Artifact
+    - name: Extract Release Artifact
       run: |
         tar -xzvf release.tar.gz -C ./dist
 
