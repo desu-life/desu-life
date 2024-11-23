@@ -22,7 +22,8 @@
         "device": "Meowpad",
         "discord": "Discord",
         "support": "후원",
-        "about": "소개"
+        "team": "팀",
+        "partners": "파트너"
       }
     },
     "kanonbot": {
@@ -38,16 +39,43 @@
     },
     "device": {
       "defaultModal": [
-        ["desu.life 기기 토론 그룹: 722122663 {'|'} 309702152"],
+        [
+          "desu.life 기기 토론 그룹: 722122663 {'|'} 309702152"
+        ],
         "Meowpad V2:",
-        ["meowpad_v2 구성기(1.0.1): ", "Windows x64", "Linux x64 (deb)", "Linux x64(appimage)"],
-        ["meowpad_v2 스탠다드 에디션 펌웨어 (1.0.1): ", "로컬 다운로드"],
+        [
+          "meowpad_v2 구성기(1.0.1): ",
+          "Windows x64",
+          "Linux x64 (deb)",
+          "Linux x64(appimage)"
+        ],
+        [
+          "meowpad_v2 스탠다드 에디션 펌웨어 (1.0.1): ",
+          "로컬 다운로드"
+        ],
         "Meowpad V1:",
-        ["제품 설명 및 펌웨어 업그레이드 튜토리얼:", "정보 센터에서 확인"],
-        ["meowpad_v1 구성기(0.3.1): ", "Windows x64", "Linux x64 (deb)", "MacOS x64"],
-        ["meowpad_v1.1_hs 펌웨어 (홀 효과 릴리즈 1.0.0 패치 23090101): ", "로컬 다운로드"],
-        ["meowpad_v1.0 펌웨어 (기계 베타 0.1.6): ", "로컬 다운로드"],
-        ["meowpad_v1 펌웨어 업그레이드 키트 (dfu-util): ", "로컬 다운로드"]
+        [
+          "제품 설명 및 펌웨어 업그레이드 튜토리얼:",
+          "정보 센터에서 확인"
+        ],
+        [
+          "meowpad_v1 구성기(0.3.1): ",
+          "Windows x64",
+          "Linux x64 (deb)",
+          "MacOS x64"
+        ],
+        [
+          "meowpad_v1.1_hs 펌웨어 (홀 효과 릴리즈 1.0.0 패치 23090101): ",
+          "로컬 다운로드"
+        ],
+        [
+          "meowpad_v1.0 펌웨어 (기계 베타 0.1.6): ",
+          "로컬 다운로드"
+        ],
+        [
+          "meowpad_v1 펌웨어 업그레이드 키트 (dfu-util): ",
+          "로컬 다운로드"
+        ]
       ],
       "v2": {
         "title": "Meowpad v2",
