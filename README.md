@@ -36,4 +36,4 @@ pnpm dev
 
 ## 本地化
 
-[GitLocalize](https://gitlocalize.com/repo/9929)
+[GitLocalize](https://gitlocalize.com/repo/9956)
