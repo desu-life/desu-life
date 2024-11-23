@@ -22,7 +22,8 @@
         "device": "Meowpad",
         "discord": "Discord",
         "support": "Support",
-        "about": "About"
+        "team": "Team",
+        "partners": "Partners"
       }
     },
     "kanonbot": {
@@ -38,16 +39,43 @@
     },
     "device": {
       "defaultModal": [
-        ["desu.life device discussion group: 722122663 {'|'} 309702152"],
+        [
+          "desu.life device discussion group: 722122663 {'|'} 309702152"
+        ],
         "Meowpad V2:",
-        ["meowpad_v2 Configurator (1.0.1): ", "Windows x64", "Linux x64 (deb)", "Linux x64 (appimage)"],
-        ["meowpad_v2 standard edition firmware (1.0.1): ", "Local Download"],
+        [
+          "meowpad_v2 Configurator (1.0.1): ",
+          "Windows x64",
+          "Linux x64 (deb)",
+          "Linux x64 (appimage)"
+        ],
+        [
+          "meowpad_v2 standard edition firmware (1.0.1): ",
+          "Local Download"
+        ],
         "Meowpad V1:",
-        ["Product description and firmware upgrade tutorial:", "Go to the Information Station to view"],
-        ["meowpad_v1 Configurator (0.3.1): ", "Windows x64", "Linux x64 (deb)", "MacOS x64"],
-        ["meowpad_v1.1_hs firmware (Hall Effect release 1.0.0 patch 23090101): ", "Local Download"],
-        ["meowpad_v1.0 firmware (Mechanical beta 0.1.6): ", "Local Download"],
-        ["meowpad_v1 firmware upgrade kit (dfu-util): ", "Local Download"]
+        [
+          "Product description and firmware upgrade tutorial:",
+          "Go to the Information Station to view"
+        ],
+        [
+          "meowpad_v1 Configurator (0.3.1): ",
+          "Windows x64",
+          "Linux x64 (deb)",
+          "MacOS x64"
+        ],
+        [
+          "meowpad_v1.1_hs firmware (Hall Effect release 1.0.0 patch 23090101): ",
+          "Local Download"
+        ],
+        [
+          "meowpad_v1.0 firmware (Mechanical beta 0.1.6): ",
+          "Local Download"
+        ],
+        [
+          "meowpad_v1 firmware upgrade kit (dfu-util): ",
+          "Local Download"
+        ]
       ],
       "v2": {
         "title": "Meowpad v2",
