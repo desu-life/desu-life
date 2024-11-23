@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="partners">
     <div class="header">
-      <h1>合作伙伴</h1>
+      <h1>{{ $t("page.partners.title") }}</h1>
     </div>
     <div class="partner">
         <div v-for="i in partners" @click="openURL(i.url)" :style="{cursor: i.url ? 'pointer' : 'default'}" >
