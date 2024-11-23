@@ -52,13 +52,14 @@ jobs:
         run: sudo apt-get install -y gh
 
       - name: Create Release
-        if: ${{ steps.determine-release.outputs.RELEASE_TYPE == 'release' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TYPE: ${{ steps.determine-release.outputs.RELEASE_TYPE }}
         run: |
           gh release create "${{ steps.determine-release.outputs.TAG_NAME }}" \
             --title="${{ github.repository }} ${{ steps.determine-release.outputs.TAG_NAME }}" \
             --generate-notes \
+            $([[ "$RELEASE_TYPE" == "ci" ]] && echo "--prerelease") \
             ./release.tar.gz
 
       - name: Cleanup Build Artifact
@@ -82,10 +83,6 @@ jobs:
           mkdir -p ./dist
           tar -xzvf release.tar.gz -C ./dist
           rm -f release.tar.gz
-
-
-      - run: | 
-            ls
 
       - name: Generate Rsync Password
         run: |
