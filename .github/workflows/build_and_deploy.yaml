@@ -13,9 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      release_type: ${{ env.release_type }}
-      tag_name: ${{ env.tag_name }}
+      release_type: ${{ steps.determine-release.outputs.RELEASE_TYPE }}
+      tag_name: ${{ steps.determine-release.outputs.TAG_NAME }}
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -40,31 +41,25 @@ jobs:
         id: determine-release
         run: |
           if [[ "${{ github.event.head_commit.message }}" =~ \[release/v([0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?)\] ]]; then
-            echo "release_type=release" >> $GITHUB_ENV
-            echo "tag_name=v${BASH_REMATCH[1]}" >> $GITHUB_ENV
+            echo "RELEASE_TYPE=release" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v${BASH_REMATCH[1]}" >> $GITHUB_OUTPUT
           else
-            echo "release_type=ci" >> $GITHUB_ENV
-            echo "tag_name=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+            echo "RELEASE_TYPE=ci" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=ci-${GITHUB_RUN_NUMBER}" >> $GITHUB_OUTPUT
           fi
 
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
 
       - name: Create Release
-        if: ${{ env.release_type == 'release' }}
+        if: ${{ steps.determine-release.outputs.RELEASE_TYPE == 'release' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ env.tag_name }}" \
-            --title="${{ github.repository }} ${{ env.tag_name }}" \
+          gh release create "${{ steps.determine-release.outputs.TAG_NAME }}" \
+            --title="${{ github.repository }} ${{ steps.determine-release.outputs.TAG_NAME }}" \
             --generate-notes \
             ./release.tar.gz
-
-      - name: Upload Artifact for Deployment
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-artifact
-          path: release.tar.gz
 
       - name: Cleanup Build Artifact
         run: rm -f release.tar.gz
@@ -74,16 +69,23 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ needs.build.outputs.release_type == 'release' }}
     steps:
-      - name: Download Release Artifact
-        uses: actions/download-artifact@v4
+
+      - name: Download Release
+        uses: robinraju/release-downloader@v1
         with:
-          name: release-artifact
+          repository: ${{ github.repository }}
+          tag: ${{ needs.build.outputs.tag_name }}
+          fileName: release.tar.gz
 
       - name: Extract Release Artifact
         run: |
           mkdir -p ./dist
           tar -xzvf release.tar.gz -C ./dist
-          rm -f release.tar.gz  # 解压后删除本地的 Artifact 文件
+          rm -f release.tar.gz
+
+
+      - run: | 
+            ls
 
       - name: Generate Rsync Password
         run: |
@@ -94,11 +96,22 @@ jobs:
           unset PASSWORD
 
       - name: Deploy to Server
-        run: |
-          rsync -avz --password-file=/tmp/rsync.password ./dist/ ${{ secrets.RSYNC_ADDRESS }} \
-            --delete \
-            --delete-excluded \
-            --exclude=".git" \
-            --exclude=".github" \
-            --exclude="rsync.password" \
-            --port=${{ secrets.RSYNC_PORT }}
+        uses: nick-fields/retry@v3
+        with:
+          max_attempts: 3
+          timeout_minutes: 5
+          command: |
+            rsync -avz --password-file=/tmp/rsync.password ./dist/ ${{ secrets.RSYNC_ADDRESS }} \
+              --delete \
+              --delete-excluded \
+              --exclude=".git" \
+              --exclude=".github" \
+              --exclude="rsync.password" \
+              --port=${{ secrets.RSYNC_PORT }}
+          on_retry_command: |
+            rm /tmp/rsync.password
+            set +x
+            PASSWORD=$(eval "${{ secrets.RSYNC_PASSWORD_COMMAND }}" | awk '{ print $2 }')
+            echo "$PASSWORD" > /tmp/rsync.password
+            chmod 600 /tmp/rsync.password
+            unset PASSWORD
