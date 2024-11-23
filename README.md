@@ -1,6 +1,6 @@
 # desu.life
 
-![](https://github.com/desu-life/desu-life/workflows/Build%20and%20Release/badge.svg) [![gitlocalized ](https://gitlocalize.com/repo/9929/whole_project/badge.svg)](https://gitlocalize.com/repo/9929?utm_source=badge)
+![](https://github.com/desu-life/desu-life/workflows/Build%20and%20Deploy/badge.svg) [![gitlocalized ](https://gitlocalize.com/repo/9929/whole_project/badge.svg)](https://gitlocalize.com/repo/9929?utm_source=badge)
 
 🎉 desu.life 主页源码
 
