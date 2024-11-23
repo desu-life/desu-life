@@ -22,7 +22,8 @@
         "device": "貓盤",
         "discord": "Discord",
         "support": "贊助",
-        "about": "關於"
+        "team": "團隊",
+        "partners": "合作方"
       }
     },
     "kanonbot": {
@@ -38,16 +39,43 @@
     },
     "device": {
       "defaultModal": [
-        ["desu.life device 交流群：722122663 {'|'} 309702152"],
+        [
+          "desu.life device 交流群：722122663 {'|'} 309702152"
+        ],
         "Meowpad V2：",
-        ["meowpad_v2 配置器(1.0.1)： ", "Windows x64", "Linux x64 (deb)", "Linux x64(appimage)"],
-        ["meowpad_v2 standard edition 固件 (1.0.1)： ", "本地下載"],
+        [
+          "meowpad_v2 配置器(1.0.1)： ",
+          "Windows x64",
+          "Linux x64 (deb)",
+          "Linux x64(appimage)"
+        ],
+        [
+          "meowpad_v2 standard edition 固件 (1.0.1)： ",
+          "本地下載"
+        ],
         "Meowpad V1：",
-        ["產品說明及固件升級教程：", "前往資訊站查看"],
-        ["meowpad_v1 配置器(0.3.1)： ", "Windows x64", "Linux x64 (deb)", "MacOS x64"],
-        ["meowpad_v1.1_hs固件 (Hall Effect release 1.0.0 patch 23090101)： ", "本地下載"],
-        ["meowpad_v1.0固件 (Mechanical beta 0.1.6)： ", "本地下載"],
-        ["meowpad_v1固件升級套件 (dfu-util)： ", "本地下載"]
+        [
+          "產品說明及固件升級教程：",
+          "前往資訊站查看"
+        ],
+        [
+          "meowpad_v1 配置器(0.3.1)： ",
+          "Windows x64",
+          "Linux x64 (deb)",
+          "MacOS x64"
+        ],
+        [
+          "meowpad_v1.1_hs固件 (Hall Effect release 1.0.0 patch 23090101)： ",
+          "本地下載"
+        ],
+        [
+          "meowpad_v1.0固件 (Mechanical beta 0.1.6)： ",
+          "本地下載"
+        ],
+        [
+          "meowpad_v1固件升級套件 (dfu-util)： ",
+          "本地下載"
+        ]
       ],
       "v2": {
         "title": "Meowpad v2",
