@@ -126,6 +126,11 @@
         "그럼에도 불구하고 DESU.Life는 여러분과 함께 우리가 꿈꾸는 미래로 나아갈 것입니다."
       ]
     },
+    "team": {
+      "modalBtn": "전체 기여자 목록",
+      "modalTitle": "DESU.Life 기여자 목록",
+      "modalContent": "이전 기여자"
+    },
     "partners": {
       "title": "파트너"
     },

@@ -3,16 +3,16 @@ import { ref, onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
 
 // 首屏组件
 import AnchorPoint from "@/components/common/AnchorNavigation.vue";
-import Main from "@/components/home/sections/main.vue";
+import Main from "@/components/home/sections/Main.vue";
 
 // 非首屏组件懒加载
-const Kanonbot = defineAsyncComponent(() => import("@/components/home/sections/kanonbot.vue"));
-const Device = defineAsyncComponent(() => import("@/components/home/sections/device.vue"));
-const Discord = defineAsyncComponent(() => import("@/components/home/sections/discord.vue"));
-const Support = defineAsyncComponent(() => import("@/components/home/sections/support.vue"));
-const Team = defineAsyncComponent(() => import("@/components/home/sections/team.vue"));
-const Footer = defineAsyncComponent(() => import("@/components/home/sections/footer.vue"));
-const Partners = defineAsyncComponent(() => import("@/components/home/sections/partners.vue"));
+const Kanonbot = defineAsyncComponent(() => import("@/components/home/sections/Kanonbot.vue"));
+const Device = defineAsyncComponent(() => import("@/components/home/sections/Device.vue"));
+const Discord = defineAsyncComponent(() => import("@/components/home/sections/Discord.vue"));
+const Support = defineAsyncComponent(() => import("@/components/home/sections/Support.vue"));
+const Team = defineAsyncComponent(() => import("@/components/home/sections/Team.vue"));
+const Footer = defineAsyncComponent(() => import("@/components/home/sections/Footer.vue"));
+const Partners = defineAsyncComponent(() => import("@/components/home/sections/Partners.vue"));
 
 const isMobile = ref(window.innerWidth < 860);
 

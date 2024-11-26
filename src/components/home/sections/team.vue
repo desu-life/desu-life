@@ -27,7 +27,25 @@
           <div class="desc">{{ i.desc }}</div>
         </n-gi>
       </n-grid>
+      <n-flex justify="end" class="button-container">
+        <n-button
+          text
+          type="tertiary"
+          @click="openModal"
+          :disable="!showModal"
+          icon-placement="right"
+          :focusable="false"
+          >
+          {{ $t("page.team.modalBtn") }}
+          <template #icon>
+            <n-icon><ArrowRight /></n-icon>
+          </template>
+        </n-button>
+      </n-flex>
     </div>
+    <n-modal v-model:show="showModal">
+      <MemberList @close="closeModal" />
+    </n-modal>
   </div>
 </template>
 
@@ -36,14 +54,27 @@ import { ref, type Ref } from "vue";
 import { openURL } from "@/utils";
 
 import logo from "@/assets/desulife-logo-typography.svg";
-import members_data from "@/data/entities/members";
+import { KeyboardDoubleArrowRightRound as ArrowRight } from "@vicons/material";
+import { members as members_data } from "@/data/entities/members";
+import MemberList from "../team/MemberList.vue";
 
 const members: Ref<{ avatar: string; name: string; desc?: any; url?: any }[]> =
   ref(members_data.sort(() => Math.random() - 0.5));
+
+const showModal = ref(false);
+const openModal = () => {
+  showModal.value = true;
+  // 禁用页面滚动
+  document.body.style.overflow = "hidden";
+};
+const closeModal = () => {
+  showModal.value = false;
+  // 启用页面滚动
+  document.body.style.removeProperty("overflow");
+};
 </script>
 
 <style scoped lang="scss">
-
 .container {
   min-height: 100vh;
   display: flex;
@@ -78,7 +109,7 @@ const members: Ref<{ avatar: string; name: string; desc?: any; url?: any }[]> =
       margin: 0rem 1rem 3rem 1rem;
       padding: 1rem;
       border-radius: 12px;
-      
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -117,7 +148,9 @@ const members: Ref<{ avatar: string; name: string; desc?: any; url?: any }[]> =
       background-color: #33669945;
     }
   }
-
+  .button-container {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 860px) {

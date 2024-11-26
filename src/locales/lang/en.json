@@ -126,6 +126,11 @@
         "Despite this, DESU.Life will still move towards the future we all hope for."
       ]
     },
+    "team": {
+      "modalBtn": "Full Contributor List",
+      "modalTitle": "DESU.Life Contributor List",
+      "modalContent": "Past Contributors"
+    },
     "partners": {
       "title": "Partners"
     },

@@ -126,6 +126,11 @@
         "雖然如此，DESU.Life還是會和大家一同走向我們所期盼的未來。"
       ]
     },
+    "team": {
+      "modalBtn": "完整貢獻者名單",
+      "modalTitle": "DESU.Life 貢獻者名單",
+      "modalContent": "既往貢獻者"
+    },
     "partners": {
       "title": "合作夥伴"
     },

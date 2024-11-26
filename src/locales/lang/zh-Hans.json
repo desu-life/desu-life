@@ -99,6 +99,11 @@
         "虽然如此，DESU.Life还是会和大家一同走向我们所期盼的未来。"
       ]
     },
+    "team": {
+      "modalBtn": "完整贡献者名单",
+      "modalTitle": "DESU.Life 贡献者名单",
+      "modalContent": "既往贡献者"
+    },
     "partners": {
       "title": "合作伙伴"
     },

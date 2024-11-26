@@ -26,14 +26,6 @@ router.beforeEach((to, from, next) => {
     } else {
       document.title = 'DESU.Life';
     }
-    // // 检查目标地址是否为外链
-    // if (to.path.startsWith('http://') || to.path.startsWith('https://')) {
-    //   next({
-    //     path: '/external-redirect',
-    //     query: { url: encodeURIComponent(to.fullPath) }, // 将目标链接通过 query 参数传递
-    //   });
-    // }
-
     next();
   });
 

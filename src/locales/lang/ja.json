@@ -126,6 +126,11 @@
         "それでも、DESU.Lifeは皆さんと一緒に私たちの望む未来に向かって進んでいきます。"
       ]
     },
+    "team": {
+      "modalBtn": "全ての貢献者リスト",
+      "modalTitle": "DESU.Life 貢献者リスト",
+      "modalContent": "過去の貢献者"
+    },
     "partners": {
       "title": "パートナー"
     },
