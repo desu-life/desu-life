@@ -19,6 +19,7 @@ import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 // import { visualizer } from 'rollup-plugin-visualizer';
 import ViteCompressionPlugin from "vite-plugin-compression";
 import ViteImagemin from 'vite-plugin-imagemin'
+import PluginCritical from 'rollup-plugin-critical';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -80,6 +81,18 @@ export default defineConfig({
       svgo: {
         plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
       },
+    }),
+    PluginCritical({
+      criticalUrl: 'https://desu.life/',
+      criticalPages: [
+        { url: '/', template: 'index' }
+      ],
+      criticalConfig: {
+        inline: true,
+        minify: true,
+        width: 1920,
+        height: 1080,
+      }
     }),
   ],
   resolve: {
