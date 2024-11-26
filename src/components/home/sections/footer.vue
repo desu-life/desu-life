@@ -57,14 +57,16 @@ import { News24Regular } from "@vicons/fluent"
 import { AlternateEmailFilled, LanguageFilled } from "@vicons/material";
 import catlogo from "@/assets/desulife-logo-icon-text.svg"
 
-// import axios from 'axios'
+
 import footerdata from "@/data/content/footer.json"
 import { ref, type Ref, watch } from 'vue'
 
 import { useSiteStore } from "@/store/site-state";
+import { switchLocale, notificationLang } from "@/utils";
+import { useNotification } from "naive-ui";
 
 const siteState = useSiteStore()
-
+const notification = useNotification()
 const currentLanguage = ref(siteState.i18nLanguage)
 
 const Languages = [
@@ -75,22 +77,21 @@ const Languages = [
     { label: "한국어", value: "ko" }
 ]
 
-watch(currentLanguage, (newVal) => {
+watch(currentLanguage, async (newVal) => {
+    await switchLocale(newVal)
+    notification.destroyAll()
     siteState.i18nLanguage = newVal
+    notificationLang(notification)
 })
 
 const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref(footerdata)
-// axios.get("/footer.json").then((res: { data: {}; }) => {
-    // footer.value = res.data
-// })
+
 const toNewPage = (url: string) => {
   window.open(url)
 }
 const backTop = () => {
   document.getElementById("main")?.scrollIntoView();
 }
-
-
 
 </script>
 

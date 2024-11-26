@@ -1,29 +1,24 @@
 import { createI18n } from 'vue-i18n'
 
-import zhHans from '@/locales/lang/zh-Hans.json'
-import zhHant from '@/locales/lang/zh-Hant.json'
-import en from '@/locales/lang/en.json'
-import ja from '@/locales/lang/ja.json'
-import ko from '@/locales/lang/ko.json'
-
-export const messages = {
-    'zh-Hans': zhHans,
-    'zh-Hant': zhHant,
-    en,
-    ja,
-    ko
-}
-
-export default createI18n({
+const i18n = createI18n({
     locale: "",
     fallbackLocale: 'en',
+    messages: {},
     globalInjection: true, // 全局注册$t方法
     legacy: false,
-    messages,
     
     // 忽略警告
     silentTranslationWarn: false,
     missingWarn: false,
     silentFallbackWarn: false,
     fallbackWarn: false
-})
+});
+
+export const loadLocale = async (locale: string) => {
+    const messages = await import(`../locales/lang/${locale}.json`);
+    i18n.global.setLocaleMessage(locale, messages.default);
+    i18n.global.locale.value = locale;
+};
+
+export default i18n;
+

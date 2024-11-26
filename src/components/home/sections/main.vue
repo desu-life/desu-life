@@ -13,7 +13,7 @@ import {
 // import textlogo from "@/assets/images/main/desulife-logo-text.svg";
 
 import { useNotification } from "naive-ui";
-import { notificationLang } from "@/utils/locale";
+import { getRegionName, notificationLang } from "@/utils/locale";
 
 // const router = useRouter();
 const notification = useNotification();
@@ -24,7 +24,7 @@ let VshouldUpdate = ref(true);
 
 onMounted(() => {
   if (localStorage.getItem("autoLanguage") === "true") {
-    notificationLang(i18n.global.locale.value, true, notification);
+    notificationLang(notification, undefined, getRegionName(navigator.language));
     localStorage.setItem("autoLanguage", "false");
   }
   handleFlipAnimate();
@@ -35,9 +35,6 @@ watch(
   () => i18n.global.locale.value,
   () => {
     options.value = updateOptions();
-    document.documentElement.setAttribute("lang", i18n.global.locale.value);
-    notification.destroyAll();
-    notificationLang(i18n.global.locale.value, false, notification);
   }
 );
 
@@ -300,10 +297,11 @@ const handleFlipAnimate = () => {
 
 @media screen and (max-width: 860px) {
   #__title {
-    height: 3rem;
+    height: 4rem;
     flex: none;
     padding: 0;
     margin: 1rem 0;
+    font-size: 3rem;
   }
 
   #__micons {
