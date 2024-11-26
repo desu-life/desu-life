@@ -1,24 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
+
+// 首屏组件
 import AnchorPoint from "@/components/common/AnchorNavigation.vue";
 import Main from "@/components/home/sections/main.vue";
-import Kanonbot from "@/components/home/sections/kanonbot.vue";
-import Device from "@/components/home/sections/device.vue";
-import Discord from "@/components/home/sections/discord.vue";
-import Support from "@/components/home/sections/support.vue";
-import Team from "@/components/home/sections/team.vue";
-import Footer from "@/components/home/sections/footer.vue";
-import Partners from "@/components/home/sections/partners.vue";
-// import TheWelcome from './components/TheWelcome.vue'
-console.log(`
-======================================
-| 严厉批判 Zh_jk 同学每天都催我做网页 |
-| 害得我没法咕咕咕 没法偷懒 只能干活  |
-======================================
-|      禁     止     摸     鱼      |
-======================================
-`);
-// ↑ 怎么这样（哭）
+
+// 非首屏组件懒加载
+const Kanonbot = defineAsyncComponent(() => import("@/components/home/sections/kanonbot.vue"));
+const Device = defineAsyncComponent(() => import("@/components/home/sections/device.vue"));
+const Discord = defineAsyncComponent(() => import("@/components/home/sections/discord.vue"));
+const Support = defineAsyncComponent(() => import("@/components/home/sections/support.vue"));
+const Team = defineAsyncComponent(() => import("@/components/home/sections/team.vue"));
+const Footer = defineAsyncComponent(() => import("@/components/home/sections/footer.vue"));
+const Partners = defineAsyncComponent(() => import("@/components/home/sections/partners.vue"));
 
 const isMobile = ref(window.innerWidth < 860);
 
@@ -46,9 +40,6 @@ onBeforeUnmount(() => {
   window.removeEventListener("resize", handleResize);
 });
 
-// const isMobile = () => {
-//     return window.innerWidth <= 768
-// }
 const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView();
 };
