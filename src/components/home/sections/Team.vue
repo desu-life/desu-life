@@ -43,7 +43,7 @@
         </n-button>
       </n-flex>
     </div>
-    <n-modal v-model:show="showModal">
+    <n-modal v-model:show="showModal" :on-after-leave="closeModal">
       <MemberList @close="closeModal" />
     </n-modal>
   </div>
