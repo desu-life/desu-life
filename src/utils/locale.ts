@@ -38,19 +38,27 @@ function getSystemLanguage(): Locale {
   return "en"; // 默认值
 }
 
+function isMessageApi(
+  notificationMethod: NotificationApiInjection | MessageApiInjection
+): notificationMethod is MessageApiInjection {
+  // 根据唯一方法 'loading' 来判断是否为 MessageApiInjection
+  return (notificationMethod as MessageApiInjection).loading !== undefined;
+}
+
 // 通知用户切换语言
 function notificationLang(
-  notification: NotificationApiInjection | MessageApiInjection,
-  countdown: number = 10,
-  region?: string,
-  isMobile?: boolean
+  { notificationMethod, countdown = 10, region }: {
+    notificationMethod: NotificationApiInjection | MessageApiInjection,
+    countdown?: number,
+    region?: string,
+  }
 ) {
   const key = `notify.lang.content${region ? "_first" : ""}`;
 
-  if (isMobile) {
-    const n = (notification as MessageApiInjection).info(i18n.global.t(key, { region }), {duration: countdown * 500})
+  if (isMessageApi(notificationMethod)) {
+    notificationMethod.info(i18n.global.t(key, { region }), {duration: countdown * 500})
   } else {
-    const n = (notification as NotificationApiInjection).info({
+    const n = notificationMethod.info({
       title: i18n.global.t("notify.lang.title"),
       content: `${i18n.global.t(key, { region })} \n${i18n.global.t("notify.lang.countdown", { countdown })}`,
       duration: countdown * 1000,

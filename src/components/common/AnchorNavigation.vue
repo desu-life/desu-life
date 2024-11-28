@@ -18,6 +18,7 @@
 
 
 <script setup lang="ts">
+import { useIsMobile } from "@/utils";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const navItems = [
@@ -33,12 +34,7 @@ const current = ref(""); // 当前激活的锚点
 const currentIndex = ref(0); // 当前激活的锚点索引
 const coverStyle = ref({ top: "0px" }); // 覆盖点的位置
 
-const isMobile = ref(window.innerWidth < 860); // 检测是否为移动端
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 860;
-  handleScroll();
-};
+const isMobile = useIsMobile();
 
 const jumpTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -74,12 +70,10 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleResize);
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
-  window.removeEventListener("resize", handleResize);
 });
 </script>
 

@@ -12,11 +12,14 @@ import {
 } from "@vicons/material";
 // import textlogo from "@/assets/images/main/desulife-logo-text.svg";
 
-import { useNotification } from "naive-ui";
+import { useMessage, useNotification } from "naive-ui";
 import { getRegionName, notificationLang } from "@/utils/locale";
+import { useIsMobile } from "@/utils";
 
 // const router = useRouter();
 const notification = useNotification();
+const message = useMessage();
+const isMobile = useIsMobile();
 
 const viewType = ref<string>("");
 let HshouldUpdate = ref(true);
@@ -24,8 +27,23 @@ let VshouldUpdate = ref(true);
 
 onMounted(() => {
   if (localStorage.getItem("autoLanguage") === "true") {
-    notificationLang(notification, undefined, getRegionName(navigator.language));
     localStorage.setItem("autoLanguage", "false");
+    // notificationLang(notification, undefined, getRegionName(navigator.language));
+    if (isMobile.value) {
+      notificationLang(
+        {
+          notificationMethod: message,
+          region: getRegionName(navigator.language)
+        }
+      );
+    } else {
+      notificationLang(
+        {
+          notificationMethod: notification,
+          region: getRegionName(navigator.language)
+        }
+      );
+    }
   }
   handleFlipAnimate();
   document.documentElement.style.background = "inherit";

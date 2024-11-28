@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref } from "vue";
 import { Swiper as SwiperContainer, SwiperSlide } from "swiper/vue";
 import { Autoplay, Scrollbar } from "swiper/modules";
 
@@ -69,6 +69,7 @@ import DeviceInfo from "@/components/home/device/DeviceInfo.vue";
 import { Swiper } from "swiper/types";
 
 import { devices } from "@/components/home/device/config"
+import { useIsMobile } from "@/utils";
 
 const progressCircle = ref<HTMLElement | null>(null);
 const progressContent = ref<HTMLElement | null>(null);
@@ -81,11 +82,7 @@ const onAutoplayTimeLeft = (s: Swiper, timeLeft: number, percentage: number) => 
   progressContent.value!.textContent = `${Math.ceil(timeLeft / 1000)}s`;
 };
 
-const isMobile = ref(window.innerWidth <= 860);
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth <= 860;
-};
+const isMobile = useIsMobile();
 
 const swiperAnchor = ref(0);
 
@@ -103,14 +100,6 @@ const setSwiper = (swiper: Swiper) => {
 const handleSlideChange = (swiper: Swiper) => {
   swiperAnchor.value = swiper.snapIndex;
 };
-
-onMounted(() => {
-  window.addEventListener("resize", handleResize);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", handleResize);
-});
 </script>
 
 <style scoped lang="scss">

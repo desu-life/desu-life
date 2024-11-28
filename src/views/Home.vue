@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
+import { onMounted, defineAsyncComponent } from "vue";
+import { useIsMobile } from "@/utils";
 
 // 首屏组件
 import AnchorPoint from "@/components/common/AnchorNavigation.vue";
@@ -14,15 +15,9 @@ const Team = defineAsyncComponent(() => import("@/components/home/sections/Team.
 const Footer = defineAsyncComponent(() => import("@/components/home/sections/Footer.vue"));
 const Partners = defineAsyncComponent(() => import("@/components/home/sections/Partners.vue"));
 
-const isMobile = ref(window.innerWidth < 860);
-
-// 监听窗口大小
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 860;
-};
+const isMobile = useIsMobile();
 
 onMounted(() => {
-  window.addEventListener("resize", handleResize);
   // 检测是否带有锚点
   if (window.location.hash) {
     const id = window.location.hash.slice(1);
@@ -34,10 +29,6 @@ onMounted(() => {
     const id = search.get("to") as string;
     jumpTo(id);
   }
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", handleResize);
 });
 
 const jumpTo = (id: string) => {

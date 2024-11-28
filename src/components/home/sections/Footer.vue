@@ -62,11 +62,13 @@ import footerdata from "@/data/content/footer.json"
 import { ref, type Ref, watch } from 'vue'
 
 import { useSiteStore } from "@/store/site-state";
-import { switchLocale, notificationLang } from "@/utils";
-import { useNotification } from "naive-ui";
+import { switchLocale, notificationLang, useIsMobile } from "@/utils";
+import { useMessage, useNotification } from "naive-ui";
 
 const siteState = useSiteStore()
 const notification = useNotification()
+const message = useMessage()
+const isMobile = useIsMobile()
 const currentLanguage = ref(siteState.i18nLanguage)
 
 const Languages = [
@@ -77,11 +79,24 @@ const Languages = [
     { label: "한국어", value: "ko" }
 ]
 
+
 watch(currentLanguage, async (newVal) => {
     await switchLocale(newVal)
     notification.destroyAll()
     siteState.i18nLanguage = newVal
-    notificationLang(notification)
+    if (isMobile.value) {
+      notificationLang(
+        {
+          notificationMethod: message
+        }
+      );
+    } else {
+      notificationLang(
+        {
+          notificationMethod: notification
+        }
+      );
+    }
 })
 
 const footer: Ref<{ left?: string[], center?: string[], right?: string[], icp?: string }> = ref(footerdata)
