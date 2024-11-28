@@ -19,7 +19,7 @@
           :key="i.name"
         >
           <div class="avatar" v-if="i.avatar">
-            <img :src="i.avatar" alt="" draggable="false" />
+            <img v-lazy="{ src: i.avatar }" alt="" draggable="false" />
           </div>
           <div class="name" :style="{ marginTop: i.avatar ? '2.5rem' : '0px' }">
             {{ i.name }}

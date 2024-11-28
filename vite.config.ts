@@ -23,6 +23,14 @@ import PluginCritical from 'rollup-plugin-critical';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  assetsInclude: ["**/*.md"],
+  build: {
+    terserOptions: {
+      compress: {
+        drop_console: true, // 去除console
+      }
+    }
+  },
   css: {
     preprocessorOptions: {
       scss: {
@@ -30,7 +38,6 @@ export default defineConfig({
       }
     }
   },
-  assetsInclude: ["**/*.md"],
   plugins: [
     vitePluginDeadcodes(),
     vue(),
@@ -62,6 +69,10 @@ export default defineConfig({
       algorithm: "gzip",
       ext: ".gz",
       deleteOriginFile: true,
+      filter: (file) => {
+        // exclude index.html
+        return !(file.endsWith("index.html"))
+      }
     }),
     // ViteCompressionPlugin({
 		// 	algorithm: "brotliCompress", // 压缩效果比 gzip 好，但是只支持 HTTPS

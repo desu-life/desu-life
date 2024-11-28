@@ -1,4 +1,5 @@
 import i18n, { loadLocale } from "./i18n";
+import type { MessageApiInjection } from "naive-ui/es/message/src/MessageProvider";
 import type { NotificationApiInjection } from "naive-ui/es/notification/src/NotificationProvider";
 
 // 检查是否为合法的 Locale
@@ -39,27 +40,32 @@ function getSystemLanguage(): Locale {
 
 // 通知用户切换语言
 function notificationLang(
-  notification: NotificationApiInjection,
+  notification: NotificationApiInjection | MessageApiInjection,
   countdown: number = 10,
   region?: string,
+  isMobile?: boolean
 ) {
   const key = `notify.lang.content${region ? "_first" : ""}`;
 
-  const n = notification.info({
-    title: i18n.global.t("notify.lang.title"),
-    content: `${i18n.global.t(key, { region })} \n${i18n.global.t("notify.lang.countdown", { countdown })}`,
-    duration: countdown * 1000,
-    onAfterEnter: () => {
-      const minusCount = () => {
-        countdown--;
-        n.content = `${i18n.global.t(key, { region })} \n${i18n.global.t("notify.lang.countdown", { countdown })}`;
-        if (countdown > 0) {
-          setTimeout(minusCount, 1000);
-        }
-      };
-      setTimeout(minusCount, 1000);
-    },
-  });
+  if (isMobile) {
+    const n = (notification as MessageApiInjection).info(i18n.global.t(key, { region }), {duration: countdown * 500})
+  } else {
+    const n = (notification as NotificationApiInjection).info({
+      title: i18n.global.t("notify.lang.title"),
+      content: `${i18n.global.t(key, { region })} \n${i18n.global.t("notify.lang.countdown", { countdown })}`,
+      duration: countdown * 1000,
+      onAfterEnter: () => {
+        const minusCount = () => {
+          countdown--;
+          n.content = `${i18n.global.t(key, { region })} \n${i18n.global.t("notify.lang.countdown", { countdown })}`;
+          if (countdown > 0) {
+            setTimeout(minusCount, 1000);
+          }
+        };
+        setTimeout(minusCount, 1000);
+      },
+    });
+  }
 }
 
 // 获取地区名称

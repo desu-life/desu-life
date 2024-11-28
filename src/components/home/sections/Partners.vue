@@ -5,7 +5,7 @@
     </div>
     <div class="partner">
         <div v-for="i in partners" @click="openURL(i.url)" :style="{cursor: i.url ? 'pointer' : 'default'}" >
-            <img :src="i.logo" :alt="i.name" draggable="false" />
+            <img v-lazy="{ src: i.logo }" :alt="i.name" draggable="false" />
         </div>
     </div>
   </div>
