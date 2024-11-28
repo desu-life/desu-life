@@ -5,7 +5,7 @@
                 <News24Regular class="i" />
             </div>
             <div class="logo" @click="backTop" id="__logo">
-                <img :src="catlogo" draggable="false" />
+                <img :src="catlogo" draggable="false" alt="Icon Logo" />
             </div>
             <div class="icon btn" @click="toNewPage('https://mail.desu.life/')">
                 <AlternateEmailFilled class="i" />

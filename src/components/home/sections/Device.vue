@@ -2,7 +2,7 @@
   <div class="container" id="device">
     <div class="header" id="__header">
       <div class="logo">
-        <img :src="logo" draggable="false" />
+        <img :src="logo" draggable="false" alt="Text Logo" />
       </div>
     </div>
     <div class="anchor" v-if="!isMobile">

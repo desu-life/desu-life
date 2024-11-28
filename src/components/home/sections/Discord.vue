@@ -2,7 +2,7 @@
     <div class="container" id="discord">
         <div class="header" id="__header">
             <div class="logo">
-                <img :src="logo" draggable="false" />
+                <img :src="logo" draggable="false" alt="Text Logo" />
             </div>
         </div>
         <div class="members" id="__main">

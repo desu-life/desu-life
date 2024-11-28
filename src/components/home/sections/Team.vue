@@ -3,7 +3,7 @@
     <div class="members">
       <div class="header">
         <div class="logo">
-          <img :src="logo" draggable="false" />
+          <img :src="logo" draggable="false" alt="Text Logo" />
         </div>
       </div>
       <n-grid

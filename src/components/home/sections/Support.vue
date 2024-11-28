@@ -13,7 +13,7 @@
             ></vue-danmaku>
         <div class="header" id="__anchor-point">
             <div class="logo">
-                <img :src="logo" draggable="false" />
+                <img :src="logo" draggable="false" alt="Text Logo" />
             </div>
         </div>
         <div class="main __rtl" id="__main">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="right" id="__right">
-                <img :src="support" class="flip party-popper" draggable="false" />
+                <img :src="support" class="flip party-popper" draggable="false" alt="party popper icon" />
             </div>
         </div>
     </div>

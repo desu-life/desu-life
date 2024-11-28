@@ -2,11 +2,11 @@
     <div class="logo">
         <img
         :src="logo"
-        alt="desu.life"
+        alt="DESU.Life Logo"
         draggable="false"
         v-if="theme == 'light'"
         />
-        <img :src="logoDarkMode" alt="desu.life" draggable="false" v-else />
+        <img :src="logoDarkMode" alt="DESU.Life Logo" draggable="false" v-else />
     </div>
 </template>
 
