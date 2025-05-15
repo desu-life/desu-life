@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AnchorNavigation: typeof import('./src/components/common/AnchorNavigation.vue')['default']
+    Contact: typeof import('./src/components/home/sections/Contact.vue')['default']
     Device: typeof import('./src/components/home/sections/Device.vue')['default']
     DeviceInfo: typeof import('./src/components/home/device/DeviceInfo.vue')['default']
     Discord: typeof import('./src/components/home/sections/Discord.vue')['default']
@@ -22,6 +23,7 @@ declare module 'vue' {
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDivider: typeof import('naive-ui')['NDivider']
     NDropdown: typeof import('naive-ui')['NDropdown']
     NFlex: typeof import('naive-ui')['NFlex']
     NGi: typeof import('naive-ui')['NGi']

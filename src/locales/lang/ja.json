@@ -20,7 +20,7 @@
         },
         "kanonbot": "Bot",
         "device": "Meowpad",
-        "discord": "Discord",
+        "contact": "お問い合わせ",
         "support": "サポート",
         "team": "チーム",
         "partners": "パートナー"
@@ -110,10 +110,22 @@
         "modalTitle": "Meowpadドライバーをダウンロード"
       }
     },
-    "discord": {
-      "label": "DESU.Lifeがあなたを招待します",
-      "name": "Discordサーバー",
-      "btn": "クリックして参加"
+    "contact": {
+      "discord": {
+        "label": "Discordサーバー",
+        "name": "DESU.Life",
+        "btn": "クリックして参加"
+      },
+      "bot-qq-group": {
+        "label": "BotのQQグループ",
+        "name": "猫",
+        "btn": "クリックして参加"
+      },
+      "device-qq-group": {
+        "label": "デバイス交流グループ",
+        "name": "Kagami Studio ユーザーグループ1",
+        "btn": "クリックして参加"
+      }
     },
     "support": {
       "title": "DESU.Lifeをサポートする",

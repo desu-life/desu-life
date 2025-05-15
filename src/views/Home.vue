@@ -9,7 +9,7 @@ import Main from "@/components/home/sections/Main.vue";
 // 非首屏组件懒加载
 const Kanonbot = defineAsyncComponent(() => import("@/components/home/sections/Kanonbot.vue"));
 const Device = defineAsyncComponent(() => import("@/components/home/sections/Device.vue"));
-const Discord = defineAsyncComponent(() => import("@/components/home/sections/Discord.vue"));
+const Contact = defineAsyncComponent(() => import("@/components/home/sections/Contact.vue"));
 const Support = defineAsyncComponent(() => import("@/components/home/sections/Support.vue"));
 const Team = defineAsyncComponent(() => import("@/components/home/sections/Team.vue"));
 const Footer = defineAsyncComponent(() => import("@/components/home/sections/Footer.vue"));
@@ -41,7 +41,7 @@ const jumpTo = (id: string) => {
   <Main class="component" />
   <Kanonbot class="component dark" />
   <Device class="component dark" />
-  <Discord class="component dark" />
+  <Contact class="component dark" />
   <Support class="component dark" />
   <Team class="component no-force-scroll dark" />
   <Partners class="component no-force-scroll dark" />

@@ -20,7 +20,7 @@
         },
         "kanonbot": "Bot",
         "device": "Meowpad",
-        "discord": "Discord",
+        "contact": "Contact",
         "support": "Support",
         "team": "Team",
         "partners": "Partners"
@@ -110,10 +110,22 @@
         "modalTitle": "Download Meowpad Driver"
       }
     },
-    "discord": {
-      "label": "DESU.Life invites you to join",
-      "name": "Discord server",
-      "btn": "Click to join"
+    "contact": {
+      "discord": {
+        "label": "Discord server",
+        "name": "DESU.Life",
+        "btn": "Click to join"
+      },
+      "bot-qq-group": {
+        "label": "Bot user QQ group",
+        "name": "Cat",
+        "btn": "Click to join"
+      },
+      "device-qq-group": {
+        "label": "Device discussion group",
+        "name": "Kagami Studio User Group 1",
+        "btn": "Click to join"
+      }
     },
     "support": {
       "title": "Support DESU.Life",

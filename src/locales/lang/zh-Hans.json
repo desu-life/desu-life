@@ -20,7 +20,7 @@
         },
         "kanonbot": "Bot",
         "device": "猫盘",
-        "discord": "Discord",
+        "contact": "联系",
         "support": "赞助",
         "team": "团队",
         "partners": "合作方"
@@ -83,10 +83,22 @@
         "modalTitle": "下载 Meowpad 驱动"
       }
     },
-    "discord": {
-      "label": "DESU.Life 邀请您加入",
-      "name": "Discord 服务器",
-      "btn": "点击加入"
+    "contact": {
+      "discord": {
+        "label": "Discord 服务器",
+        "name": "DESU.Life",
+        "btn": "点击加入"
+      },
+      "bot-qq-group": {
+        "label": "Bot 用户 QQ 群",
+        "name": "猫",
+        "btn": "点击加入"
+      },
+      "device-qq-group": {
+        "label": "设备交流群",
+        "name": "Kagami Studio 用户一群",
+        "btn": "点击加入"
+      }
     },
     "support": {
       "title": "支持 DESU.Life",

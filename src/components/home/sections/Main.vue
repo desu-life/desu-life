@@ -133,7 +133,7 @@ const handleFlipAnimate = () => {
         </li>
         <li @click="jumpTo('kanonbot')">{{ $t("page.main.menu.kanonbot") }}</li>
         <li @click="jumpTo('device')">{{ $t("page.main.menu.device") }}</li>
-        <li @click="jumpTo('discord')">{{ $t("page.main.menu.discord") }}</li>
+        <li @click="jumpTo('contact')">{{ $t("page.main.menu.contact") }}</li>
         <li @click="jumpTo('support')">{{ $t("page.main.menu.support") }}</li>
         <li @click="jumpTo('team')">{{ $t("page.main.menu.team") }}</li>
         <li @click="jumpTo('partners')">{{ $t("page.main.menu.partners") }}</li>
