@@ -17,6 +17,48 @@ const Partners = defineAsyncComponent(() => import("@/components/home/sections/P
 
 const isMobile = useIsMobile();
 
+const waitForElement = (id: string, timeout = 5000): Promise<HTMLElement | null> => {
+  return new Promise((resolve) => {
+    const element = document.getElementById(id);
+    if (element) {
+      resolve(element);
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        resolve(element);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // 设置超时
+    setTimeout(() => {
+      observer.disconnect();
+      resolve(null);
+    }, timeout);
+  });
+};
+
+const jumpTo = async (id: string) => {
+  console.log('Trying to jump to:', id);
+  const element = await waitForElement(id);
+  if (element) {
+    console.log('Found element:', element);
+    setTimeout(() => {
+      element.scrollIntoView();
+    }, 500);
+  } else {
+    console.warn(`Element with id "${id}" not found after waiting`);
+  }
+};
+
 onMounted(() => {
   // 检测是否带有锚点
   if (window.location.hash) {
@@ -30,10 +72,6 @@ onMounted(() => {
     jumpTo(id);
   }
 });
-
-const jumpTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView();
-};
 </script>
 
 <template>

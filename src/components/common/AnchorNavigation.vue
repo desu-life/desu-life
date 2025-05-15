@@ -24,7 +24,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 const navItems = [
   { id: "kanonbot" },
   { id: "device" },
-  { id: "discord" },
+  { id: "contact" },
   { id: "support" },
   { id: "team" },
   { id: "partners" },
