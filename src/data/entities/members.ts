@@ -1,4 +1,4 @@
-import avatar_bkm from "@/assets/images/members/avatar_bkm.webp";
+import avatar_bkm from "@/assets/images/members/avatar_bkm.jpg";
 import avatar_xe from "@/assets/images/members/avatar_xe.webp";
 
 // 当前成员列表
