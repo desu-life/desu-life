@@ -45,7 +45,7 @@
     "unplugin-auto-import": "^0.16.7",
     "unplugin-vue-components": "^0.25.2",
     "vfonts": "^0.0.3",
-    "vite": "^4.5.5",
+    "vite": "^4.5.14",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-deadcodes": "^0.0.2",
     "vite-plugin-imagemin": "^0.6.1",
