@@ -15,7 +15,7 @@
     "main": {
       "menu": {
         "options": {
-          "info": "资讯站",
+          "support": "支持/服务",
           "mail": "邮箱"
         },
         "kanonbot": "Bot",
@@ -62,12 +62,11 @@
         "linkToMarket": "这么好？给我也整一个！ >>",
         "linkToOldMarket": "点这里购买配件 >>",
         "linkTooltip": "打开猫盘淘宝店铺页",
-        "btnOpenDialog": "已经整了？下载驱动！ >>",
-        "btnTooltip": "下载驱动程序",
-        "modalTitle": "下载 Meowpad 驱动"
+        "btnSupport": "已经整了？下载驱动！ >>",
+        "btnTooltip": "下载驱动程序"
       },
       "v2Se": {
-        "title": "Meowpad SE v2",
+        "title": "Meowpad v2 SE",
         "subtitle": "多场景适用的磁轴小键盘",
         "benefits": [
           "USB-C 接口",
@@ -78,9 +77,8 @@
         "linkToMarket": "这么好？给我也整一个！ >>",
         "linkToOldMarket": "点这里购买配件 >>",
         "linkTooltip": "打开猫盘淘宝店铺页",
-        "btnOpenDialog": "已经整了？下载驱动！ >>",
-        "btnTooltip": "下载驱动程序",
-        "modalTitle": "下载 Meowpad 驱动"
+        "btnSupport": "已经整了？下载驱动！ >>",
+        "btnTooltip": "下载驱动程序"
       }
     },
     "contact": {

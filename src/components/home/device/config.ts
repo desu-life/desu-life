@@ -6,14 +6,23 @@ import usbC from "@/assets/icons/usb-c-port.svg";
 import v2Image from "@/assets/images/device/meowpad/v2.webp";
 import v2SEImage from "@/assets/images/device/meowpad/v2-se.webp";
 
-const i18n = {
+const i18nV2 = {
   titleKey: "page.device.v2.title",
   subtitleKey: "page.device.v2.subtitle",
   linkToMarketText: "page.device.v2.linkToMarket",
   linkTooltip: "page.device.v2.linkTooltip",
-  btnOpenDialogText: "page.device.v2.btnOpenDialog",
+  btnSupportText: "page.device.v2.btnSupport",
   btnTooltip: "page.device.v2.btnTooltip",
-  modalTitleKey: "page.device.v2.modalTitle",
+}
+
+const i18nV2SE = {
+
+  titleKey: "page.device.v2Se.title",
+  subtitleKey: "page.device.v2Se.subtitle",
+  linkToMarketText: "page.device.v2Se.linkToMarket",
+  linkTooltip: "page.device.v2Se.linkTooltip",
+  btnSupportText: "page.device.v2Se.btnSupport",
+  btnTooltip: "page.device.v2Se.btnTooltip",
 }
 
 export interface DeviceInfo {
@@ -26,9 +35,8 @@ export interface DeviceInfo {
     subtitleKey: string;
     linkToMarketText: string;
     linkTooltip: string;
-    btnOpenDialogText: string;
+    btnSupportText: string;
     btnTooltip: string;
-    modalTitleKey: string;
   }
 }
 
@@ -43,7 +51,7 @@ export const devices: { [key: string]: DeviceInfo } = {
     imageSrc: v2Image,
     imageAlt: "Meowpad V2 Image",
     deviceModel: "meowpadV2",
-    i18n
+    i18n: i18nV2,
   },
   meowpadV2SE: {
     icons: [
@@ -55,6 +63,6 @@ export const devices: { [key: string]: DeviceInfo } = {
     imageSrc: v2SEImage,
     imageAlt: "Meowpad V2 SE Image",
     deviceModel: "meowpadV2SE",
-    i18n
+    i18n: i18nV2SE,
   },
 };

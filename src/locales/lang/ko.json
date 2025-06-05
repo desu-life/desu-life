@@ -15,7 +15,7 @@
     "main": {
       "menu": {
         "options": {
-          "info": "정보 센터",
+          "support": "지원/서비스",
           "mail": "메일"
         },
         "kanonbot": "봇",
@@ -89,12 +89,11 @@
         "linkToMarket": "너무 좋아보이는데요? 하나 사야겠어요! >>",
         "linkToOldMarket": "여기에서 액세서리를 구매하세요 >>",
         "linkTooltip": "Meowpad의 타오바오 페이지를 엽니다",
-        "btnOpenDialog": "이미 하나 가지고 있나요? 드라이버를 다운로드하세요! >>",
-        "btnTooltip": "드라이버 다운로드",
-        "modalTitle": "Meowpad 드라이버 다운로드"
+        "btnSupport": "이미 하나 가지고 있나요? 드라이버를 다운로드하세요! >>",
+        "btnTooltip": "드라이버 다운로드"
       },
       "v2Se": {
-        "title": "Meowpad SE v2",
+        "title": "Meowpad v2 SE",
         "subtitle": "다양한 상황에 적합한 자기축 키보드",
         "benefits": [
           "USB-C 인터페이스",
@@ -105,9 +104,8 @@
         "linkToMarket": "너무 좋아보이는데요? 하나 사야겠어요! >>",
         "linkToOldMarket": "여기에서 액세서리를 구매하세요 >>",
         "linkTooltip": "Meowpad의 타오바오 페이지를 엽니다",
-        "btnOpenDialog": "이미 하나 가지고 있나요? 드라이버를 다운로드하세요! >>",
-        "btnTooltip": "드라이버 다운로드",
-        "modalTitle": "Meowpad 드라이버 다운로드"
+        "btnSupport": "이미 하나 가지고 있나요? 드라이버를 다운로드하세요! >>",
+        "btnTooltip": "드라이버 다운로드"
       }
     },
     "contact": {

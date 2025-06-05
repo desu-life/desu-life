@@ -15,7 +15,7 @@
     "main": {
       "menu": {
         "options": {
-          "info": "インフォメーション",
+          "support": "サポート/サービス",
           "mail": "メール"
         },
         "kanonbot": "Bot",
@@ -89,12 +89,11 @@
         "linkToMarket": "こんなにいいの？私にも一つ！>>",
         "linkToOldMarket": "アクセサリーの購入はこちら >>",
         "linkTooltip": "Meowpadのタオバオページを開く",
-        "btnOpenDialog": "もう持ってる？ドライバーをダウンロード！>>",
-        "btnTooltip": "ドライバープログラムをダウンロード",
-        "modalTitle": "Meowpadドライバーをダウンロード"
+        "btnSupport": "もう持ってる？ドライバーをダウンロード！>>",
+        "btnTooltip": "ドライバープログラムをダウンロード"
       },
       "v2Se": {
-        "title": "Meowpad SE v2",
+        "title": "Meowpad v2 SE",
         "subtitle": "多シーン対応の磁軸小型キーボード",
         "benefits": [
           "USB-Cポート",
@@ -105,9 +104,8 @@
         "linkToMarket": "こんなにいいの？私にも一つ！>>",
         "linkToOldMarket": "アクセサリーの購入はこちら >>",
         "linkTooltip": "Meowpadのタオバオページを開く",
-        "btnOpenDialog": "もう持ってる？ドライバーをダウンロード！>>",
-        "btnTooltip": "ドライバープログラムをダウンロード",
-        "modalTitle": "Meowpadドライバーをダウンロード"
+        "btnSupport": "もう持ってる？ドライバーをダウンロード！>>",
+        "btnTooltip": "ドライバープログラムをダウンロード"
       }
     },
     "contact": {

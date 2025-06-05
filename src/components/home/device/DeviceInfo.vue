@@ -34,8 +34,8 @@
       </n-button>
       <n-tooltip trigger="hover" v-if="!isMobile">
         <template #trigger>
-          <n-button text class="btn" type="info" @click="openDialog">
-            {{ $t(config.i18n.btnOpenDialogText) }}
+          <n-button text class="btn" type="info" @click="toSupport">
+            {{ $t(config.i18n.btnSupportText) }}
           </n-button>
         </template>
         {{ $t(config.i18n.btnTooltip) }}
@@ -45,30 +45,19 @@
         text
         class="btn"
         type="info"
-        @click="openDialog"
+        @click="toSupport"
       >
-        {{ $t(config.i18n.btnOpenDialogText) }}
+        {{ $t(config.i18n.btnSupportText) }}
       </n-button>
     </div>
     <div class="image">
       <img :src="config.imageSrc" :alt="config.imageAlt" draggable="false" />
     </div>
-    <n-modal
-      v-model:show="showModal"
-      preset="card"
-      class="modal"
-      :style="{ width: isMobile ? '100%' : '50%', lineHeight: '1.5rem' }"
-      :title="$t(config.i18n.modalTitleKey)"
-      :bordered="false"
-    >
-      <vue-markdown-it :source="markdownContent" class="markdown" />
-    </n-modal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue";
-import { VueMarkdownIt } from "@f3ve/vue-markdown-it";
 import { importDeviceModel, i18n, useIsMobile } from "@/utils";
 import { type DeviceInfo } from "./config"
 import '@/assets/styles/markdown.css';
@@ -80,32 +69,16 @@ const { config } = defineProps({
   },
 })
 
-const showModal = ref(false);
-const markdownContent = ref("");
-
 const isMobile = useIsMobile();
 
 const toMarket = () => {
   window.open("https://kagamistudio.taobao.com/", "_blank");
 };
 
-const openDialog = () => {
-  showModal.value = true;
+const toSupport = () => {
+  window.open("https://support.desu.life/", "_blank");
 };
 
-watch(
-  () => i18n.global.locale.value,
-  async (newLocale) => {
-    markdownContent.value = await importDeviceModel(config.deviceModel, newLocale);
-  }
-);
-
-onMounted(async () => {
-  markdownContent.value = await importDeviceModel(
-    config.deviceModel,
-    i18n.global.locale.value
-  );
-});
 
 </script>
 

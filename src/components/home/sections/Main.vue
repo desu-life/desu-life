@@ -59,8 +59,8 @@ watch(
 const updateOptions = () => {
   return [
     {
-      label: i18n.global.t("page.main.menu.options.info"),
-      key: "https://info.desu.life/",
+      label: i18n.global.t("page.main.menu.options.support"),
+      key: "https://support.desu.life/",
     },
     {
       label: i18n.global.t("page.main.menu.options.mail"),
