@@ -156,7 +156,7 @@ const handleFlipAnimate = () => {
     <div class="micons" id="__micons">
       <News24Regular
         class="icon"
-        @click="toNewPage('https://info.desu.life/')"
+        @click="toNewPage('https://support.desu.life/')"
       />
       <AlternateEmailFilled
         class="icon"

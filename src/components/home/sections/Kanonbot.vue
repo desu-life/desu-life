@@ -35,7 +35,7 @@ import logo from "@/assets/desulife-logo-typography.svg"
 import left from "@/assets/images/kanonbot/kanonbot.webp"
 
 const toDetail = () => {
-    window.open("https://info.desu.life/?p=383")
+    window.open("https://support.desu.life/posts/2022-kanonbot-usage-doc/")
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="footer-container">
         <div class="f-menu" id="__f-menu">
-            <div class="icon btn" @click="toNewPage('https://info.desu.life/')">
+            <div class="icon btn" @click="toNewPage('https://support.desu.life/')">
                 <News24Regular class="i" />
             </div>
             <div class="logo" @click="backTop" id="__logo">
