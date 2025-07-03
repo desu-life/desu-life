@@ -17,7 +17,7 @@ const main = async () => {
     try {
         await initLocale();
     } catch (error) {
-        console.log(`[main.ts] Language initalization failed:`, error);
+        console.log(`[main.ts] Language initialization failed:`, error);
     }
 
     app.use(createPinia());
